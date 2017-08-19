@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 19, 2017 at 03:28 AM
+-- Generation Time: Aug 19, 2017 at 12:12 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -82,8 +82,16 @@ CREATE TABLE `TBUser` (
   `Name` varchar(255) CHARACTER SET tis620 NOT NULL,
   `ID` varchar(50) NOT NULL,
   `PW` text NOT NULL,
-  `Created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `Created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `AvartarURL` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `TBUser`
+--
+
+INSERT INTO `TBUser` (`User_ID`, `Name`, `ID`, `PW`, `Created_date`, `AvartarURL`) VALUES
+(1, 'TAE', 'test', '123232323', '2017-08-19 09:54:27', '');
 
 --
 -- Indexes for dumped tables
@@ -129,7 +137,7 @@ ALTER TABLE `TBUser`
 -- AUTO_INCREMENT for table `TBUser`
 --
 ALTER TABLE `TBUser`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
