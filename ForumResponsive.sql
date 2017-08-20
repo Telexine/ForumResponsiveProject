@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 19, 2017 at 12:12 PM
+-- Generation Time: Aug 20, 2017 at 05:18 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -31,11 +31,11 @@ SET time_zone = "+00:00";
 CREATE TABLE `TBmeta` (
   `Post_ID` int(11) NOT NULL,
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `content` text CHARACTER SET tis620 NOT NULL,
+  `content` mediumtext NOT NULL,
   `User_ID` int(11) NOT NULL,
-  `IMGurl` text CHARACTER SET tis620 NOT NULL,
+  `IMGurl` mediumtext NOT NULL,
   `isOP` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -45,8 +45,8 @@ CREATE TABLE `TBmeta` (
 
 CREATE TABLE `TBPost` (
   `Post_ID` int(11) NOT NULL,
-  `Title` text CHARACTER SET tis620 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Title` mediumtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -58,7 +58,7 @@ CREATE TABLE `TBrate` (
   `Post_ID` int(11) NOT NULL,
   `User_ID` int(11) NOT NULL,
   `Rating` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -68,8 +68,8 @@ CREATE TABLE `TBrate` (
 
 CREATE TABLE `TBTag` (
   `Post_ID` int(11) NOT NULL,
-  `Tag` varchar(255) CHARACTER SET tis620 NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Tag` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -79,19 +79,20 @@ CREATE TABLE `TBTag` (
 
 CREATE TABLE `TBUser` (
   `User_ID` int(11) NOT NULL,
-  `Name` varchar(255) CHARACTER SET tis620 NOT NULL,
-  `ID` varchar(50) NOT NULL,
-  `PW` text NOT NULL,
+  `Name` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `ID` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `PW` mediumtext CHARACTER SET utf8 NOT NULL,
   `Created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `AvartarURL` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `AvartarURL` mediumtext CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `TBUser`
 --
 
 INSERT INTO `TBUser` (`User_ID`, `Name`, `ID`, `PW`, `Created_date`, `AvartarURL`) VALUES
-(1, 'TAE', 'test', '123232323', '2017-08-19 09:54:27', '');
+(1, 'TAE', 'test', '123232323', '2017-08-19 09:54:27', ''),
+(9, 'เต้', 'tachihd', '54a68bd17f8a56f940f69ab0d703b5df', '2017-08-20 03:16:57', '');
 
 --
 -- Indexes for dumped tables
@@ -137,7 +138,7 @@ ALTER TABLE `TBUser`
 -- AUTO_INCREMENT for table `TBUser`
 --
 ALTER TABLE `TBUser`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 --
 -- Constraints for dumped tables
 --
