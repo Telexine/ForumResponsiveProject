@@ -15,7 +15,6 @@ function initDB() {
                 die("Connection failed: " . mysqli_connect_error());
             }
             else {
-              echo '<?-- Connected to DB --><br> ';
               mysqli_set_charset($conn,"utf8");
               return $conn;
             }

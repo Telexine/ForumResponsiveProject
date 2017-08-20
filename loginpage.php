@@ -34,7 +34,7 @@ require_once('resources/PHP/func.php');    // TAE
                 </td>
                 <td width="144"> 
               
-                 <input id="UploadAvatar"  ID="Avatar"  name = "avatar" type="file" value="Upload" accept="image/*"/> <!--  TAE   -->
+                 <input id="UploadAvatar"     name = "avatar" type="file" value="Upload" accept="image/*"/> <!--  TAE   -->
                 </td>
 
                 
@@ -44,7 +44,7 @@ require_once('resources/PHP/func.php');    // TAE
             	<td>Username
                 </td>
                 <td> 
-                 <input class="require" ID="Usrname" name="username" type="text"> <!--  TAE   -->
+                 <input class="require" ID="username" name="username" type="text"> <!--  TAE   -->
                 </td>
             </tr>
              <tr>
@@ -107,9 +107,12 @@ require_once('resources/PHP/func.php');    // TAE
 </body>
 
 
-<script src="resources/JS/MD5.js">//TAE </script> 
+<script src="resources/JS/MD5.js">//TAE JS สำหรับแปลง เป็น MD5 </script> 
+<script src="resources/JS/jquery-3.2.1.min.js"> </script> 
 <script>
 // --- TAE ------
+
+
 // REGISTER
 
   function registerValidate(){
@@ -122,15 +125,15 @@ require_once('resources/PHP/func.php');    // TAE
           return false;
        }; 
      };
-    // password check จะทำเป็น JS
+    // password check จะทำเป็น JS pending
 
 
     // All clear  เขียนลง DB
 
-        let name = document.getElementsByID('Name');
-        let avatarURL = document.getElementsByID('Avatar');  // เดี๋ยวทำ
-        let Username = document.getElementsByID('username');
-        let password = md5(document.getElementsByID('password'));
+        let name = document.getElementById('Name').value;
+        let avatarURL = document.getElementById('UploadAvatar').value; // เดี๋ยวทำ
+        let Username = document.getElementById('username').value;
+        let password = md5(document.getElementById('Password').value);
 
 
             if (window.XMLHttpRequest) {
@@ -143,11 +146,12 @@ require_once('resources/PHP/func.php');    // TAE
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
 
-                    alert("COMPLETE "+this.responseText);
-                    
+                    alert("Response "+this.responseText); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
                 }
             };
-            xmlhttp.open("GET","/register.php?name="+name+"&avatarURL="+avatarURL+"&Username="+Username+"&password="+password,true);
+            console.log("resources/PHP/register.php?name="+name+"&avatarURL="+avatarURL+"&Username="+Username+"&password="+password);
+            xmlhttp.open("GET","resources/PHP/register.php?name="+name+"&avatarURL="+avatarURL+"&Username="+Username+"&password="+password,true);
             xmlhttp.send();
   }
 

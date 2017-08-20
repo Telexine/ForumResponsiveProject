@@ -1,6 +1,6 @@
 <?php
 
-require_once('config/db_config.php');
+require_once('db_config.php');
 
 if (!isset($_SESSION)) {
     session_start();
@@ -21,7 +21,7 @@ function isUserCreated($ID) //username  นี้มีในฐานข้อ�
         return false;
     } //  ยัง 
 }
-function CreateUser($ID, $NAME, $PW, $avatar) // PW ตอนเรียกต้องใส่ MD5 
+function CreateUser( $NAME, $ID,$PW, $avatar) // PW ตอนเรียกต้องใส่ MD5 
 {
     $conn = initDB();
     if (isUserCreated($ID)) {
@@ -91,15 +91,7 @@ function showPost()
 
 
 //  jQuery/AJAX UI  FUNCTION ----------------------------------------------------------- 
-?>
-<script>
-
  
-
-
-
-</script>
-<?php
 
 
 /*
