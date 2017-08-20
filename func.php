@@ -23,31 +23,54 @@ function  isUserCreated($ID) //username  นี้มีในฐานข้อ
         if (mysqli_num_rows($fetch) > 0){return true;}// มีแล้ว
         else { return false;}//  ยัง 
 }
-function CreateUser($ID,$NAME,$PW,$Avartar){  // PW ตอนเรียกต้องใส่ MD5 
+function CreateUser($ID,$NAME,$PW,$avatar){  // PW ตอนเรียกต้องใส่ MD5 
     $conn = initDB();
     if(isUserCreated($ID)){return;} //ถ้ามีIDนี้ จะยกเลิก
-    if($Avartar=""){$Avartar="/resources/images/avatar/default_Avatar.jpg";} //ใส่ default image ถ้าไม่มี
+    if($avatar=""){$avatar="/resources/images/avatar/default_Avatar.jpg";} //ใส่ default image ถ้าไม่มี
    
-    $sql =  "INSERT INTO ForumResponsive.TBUser (`User_ID`, `Name`, `ID`, `PW`, `Created_date`, `AvartarURL`)"
-    ."VALUES (NULL,'$NAME','$ID','$PW',CURRENT_TIMESTAMP, '$Avartar')";
+    $sql =  "INSERT INTO ForumResponsive.TBUser (`User_ID`, `Name`, `ID`, `PW`, `Created_date`, `avatarURL`)"
+    ."VALUES (NULL,'$NAME','$ID','$PW',CURRENT_TIMESTAMP, '$avatar')";
     // query insert
     $conn->query($sql);
     return true ;
 }
 
-function UpdateUser($ID,$NAME,$PW,$Avartar){
+function UpdateUser($ID,$NAME,$PW,$avatar){
   $conn = initDB();
-  if ((!isUserCreated($ID))or((trim($NAME)=="")&&(trim($PW)=="")&&(trim($Avartar)==""))){return;} //ถ้าไม่มีIDนี้ หรือไม่มีค่าทุก field จะยกเลิก
+  if ((!isUserCreated($ID))or((trim($NAME)=="")&&(trim($PW)=="")&&(trim($avatar)==""))){return;} //ถ้าไม่มีIDนี้ หรือไม่มีค่าทุก field จะยกเลิก
 
   $sql = "UPDATE ForumResponsive.TBUser SET ".(!trim($NAME)==""? " `Name` ='$NAME' " :"")
                                             ."".(!trim($PW)==""? " `PW`   ='$PW'    ":"")
-                                            ."".(!trim($Avartar)==""? "`AvartarURL`= '$Avartar' ":"")
+                                            ."".(!trim($avatar)==""? "`avatarURL`= '$avatar' ":"")
     ."WHERE `ID` = '$ID' ";
     // query insert
     $conn->query($sql);
     return true ;
 
 }
+
+function login($ID,$Password){ // PW ตอนเรียกต้องใส่ MD5 
+  $conn = initDB();
+  $sql =  "SELECT `User_ID`,`Name`,`AvatarURL` FROM ForumResponsive.TBUser WHERE ID = '$ID' AND PW = '$Password' ";
+  $fetch = $conn->query($sql);
+      if (mysqli_num_rows($fetch) >0){
+        $row  = $fetch->fetch_assoc();
+        $usr_info=array(
+            "User_ID"=>$row["User_ID"],
+            "name"=>$row['Name'],
+            "AvatarURL"=>$row['AvatarURL']
+        );
+        $_SESSION['user_info'] = $usr_info;  // fetch current user data to array session 
+        return true;// login
+        //  TAE : EXAMPLE  echo $_SESSION['user_info']['User_ID']. $_SESSION['user_info']['name'];
+      }
+      else { 
+        return false;
+      }//  not login
+}
+
+function createPost(){}
+
 function SearchPost(){} // return array?
 function getPost(){}  // return array?
 function showPost(){}
@@ -79,8 +102,9 @@ function showPost(){}
 
 
 
-//    PRIVATE FUNCTION (Backend)
-    function fetch2Array($TBNAME,$WHERE){
+//----------    PRIVATE FUNCTION (Backend)   ---------------//
+
+     function fetch2Array($TBNAME,$WHERE){
         
             $ar  = array();
             $conn = initDB();

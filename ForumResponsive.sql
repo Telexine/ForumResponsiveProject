@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 20, 2017 at 05:18 AM
+-- Generation Time: Aug 20, 2017 at 11:10 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -83,14 +83,14 @@ CREATE TABLE `TBUser` (
   `ID` varchar(50) CHARACTER SET utf8 NOT NULL,
   `PW` mediumtext CHARACTER SET utf8 NOT NULL,
   `Created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `AvartarURL` mediumtext CHARACTER SET utf8 NOT NULL
+  `AvatarURL` mediumtext CHARACTER SET utf8 NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `TBUser`
 --
 
-INSERT INTO `TBUser` (`User_ID`, `Name`, `ID`, `PW`, `Created_date`, `AvartarURL`) VALUES
+INSERT INTO `TBUser` (`User_ID`, `Name`, `ID`, `PW`, `Created_date`, `AvatarURL`) VALUES
 (1, 'TAE', 'test', '123232323', '2017-08-19 09:54:27', ''),
 (9, 'เต้', 'tachihd', '54a68bd17f8a56f940f69ab0d703b5df', '2017-08-20 03:16:57', '');
 
@@ -138,7 +138,7 @@ ALTER TABLE `TBUser`
 -- AUTO_INCREMENT for table `TBUser`
 --
 ALTER TABLE `TBUser`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Constraints for dumped tables
 --
