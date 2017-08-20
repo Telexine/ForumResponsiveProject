@@ -13,9 +13,8 @@ require_once('func.php');
 <body>
 
 <?php
-
-CreateUser('tachihd','เต้',MD5('aa111'),'');
- 
+ // UpdateUser($ID,$NAME,$PW,$Avartar){
+ //echo UpdateUser('test','c'," ","d");
  
 ?>
 </body>

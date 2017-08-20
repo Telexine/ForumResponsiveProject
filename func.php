@@ -32,12 +32,22 @@ function CreateUser($ID,$NAME,$PW,$Avartar){  // PW ตอนเรียกต�
     ."VALUES (NULL,'$NAME','$ID','$PW',CURRENT_TIMESTAMP, '$Avartar')";
     // query insert
     $conn->query($sql);
+    return true ;
 }
 
+function UpdateUser($ID,$NAME,$PW,$Avartar){
+  $conn = initDB();
+  if ((!isUserCreated($ID))or((trim($NAME)=="")&&(trim($PW)=="")&&(trim($Avartar)==""))){return;} //ถ้าไม่มีIDนี้ หรือไม่มีค่าทุก field จะยกเลิก
 
+  $sql = "UPDATE ForumResponsive.TBUser SET ".(!trim($NAME)==""? " `Name` ='$NAME' " :"")
+                                            ."".(!trim($PW)==""? " `PW`   ='$PW'    ":"")
+                                            ."".(!trim($Avartar)==""? "`AvartarURL`= '$Avartar' ":"")
+    ."WHERE `ID` = '$ID' ";
+    // query insert
+    $conn->query($sql);
+    return true ;
 
-
-function UpdateUser(){}
+}
 function SearchPost(){} // return array?
 function getPost(){}  // return array?
 function showPost(){}
