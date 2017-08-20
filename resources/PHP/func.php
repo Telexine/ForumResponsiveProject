@@ -1,17 +1,12 @@
 <?php
-require_once('../../config/db_config.php');
 
+require_once('config/db_config.php');
 
 if (!isset($_SESSION)) {
     session_start();
 }
 
-if (isset($_GET['logout'])) {
-    session_start();
-    session_unset();
-    session_destroy();
-    session_write_close();
-}
+//  PHP DATABASE FUNCTION ----------------------------------------------------------- 
 
 
 function isUserCreated($ID) //username  นี้มีในฐานข้อมูลยัง  (True: มีแล้ว False: ยัง)
@@ -72,6 +67,7 @@ function login($ID, $Password) // PW ตอนเรียกต้องใส�
         return true; // login
         //  TAE : EXAMPLE  echo $_SESSION['user_info']['User_ID']. $_SESSION['user_info']['name'];
     } else {
+        //call function breadcrump ajax
         return false;
     } //  not login
 }
@@ -94,12 +90,47 @@ function showPost()
 
 
 
+//  jQuery/AJAX UI  FUNCTION ----------------------------------------------------------- 
+?>
+<script>
+
+ 
 
 
 
+</script>
+<?php
 
 
+/*
+function checkVal(){
 
+    var chk = $("#chk");
+    
+        if (chk.val()) {
+        
+        }    
+
+}
+
+
+init : function(){
+     document.getElementById('submit').onclick = obj.validate;
+  },
+
+  validate : function(){
+     var check = document.getElementsByTagName('input');
+     var len = check.length;
+     for(var i=0;i<len;i++) {
+       if (check[i].value ==='')
+       {
+          alert('required');
+          return false;
+       }; 
+     };
+  }
+
+*/
 
 
 

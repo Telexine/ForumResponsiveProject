@@ -1,8 +1,6 @@
 <html>
 <?php
-
-require_once('func.php');
-
+require_once('resources/PHP/func.php');
 
 
 ?>
