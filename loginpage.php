@@ -69,7 +69,7 @@ require_once('resources/PHP/func.php');    // TAE
                   <td>
                 </td>
                 <td> 
-                 <input onclick = 'registerValidate();' id="Register"type="button" value="Sign up"/>  <!--  TAE   -->
+                 <input onclick = 'register();' id="Register"type="button" value="Sign up"/>  <!--  TAE   -->
                 </td>
             </tr>
            
@@ -84,21 +84,21 @@ require_once('resources/PHP/func.php');    // TAE
             	<td>Username
                 </td>
                 <td> 
-                 <input name="username" type="text">
+                 <input id="Login_ID" name="username" class="reqLog"type="text">  <!-- TAE  -->
                 </td>
             </tr>
              <tr>
             	<td>Password
                 </td>
                 <td> 
-                 <input name="password" type="text">
+                 <input id="Login_Pass" name="password" class="reqLog" type="text"> <!-- TAE  -->
                 </td>
             </tr>
             <tr>
             <td> 
                 </td>
              <td align="right"> 
-                 <input type="button" value="Log in"/>
+                 <input type="button" onclick = 'Loginpage();' value="Log in"/>
                 </td>
             </tr>
 		</form>
@@ -112,11 +112,11 @@ require_once('resources/PHP/func.php');    // TAE
 <script>
 // --- TAE ------
 
+//Validate 
 
-// REGISTER
 
-  function registerValidate(){
-     let check = document.getElementsByClassName('require');
+function validate(classNa){
+    let check = document.getElementsByClassName(classNa);
      let len = check.length;
      for(var i=0;i<len;i++) {
        if (check[i].value ==='')
@@ -125,6 +125,14 @@ require_once('resources/PHP/func.php');    // TAE
           return false;
        }; 
      };
+
+
+}
+// REGISTER
+
+  function register(){
+
+    validate('require'); 
     // password check จะทำเป็น JS pending
 
 
@@ -152,7 +160,6 @@ require_once('resources/PHP/func.php');    // TAE
                     }else if(response==406){
                         alert("Response : This Username "+ Username +" Already taken plz try again"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
-  
                        }
                 }
             };
@@ -164,6 +171,42 @@ require_once('resources/PHP/func.php');    // TAE
 
 //REGISTER BUTTON 
 
+
+// Login 
+function Loginpage(){
+
+    validate('reqlog'); 
+
+    let Username = document.getElementById('Login_ID').value;
+    let password = md5(document.getElementById('Login_Pass').value);
+
+    
+    if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response =parseInt(this.responseText);
+                    if(response==200){
+                        alert("Login success"); //จะขึ้น Modal, Breadcrumb
+                    }else if(response==406){
+                        alert("Response : Username or password are incorrect"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
+                       }
+                }
+            };
+             
+            xmlhttp.open("GET","resources/PHP/login.php?Username="+Username+"&password="+password,true);
+            xmlhttp.send();
+
+
+}
+// end login 
 
 //end tae -------
 
