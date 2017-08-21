@@ -13,7 +13,7 @@ function isUserCreated($ID) //username  นี้มีในฐานข้อ�
 {
     $conn  = initDB();
     $sql   = "SELECT ID  FROM ForumResponsive.TBUser WHERE ID = '$ID'";
-    $fetch = $conn->query($sql);
+    $fetch = $conn->query($sql); 
     if (mysqli_num_rows($fetch) > 0) {
         return true;
     } // มีแล้ว
@@ -72,8 +72,18 @@ function login($ID, $Password) // PW ตอนเรียกต้องใส�
     } //  not login
 }
 
-function createPost()
+
+
+function logout(){
+    session_start();
+    session_unset();
+    session_destroy();
+    session_write_close();
+}
+function createPost($Title,$Content,$User_ID)
 {
+    // ก่อนเรียก ฟังชั่นนี้ ต้องเช็คก่อนว่า มี field ครบไหม
+
 }
 
 function SearchPost()
