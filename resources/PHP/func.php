@@ -9,10 +9,10 @@ if (!isset($_SESSION)) {
 //  PHP DATABASE FUNCTION ----------------------------------------------------------- 
 
 
-function isUserCreated($ID) //username  นี้มีในฐานข้อมูลยัง  (True: มีแล้ว False: ยัง)
+function isUserCreated($UserName) //username  นี้มีในฐานข้อมูลยัง  (True: มีแล้ว False: ยัง)
 {
     $conn  = initDB();
-    $sql   = "SELECT ID  FROM ForumResponsive.TBUser WHERE ID = '$ID'";
+    $sql   = "SELECT ID  FROM ForumResponsive.TBUser WHERE ID = '$UserName'";
     $fetch = $conn->query($sql); 
     if (mysqli_num_rows($fetch) > 0) {
         return true;
@@ -21,40 +21,40 @@ function isUserCreated($ID) //username  นี้มีในฐานข้อ�
         return false;
     } //  ยัง 
 }
-function CreateUser( $NAME, $ID,$PW, $avatar) // PW ตอนเรียกต้องใส่ MD5 
+function CreateUser( $NAME, $UserName,$PW, $avatar) // PW ตอนเรียกต้องใส่ MD5 
 {
     $conn = initDB();
-    if (isUserCreated($ID)) {
+    if (isUserCreated($UserName)) {
         return;
     } //ถ้ามีIDนี้ จะยกเลิก
-    if ($avatar = "") {
+    if ($avatar == "") {
         $avatar = "/resources/images/avatar/default_Avatar.jpg";
     } //ใส่ default image ถ้าไม่มี
     
-    $sql = "INSERT INTO ForumResponsive.TBUser (`User_ID`, `Name`, `ID`, `PW`, `Created_date`, `avatarURL`)" . "VALUES (NULL,'$NAME','$ID','$PW',CURRENT_TIMESTAMP, '$avatar')";
+    $sql = "INSERT INTO ForumResponsive.TBUser (`User_ID`, `Name`, `ID`, `PW`, `Created_date`, `avatarURL`)" . "VALUES (NULL,'$NAME','$UserName','$PW',CURRENT_TIMESTAMP, '$avatar')";
     // query insert
     $conn->query($sql);
     return true;
 }
 
-function UpdateUser($ID, $NAME, $PW, $avatar)
+function UpdateUser($UserName, $NAME, $PW, $avatar)
 {
     $conn = initDB();
-    if ((!isUserCreated($ID)) or ((trim($NAME) == "") && (trim($PW) == "") && (trim($avatar) == ""))) {
+    if ((!isUserCreated($UserName)) or ((trim($NAME) == "") && (trim($PW) == "") && (trim($avatar) == ""))) {
         return;
     } //ถ้าไม่มีIDนี้ หรือไม่มีค่าทุก field จะยกเลิก
     
-    $sql = "UPDATE ForumResponsive.TBUser SET " . (!trim($NAME) == "" ? " `Name` ='$NAME' " : "") . "" . (!trim($PW) == "" ? " `PW`   ='$PW'    " : "") . "" . (!trim($avatar) == "" ? "`avatarURL`= '$avatar' " : "") . "WHERE `ID` = '$ID' ";
+    $sql = "UPDATE ForumResponsive.TBUser SET " . (!trim($NAME) == "" ? " `Name` ='$NAME' " : "") . "" . (!trim($PW) == "" ? " `PW`   ='$PW'    " : "") . "" . (!trim($avatar) == "" ? "`avatarURL`= '$avatar' " : "") . "WHERE `ID` = '$UserName' ";
     // query insert
     $conn->query($sql);
     return true;
     
 }
 
-function login($ID, $Password) // PW ตอนเรียกต้องใส่ MD5 
+function login($UserName, $Password) // PW ตอนเรียกต้องใส่ MD5 
 {
     $conn  = initDB();
-    $sql   = "SELECT `User_ID`,`Name`,`AvatarURL` FROM ForumResponsive.TBUser WHERE ID = '$ID' AND PW = '$Password' ";
+    $sql   = "SELECT `User_ID`,`Name`,`AvatarURL` FROM ForumResponsive.TBUser WHERE ID = '$UserName' AND PW = '$Password' ";
     $fetch = $conn->query($sql);
     if (mysqli_num_rows($fetch) > 0) {
         $row                   = $fetch->fetch_assoc();
@@ -80,10 +80,16 @@ function logout(){
     session_destroy();
     session_write_close();
 }
-function createPost($Title,$Content,$User_ID)
+function createPost($Title,$Content,$User_ID,$imageURL,$IsOP)
 {
     // ก่อนเรียก ฟังชั่นนี้ ต้องเช็คก่อนว่า มี field ครบไหม
+    if($Title==""||$Content==""||!isUserCreated($UserName)){return;}
 
+    $conn = initDB();
+    
+    $sql = "INSERT INTO `ForumResponsive.TBPost` (`Title`) VALUES ($Title)";
+    // query insert
+    $conn->query($sql);
 }
 
 function SearchPost()

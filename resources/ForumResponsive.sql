@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 20, 2017 at 11:10 AM
+-- Generation Time: Aug 21, 2017 at 04:14 AM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `TBmeta` (
-  `Post_ID` int(11) NOT NULL,
+  `Post_ID` varchar(255) NOT NULL,
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `content` mediumtext NOT NULL,
   `User_ID` int(11) NOT NULL,
-  `IMGurl` mediumtext NOT NULL,
+  `imageURL` mediumtext NOT NULL,
   `isOP` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -44,9 +44,19 @@ CREATE TABLE `TBmeta` (
 --
 
 CREATE TABLE `TBPost` (
-  `Post_ID` int(11) NOT NULL,
-  `Title` mediumtext NOT NULL
+  `Post_ID` varchar(255) NOT NULL,
+  `Title` mediumtext NOT NULL,
+  `DateCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `TBPost`
+--
+
+INSERT INTO `TBPost` (`Post_ID`, `Title`, `DateCreated`) VALUES
+('1', 'Hi', '2017-08-21 02:07:40'),
+('2', 'ddddd', '2017-08-21 02:09:50'),
+('3', 'asdasdsadsadsa', '2017-08-21 02:10:54');
 
 -- --------------------------------------------------------
 
@@ -55,7 +65,7 @@ CREATE TABLE `TBPost` (
 --
 
 CREATE TABLE `TBrate` (
-  `Post_ID` int(11) NOT NULL,
+  `Post_ID` varchar(255) NOT NULL,
   `User_ID` int(11) NOT NULL,
   `Rating` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -67,7 +77,7 @@ CREATE TABLE `TBrate` (
 --
 
 CREATE TABLE `TBTag` (
-  `Post_ID` int(11) NOT NULL,
+  `Post_ID` varchar(255) NOT NULL,
   `Tag` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -80,7 +90,7 @@ CREATE TABLE `TBTag` (
 CREATE TABLE `TBUser` (
   `User_ID` int(11) NOT NULL,
   `Name` varchar(255) CHARACTER SET utf8 NOT NULL,
-  `ID` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `UserName` varchar(50) CHARACTER SET utf8 NOT NULL,
   `PW` mediumtext CHARACTER SET utf8 NOT NULL,
   `Created_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `AvatarURL` mediumtext CHARACTER SET utf8 NOT NULL
@@ -90,9 +100,10 @@ CREATE TABLE `TBUser` (
 -- Dumping data for table `TBUser`
 --
 
-INSERT INTO `TBUser` (`User_ID`, `Name`, `ID`, `PW`, `Created_date`, `AvatarURL`) VALUES
+INSERT INTO `TBUser` (`User_ID`, `Name`, `UserName`, `PW`, `Created_date`, `AvatarURL`) VALUES
 (1, 'TAE', 'test', '123232323', '2017-08-19 09:54:27', ''),
-(9, 'เต้', 'tachihd', '54a68bd17f8a56f940f69ab0d703b5df', '2017-08-20 03:16:57', '');
+(9, 'เต้', 'tachihd', '54a68bd17f8a56f940f69ab0d703b5df', '2017-08-20 03:16:57', ''),
+(11, 'ดาว', 'dao', '202cb962ac59075b964b07152d234b70', '2017-08-20 14:11:04', '');
 
 --
 -- Indexes for dumped tables
@@ -138,7 +149,7 @@ ALTER TABLE `TBUser`
 -- AUTO_INCREMENT for table `TBUser`
 --
 ALTER TABLE `TBUser`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --
@@ -161,7 +172,7 @@ ALTER TABLE `TBrate`
 -- Constraints for table `TBTag`
 --
 ALTER TABLE `TBTag`
-  ADD CONSTRAINT `tbtag_ibfk_1` FOREIGN KEY (`Post_ID`) REFERENCES `TBPost` (`Post_ID`);
+  ADD CONSTRAINT `tbTag_ibfk_1` FOREIGN KEY (`Post_ID`) REFERENCES `TBPost` (`Post_ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
