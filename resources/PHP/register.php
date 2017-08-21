@@ -1,3 +1,4 @@
+
 <?
 
 require_once('db_config.php');
@@ -16,11 +17,11 @@ if (!isset($_SESSION)) {
 
        // เช็คว่ามี USER นี้ยัง
        if(isUserCreated($Username)){
-            echo "Error, This User Name ' ".$Username." ' is in use"; // ถ้ามีอะ alert 
+            echo "406";
        }else{
             CreateUser($name,$Username,$password,$avatarURL);
-            echo "Succesful!! Welcome ".$name;
-            login($Username,$password);
+            echo "200";
+             
        }
 
 ?>

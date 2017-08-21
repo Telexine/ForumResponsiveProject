@@ -143,14 +143,20 @@ require_once('resources/PHP/func.php');    // TAE
                 // code for IE6, IE5
                 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
             }
+
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-
-                    alert("Response "+this.responseText); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                    let response =this.responseText;
+                    if(response=="200"){
+                        alert("success"); //จะขึ้น Modal, Breadcrumb
+                    }else if(response=="406"){
+                        alert("Response : This Username "+ Username +" Already taken plz try again"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
+  
+                       }
                 }
             };
-            console.log("resources/PHP/register.php?name="+name+"&avatarURL="+avatarURL+"&Username="+Username+"&password="+password);
+             
             xmlhttp.open("GET","resources/PHP/register.php?name="+name+"&avatarURL="+avatarURL+"&Username="+Username+"&password="+password,true);
             xmlhttp.send();
   }
