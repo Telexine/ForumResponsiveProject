@@ -13,8 +13,7 @@ require_once('resources/PHP/func.php');
 <?php
 
 
-
-
+createPost('TEST','Content','9','dd',true)
 
 /* // Test  UpdateUser
  echo UpdateUser('test','c'," ","d");

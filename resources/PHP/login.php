@@ -16,9 +16,9 @@ if (!isset($_SESSION)) {
 
        // เช็คว่ามี USER นี้ยัง
        if(login($Username,$password)){
-            echo "200";
+            echo "200"; // username pass OK
        }else{
-            echo "406";
+            echo "406";  // not found
              
        }
 

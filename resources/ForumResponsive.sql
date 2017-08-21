@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 21, 2017 at 04:14 AM
+-- Generation Time: Aug 21, 2017 at 04:42 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -37,6 +37,13 @@ CREATE TABLE `TBmeta` (
   `isOP` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `TBmeta`
+--
+
+INSERT INTO `TBmeta` (`Post_ID`, `Date`, `content`, `User_ID`, `imageURL`, `isOP`) VALUES
+('OP1503326319?9', '2017-08-21 14:38:44', 'Content', 9, 'dd', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -55,8 +62,7 @@ CREATE TABLE `TBPost` (
 
 INSERT INTO `TBPost` (`Post_ID`, `Title`, `DateCreated`) VALUES
 ('1', 'Hi', '2017-08-21 02:07:40'),
-('2', 'ddddd', '2017-08-21 02:09:50'),
-('3', 'asdasdsadsadsa', '2017-08-21 02:10:54');
+('OP1503326319?9', 'TEST', '2017-08-21 14:38:39');
 
 -- --------------------------------------------------------
 
@@ -103,7 +109,8 @@ CREATE TABLE `TBUser` (
 INSERT INTO `TBUser` (`User_ID`, `Name`, `UserName`, `PW`, `Created_date`, `AvatarURL`) VALUES
 (1, 'TAE', 'test', '123232323', '2017-08-19 09:54:27', ''),
 (9, 'เต้', 'tachihd', '54a68bd17f8a56f940f69ab0d703b5df', '2017-08-20 03:16:57', ''),
-(11, 'ดาว', 'dao', '202cb962ac59075b964b07152d234b70', '2017-08-20 14:11:04', '');
+(11, 'ดาว', 'dao', '202cb962ac59075b964b07152d234b70', '2017-08-20 14:11:04', ''),
+(12, 'Tachid', 'Tachid', '81dc9bdb52d04dc20036dbd8313ed055', '2017-08-21 06:18:52', '/resources/images/avatar/default_Avatar.jpg');
 
 --
 -- Indexes for dumped tables
@@ -149,7 +156,7 @@ ALTER TABLE `TBUser`
 -- AUTO_INCREMENT for table `TBUser`
 --
 ALTER TABLE `TBUser`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --

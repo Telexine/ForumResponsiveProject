@@ -21,6 +21,20 @@ function isUserCreated($UserName) //username  นี้มีในฐานข�
         return false;
     } //  ยัง 
 }
+
+
+function isUserIDexist($User_ID) //username  นี้มีในฐานข้อมูลยัง  (True: มีแล้ว False: ยัง)
+{
+    $conn  = initDB();
+    $sql   = "SELECT User_ID  FROM ForumResponsive.TBUser WHERE User_ID = '$User_ID'";
+    $fetch = $conn->query($sql); 
+    if (mysqli_num_rows($fetch) > 0) {
+        return true;
+    } // มีแล้ว
+    else {
+        return false;
+    } //  ยัง 
+}
 function CreateUser( $NAME, $UserName,$PW, $avatar) // PW ตอนเรียกต้องใส่ MD5 
 {
     $conn = initDB();
@@ -80,16 +94,24 @@ function logout(){
     session_destroy();
     session_write_close();
 }
-function createPost($Title,$Content,$User_ID,$imageURL,$IsOP)
+function createPost($Title,$Content,$UserID,$imageURL,$IsOP)
 {
     // ก่อนเรียก ฟังชั่นนี้ ต้องเช็คก่อนว่า มี field ครบไหม
-    if($Title==""||$Content==""||!isUserCreated($UserName)){return;}
+    if($Title==""||$Content==""||!isUserIDexist($UserID)){return;}
 
     $conn = initDB();
+
+    //generate Uniq PostID // op = หัวโพส  Com = comment
+    $PostID = ($IsOP?"OP":"CO").strtotime("now").'?'.$UserID;
+    $sql = "INSERT INTO ForumResponsive.TBPost (`Post_ID`,`Title`) VALUES ('$PostID','$Title')";
     
-    $sql = "INSERT INTO `ForumResponsive.TBPost` (`Title`) VALUES ($Title)";
     // query insert
     $conn->query($sql);
+    //isOP 1 == true
+    $sql = "INSERT INTO ForumResponsive.TBmeta (`Post_ID`,`content`,`User_ID`,`imageURL`,`isOP`) VALUES ('$PostID','$Content','$UserID','$imageURL','$IsOP')";
+     // query insert
+    $conn->query($sql);
+    
 }
 
 function SearchPost()
