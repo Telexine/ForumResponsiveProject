@@ -146,10 +146,10 @@ require_once('resources/PHP/func.php');    // TAE
 
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    let response =this.responseText;
-                    if(response=="200"){
+                    let response =parseInt(this.responseText);
+                    if(response==200){
                         alert("success"); //จะขึ้น Modal, Breadcrumb
-                    }else if(response=="406"){
+                    }else if(response==406){
                         alert("Response : This Username "+ Username +" Already taken plz try again"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
   

@@ -12,7 +12,7 @@ if (!isset($_SESSION)) {
 function isUserCreated($UserName) //username  นี้มีในฐานข้อมูลยัง  (True: มีแล้ว False: ยัง)
 {
     $conn  = initDB();
-    $sql   = "SELECT ID  FROM ForumResponsive.TBUser WHERE ID = '$UserName'";
+    $sql   = "SELECT UserName  FROM ForumResponsive.TBUser WHERE UserName = '$UserName'";
     $fetch = $conn->query($sql); 
     if (mysqli_num_rows($fetch) > 0) {
         return true;
@@ -31,7 +31,7 @@ function CreateUser( $NAME, $UserName,$PW, $avatar) // PW ตอนเรีย�
         $avatar = "/resources/images/avatar/default_Avatar.jpg";
     } //ใส่ default image ถ้าไม่มี
     
-    $sql = "INSERT INTO ForumResponsive.TBUser (`User_ID`, `Name`, `ID`, `PW`, `Created_date`, `avatarURL`)" . "VALUES (NULL,'$NAME','$UserName','$PW',CURRENT_TIMESTAMP, '$avatar')";
+    $sql = "INSERT INTO ForumResponsive.TBUser (`User_ID`, `Name`, `UserName`, `PW`, `Created_date`, `avatarURL`)" . "VALUES (NULL,'$NAME','$UserName','$PW',CURRENT_TIMESTAMP, '$avatar')";
     // query insert
     $conn->query($sql);
     return true;
@@ -44,7 +44,7 @@ function UpdateUser($UserName, $NAME, $PW, $avatar)
         return;
     } //ถ้าไม่มีIDนี้ หรือไม่มีค่าทุก field จะยกเลิก
     
-    $sql = "UPDATE ForumResponsive.TBUser SET " . (!trim($NAME) == "" ? " `Name` ='$NAME' " : "") . "" . (!trim($PW) == "" ? " `PW`   ='$PW'    " : "") . "" . (!trim($avatar) == "" ? "`avatarURL`= '$avatar' " : "") . "WHERE `ID` = '$UserName' ";
+    $sql = "UPDATE ForumResponsive.TBUser SET " . (!trim($NAME) == "" ? " `Name` ='$NAME' " : "") . "" . (!trim($PW) == "" ? " `PW`   ='$PW'    " : "") . "" . (!trim($avatar) == "" ? "`avatarURL`= '$avatar' " : "") . "WHERE `UserName` = '$UserName' ";
     // query insert
     $conn->query($sql);
     return true;
@@ -54,7 +54,7 @@ function UpdateUser($UserName, $NAME, $PW, $avatar)
 function login($UserName, $Password) // PW ตอนเรียกต้องใส่ MD5 
 {
     $conn  = initDB();
-    $sql   = "SELECT `User_ID`,`Name`,`AvatarURL` FROM ForumResponsive.TBUser WHERE ID = '$UserName' AND PW = '$Password' ";
+    $sql   = "SELECT `User_ID`,`Name`,`AvatarURL` FROM ForumResponsive.TBUser WHERE UserName = '$UserName' AND PW = '$Password' ";
     $fetch = $conn->query($sql);
     if (mysqli_num_rows($fetch) > 0) {
         $row                   = $fetch->fetch_assoc();
