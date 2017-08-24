@@ -116,10 +116,40 @@ function createPost($Title,$Content,$UserID,$imageURL,$IsOP)
 
 function SearchPost()
 {
+
 } // return array?
-function getPost()
+function getPost($PostID)
 {
-} // return array?
+    $conn = initDB();
+    
+    $sql = "SELECT a.`Post_ID`,a.`Title`,b.`content`,b.`User_ID`,b.`imageURL`,b.`isOP` FROM `TBPost` as a ,  `TBmeta` as b  WHERE  a.Post_ID = b.Post_ID and a.Post_ID =  '$PostID' ";
+ 
+    // query insert
+    $fetch = $conn->query($sql); 
+ 
+    if (mysqli_num_rows($fetch)) {
+
+
+        // ADD TAG,RATE LATER
+        
+
+
+        
+        $row                   = $fetch->fetch_assoc();
+        $Post_info             = array(
+            "Post_ID" => $row["Post_ID"],
+            "Title" => $row['Title'],
+            "User_ID" => $row['User_ID'],
+            "imageURL" => $row['imageURL'],
+            "isOP" => $row['isOP']
+        );
+        return  $Post_info;
+    }else{
+        return false;// ไม่พบโพส
+    }
+
+    
+}
 function showPost()
 {
 }

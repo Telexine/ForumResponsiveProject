@@ -13,7 +13,6 @@ require_once('resources/PHP/func.php');
 <?php
 
 
-createPost('TEST','Content','9','dd',true)
 
 /* // Test  UpdateUser
  echo UpdateUser('test','c'," ","d");
@@ -26,6 +25,15 @@ createPost('TEST','Content','9','dd',true)
  print_r( $_SESSION['user_info']);
  echo $_SESSION['user_info']['User_ID']
  */
+
+
+
+ /*// Test getPost()
+ 
+ 
+ */
+
+ print_r(getPost('OP1503326319?9'));
 ?>
 </body>
 <html>

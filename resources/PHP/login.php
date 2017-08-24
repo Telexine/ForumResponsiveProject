@@ -19,7 +19,6 @@ if (!isset($_SESSION)) {
             echo "200"; // username pass OK
        }else{
             echo "406";  // not found
-             
        }
 
 ?>
