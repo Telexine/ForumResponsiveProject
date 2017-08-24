@@ -123,7 +123,7 @@ require_once('resources/PHP/func.php');    // TAE
 function validate(classNa){
     let check = document.getElementsByClassName(classNa);
      let len = check.length;
-       console.log(check);
+     let valid = true;
      for(var i=0;i<len;i++) {
        if (check[i].value.trim() ==='')
        {    
@@ -136,10 +136,9 @@ function validate(classNa){
               setTimeout(function() {
               $("#"+obj).removeClass("error");
             }, 300);
-         
-
+            valid= false;
+            
           //alert('required Field '+check[i].name); //เดวเราทำ js เพิ่ม เราไม่ควรใช้  alert
-
 
            
        }
@@ -149,17 +148,27 @@ function validate(classNa){
         $("#"+obj+"_error").addClass(" hideErrorMessage");
 
        }
+ ;
+      
      }
-
+     console.log("true");
+    return valid;
 
 }
 // REGISTER
 
   function register(){
-
+    // validate
     if(!validate('require')){return;}
-    // password check จะทำเป็น JS pending
-
+    // password check 
+    pw1 = document.getElementById('Password2').value;
+    pw2 = document.getElementById('Password').value;
+    if(!pw1!=pw2){
+        //pass word is not the same / alert something
+        console.log('pw');
+        alert('Password is not match');
+        return;
+    }
 
     // All clear  เขียนลง DB
 
@@ -262,6 +271,8 @@ function Loginpage(){
         left: 0px;
       }
 }
+ 
+ 
 
 .hideErrorMessage{
     opacity: 0;
