@@ -131,10 +131,6 @@ function getPost($PostID)
 
 
         // ADD TAG,RATE LATER
-        
-
-
-        
         $row                   = $fetch->fetch_assoc();
         $Post_info             = array(
             "Post_ID" => $row["Post_ID"],
@@ -154,7 +150,10 @@ function showPost()
 {
 }
 
+function getAvartar($UserName){
 
+
+}
 
 
 

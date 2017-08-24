@@ -23,7 +23,7 @@ require_once('resources/PHP/func.php');    // TAE
                 </td>
                 <td width="144"> 
                  <input class="require"  ID="Name" name="Nick Name" type="text">  <!--  TAE   -->
-                 
+                 <div id="Name_error" class="hideErrorMessage errmsg">Require</div><!--  TAE   -->
                 </td>
 
 
@@ -33,8 +33,8 @@ require_once('resources/PHP/func.php');    // TAE
                  <td width="102">Avatar
                 </td>
                 <td width="144"> 
-              
-                 <input id="UploadAvatar"     name = "avatar" type="file" value="Upload" accept="image/*"/> <!--  TAE   -->
+                 <input   id="avatarPath"   name = "avatar" type="file" value="Upload" accept="image/*"/>   <!--  TAE   -->
+                 <div id="avatar_error" class="hideErrorMessage errmsg">Require</div><!--  TAE   -->
                 </td>
 
                 
@@ -45,6 +45,7 @@ require_once('resources/PHP/func.php');    // TAE
                 </td>
                 <td> 
                  <input class="require" ID="username" name="username" type="text"> <!--  TAE   -->
+                 <div id="username_error" class="hideErrorMessage errmsg">Require</div><!--  TAE   -->
                 </td>
             </tr>
              <tr>
@@ -52,6 +53,7 @@ require_once('resources/PHP/func.php');    // TAE
                 </td>
                 <td> 
                  <input class="require" id ='Password' name="password" type="password"> <!--  TAE   -->
+                
                 </td>
             </tr>
              <tr>
@@ -59,6 +61,7 @@ require_once('resources/PHP/func.php');    // TAE
                 </td>
                 <td> 
                  <input class="require" id ='Password2'name="passwordconfirm" type="password"> <!--  TAE   -->
+                 <div id="Password_error" class="hideErrorMessage errmsg">Require</div><!--  TAE   -->
                 </td>
             </tr>
             	 <tr>
@@ -69,7 +72,7 @@ require_once('resources/PHP/func.php');    // TAE
                   <td>
                 </td>
                 <td> 
-                 <input onclick = 'register();' id="Register"type="button" value="Sign up"/>  <!--  TAE   -->
+                 <input onclick ="register();" id="Register"type="button" value="Sign up"/>  <!--  TAE   -->
                 </td>
             </tr>
            
@@ -84,7 +87,8 @@ require_once('resources/PHP/func.php');    // TAE
             	<td>Username
                 </td>
                 <td> 
-                 <input id="Login_ID" name="username" class="reqLog"type="text">  <!-- TAE  -->
+                 <input id="Login_ID" name="username" class="reqLog" type="text">  <!-- TAE  -->
+                 <div id="Login_ID_error" class="hideErrorMessage errmsg">Require</div><!--  TAE   -->
                 </td>
             </tr>
              <tr>
@@ -92,6 +96,7 @@ require_once('resources/PHP/func.php');    // TAE
                 </td>
                 <td> 
                  <input id="Login_Pass" name="password" class="reqLog" type="text"> <!-- TAE  -->
+                 <div id="Login_Pass_error" class="hideErrorMessage errmsg">Require</div><!--  TAE   -->
                 </td>
             </tr>
             <tr>
@@ -118,13 +123,33 @@ require_once('resources/PHP/func.php');    // TAE
 function validate(classNa){
     let check = document.getElementsByClassName(classNa);
      let len = check.length;
+       console.log(check);
      for(var i=0;i<len;i++) {
-       if (check[i].value ==='')
-       {
-          alert('required Field '+check[i].name); //เดวเราทำ js เพิ่ม เราไม่ควรใช้  alert
-          return false;
-       }; 
-     };
+       if (check[i].value.trim() ==='')
+       {    
+
+           let obj = check[i].id;
+ 
+           $("#"+obj).addClass(" required");  // กล่องแดง
+            $("#"+obj).addClass(" error");    // สั่น
+            $("#"+obj+"_error").removeClass("hideErrorMessage");
+              setTimeout(function() {
+              $("#"+obj).removeClass("error");
+            }, 300);
+         
+
+          //alert('required Field '+check[i].name); //เดวเราทำ js เพิ่ม เราไม่ควรใช้  alert
+
+
+           
+       }
+       else{
+        let obj = check[i].id;
+        $("#"+obj).removeClass(" required");  // กล่องแดง
+        $("#"+obj+"_error").addClass(" hideErrorMessage");
+
+       }
+     }
 
 
 }
@@ -132,7 +157,7 @@ function validate(classNa){
 
   function register(){
 
-    validate('require'); 
+    if(!validate('require')){return;}
     // password check จะทำเป็น JS pending
 
 
@@ -175,7 +200,7 @@ function validate(classNa){
 // Login 
 function Loginpage(){
 
-    validate('reqlog'); 
+   validate('reqLog') 
 
     let Username = document.getElementById('Login_ID').value;
     let password = md5(document.getElementById('Login_Pass').value);
@@ -208,7 +233,50 @@ function Loginpage(){
 }
 // end login 
 
-//end tae -------
 
 </script>
+<style>
+
+.error {
+    position: relative;
+    animation: shake 0.5s cubic-bezier(0, 1.8, 0.5, 1.8) 0s 2;
+    animation-iteration-count: 3;
+}
+.required{ 
+    border:1px solid red;
+}
+@keyframes shake {
+    0% {
+        left: 0px;
+      }
+      20% {
+        left: 8px;
+      }
+      40% {
+        left: -4px;
+      }
+      60% {
+        left: 4px;
+      }
+      100% {
+        left: 0px;
+      }
+}
+
+.hideErrorMessage{
+    opacity: 0;
+}
+
+.errmsg
+{
+    color:red;
+}
+
+body {
+  font-family: "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
+  }
+</style>
+<!-- //end tae  -->
+
+
 </html>
