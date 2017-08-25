@@ -119,9 +119,10 @@ if (!isset($_SESSION)) {
 <script>
 // --- TAE ------
 
+//Global variable 
+let G_User_ID, G_name,  G_AvatarURL;
+
 //Validate 
-
-
 function validate(classNa){
     let check = document.getElementsByClassName(classNa);
      let len = check.length;
@@ -228,12 +229,11 @@ function Loginpage(){
                     if(response==200){
 
 
-              
 
                         //ส่งค่า SESSION บางส่วนลง JS 
-                        <?php echo 'let G_User_ID = '.json_encode($_SESSION['user_info']['User_ID']).';';?>
-                        <?php echo 'let G_name = '.json_encode($_SESSION['user_info']['name']).';';?>
-                        <?php echo 'let G_AvatarURL = '.json_encode($_SESSION['user_info']['AvatarURL']).';';?>
+                        <?php echo 'G_User_ID = '.json_encode($_SESSION['user_info']['User_ID']).';';?>
+                        <?php echo 'G_name = '.json_encode($_SESSION['user_info']['name']).';';?>
+                        <?php echo 'G_AvatarURL = '.json_encode($_SESSION['user_info']['AvatarURL']).';';?>
                  
                         
                         alert("Login success : "+G_name); //จะขึ้น Modal, Breadcrumb
