@@ -216,9 +216,9 @@ function validate(classNa){
 
 // Login 
 function Loginpage(){
-
-   validate('reqLog') 
-
+ 
+   if(!validate('reqLog')){return;}
+   
     let Username = document.getElementById('Login_ID').value;
     let password = md5(document.getElementById('Login_Pass').value);
 
