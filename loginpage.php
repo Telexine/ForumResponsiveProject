@@ -18,7 +18,7 @@ if (!isset($_SESSION)) {
 
 <body>
 
-<div class="fadeIN" id="regisOption" style="margin:auto;width:80%;padding-top:30px">
+<div class="fadepopIN" id="regisOption" style="margin:auto;width:80%;padding-top:30px">
 <div id="sighup" style="float:left;width:50%;background-color:skyblue;height: -webkit-fill-available;">
         <table style="margin:auto">
          <form>
@@ -194,6 +194,11 @@ function validate(classNa){
                     let response =parseInt(this.responseText);
                     if(response==200){
                         alert("success"); //จะขึ้น Modal, Breadcrumb
+
+                        //fade out
+                        $('#regisOption').removeClass(" fadepopIN"); 
+                        $('#regisOption').addClass(" fadepopOut"); 
+
                     }else if(response==406){
                         alert("Response : This Username "+ Username +" Already taken plz try again"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
@@ -240,7 +245,10 @@ function Loginpage(){
                  
                         
                         alert("Login success : "+G_name); //จะขึ้น Modal, Breadcrumb
-                        
+
+                            //fade out
+                        $('#regisOption').removeClass(" fadepopIN"); 
+                        $('#regisOption').addClass(" fadepopOut"); 
                     }else if(response==406){
                         alert("Response : Username or password are incorrect"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
@@ -284,16 +292,20 @@ function Loginpage(){
         left: 0px;
       }
 }
-.fadeIN{
+.fadepopIN{
     position: relative;
-    animation: Popup 0.5s ease-out ;
- 
-
+    animation: Popup .5s ease-out ;
+}
+.fadepopOut{
+    position: relative;
+    animation: PopupOUT .5s ease-out ;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
 }
 @keyframes Popup {
     0% {
         display: none;
-        top: -3000px;
+        top: -500px;
         opacity:0;
     }
     1% {
@@ -304,6 +316,23 @@ function Loginpage(){
         display: block;
         top: 0px;
         opacity:1;
+      }
+}
+
+@keyframes PopupOUT {
+    0% {
+        display: none;
+        top: 0px;
+        opacity:1;
+    }
+    1% {
+        display: block;
+        opacity: 1;
+    }
+      100% {
+        display: none;
+        top: -500px;
+        opacity:0;
       }
 }
 
