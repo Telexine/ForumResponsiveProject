@@ -151,7 +151,7 @@ function validate(classNa){
  ;
       
      }
-     console.log("true");
+    
     return valid;
 
 }
@@ -163,21 +163,18 @@ function validate(classNa){
     // password check 
     pw1 = document.getElementById('Password2').value;
     pw2 = document.getElementById('Password').value;
-    if(!pw1!=pw2){
+    if(pw1!=pw2){
         //pass word is not the same / alert something
-        console.log('pw');
         alert('Password is not match');
         return;
     }
 
     // All clear  เขียนลง DB
-
+    
         let name = document.getElementById('Name').value;
-        let avatarURL = document.getElementById('UploadAvatar').value; // เดี๋ยวทำ
+        let avatarURL = document.getElementById('avatarPath').value; // เดี๋ยวทำ
         let Username = document.getElementById('username').value;
         let password = md5(document.getElementById('Password').value);
-
-
             if (window.XMLHttpRequest) {
                 // code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp = new XMLHttpRequest();
