@@ -15,7 +15,7 @@ if (!isset($_SESSION)) {
        $conn  = initDB();
 
        // เช็คว่ามี USER นี้ยัง
-       if(login($Username,$password)){
+       if( login($Username,$password)){
             echo "200"; // username pass OK
        }else{
             echo "406";  // not found

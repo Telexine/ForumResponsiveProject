@@ -2,7 +2,9 @@
 
 require_once('resources/PHP/func.php');    // TAE
 
-
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 
 ?>
@@ -224,7 +226,18 @@ function Loginpage(){
                 if (this.readyState == 4 && this.status == 200) {
                     let response =parseInt(this.responseText);
                     if(response==200){
-                        alert("Login success"); //จะขึ้น Modal, Breadcrumb
+
+
+              
+
+                        //ส่งค่า SESSION บางส่วนลง JS 
+                        <?php echo 'let G_User_ID = '.json_encode($_SESSION['user_info']['User_ID']).';';?>
+                        <?php echo 'let G_name = '.json_encode($_SESSION['user_info']['name']).';';?>
+                        <?php echo 'let G_AvatarURL = '.json_encode($_SESSION['user_info']['AvatarURL']).';';?>
+                 
+                        
+                        alert("Login success : "+G_name); //จะขึ้น Modal, Breadcrumb
+                        
                     }else if(response==406){
                         alert("Response : Username or password are incorrect"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
