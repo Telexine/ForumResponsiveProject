@@ -17,8 +17,10 @@ if (!isset($_SESSION)) {
 </head>
 
 <body>
-<div id="sighup" style="width:1000px; float:left; padding-left:80px; padding-top:50px;">
-        <table>
+
+<div class="fadeIN" id="regisOption" style="margin:auto;width:80%;padding-top:30px">
+<div id="sighup" style="float:left;width:50%;background-color:skyblue;height: -webkit-fill-available;">
+        <table style="margin:auto">
          <form>
             <tr>
             	<td width="102">NickName
@@ -82,8 +84,8 @@ if (!isset($_SESSION)) {
         </table>
    
 </div>
-<div id="login" style="padding-top:80px; padding-left:50px;">
- <table >
+<div id="login" style="float:left;width:50%;background-color:skyblue;height: -webkit-fill-available;">
+ <table style="margin:auto">
          <form>
 			 <tr>
             	<td>Username
@@ -110,6 +112,7 @@ if (!isset($_SESSION)) {
             </tr>
 		</form>
  </table>
+</div>
 </div>
 </body>
 
@@ -281,8 +284,28 @@ function Loginpage(){
         left: 0px;
       }
 }
+.fadeIN{
+    position: relative;
+    animation: Popup 0.5s ease-out ;
  
- 
+
+}
+@keyframes Popup {
+    0% {
+        display: none;
+        top: -3000px;
+        opacity:0;
+    }
+    1% {
+        display: block;
+        opacity: 0;
+    }
+      100% {
+        display: block;
+        top: 0px;
+        opacity:1;
+      }
+}
 
 .hideErrorMessage{
     opacity: 0;
