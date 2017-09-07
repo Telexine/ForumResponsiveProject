@@ -239,10 +239,11 @@ function Loginpage(){
 
 
                         //ส่งค่า SESSION บางส่วนลง JS 
+                        <?php if(isset($_SESSION['user_info'])){ ?>
                         <?php echo 'G_User_ID = '.json_encode($_SESSION['user_info']['User_ID']).';';?>
                         <?php echo 'G_name = '.json_encode($_SESSION['user_info']['name']).';';?>
                         <?php echo 'G_AvatarURL = '.json_encode($_SESSION['user_info']['AvatarURL']).';';?>
-                 
+                        <?php  } ?> 
                         
                         alert("Login success : "+G_name); //จะขึ้น Modal, Breadcrumb
 
