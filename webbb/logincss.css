@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+#sighup{
+	background-color:#C6D0FF;
+	border-radius:5px;
+	width:1000px; 
+	float:left; 
+	padding-left:80px; 
+	padding-top:50px;
+	}
