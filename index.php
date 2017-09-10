@@ -12,7 +12,9 @@ require_once('resources/PHP/func.php');
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/Webcss.css">
 
+<link rel="stylesheet" href="resources/css/font-awesome.css">
 
 <style>
 .demo-card-square.mdl-card {
@@ -31,36 +33,24 @@ require_once('resources/PHP/func.php');
 
 
 <body>
-    
-<!-- Uses a header that scrolls with the text, rather than staying
-  locked at the top -->
-  <div class="mdl-layout mdl-js-layout">
-  <header class="mdl-layout__header mdl-layout__header--scroll">
-    <div class="mdl-layout__header-row">
-      <!-- Title -->
-      <span class="mdl-layout-title">Title</span>
-      <!-- Add spacer, to align navigation to the right -->
-      <div class="mdl-layout-spacer"></div>
-      <!-- Navigation -->
-      <nav class="mdl-navigation">
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-        <a class="mdl-navigation__link" href="">Link</a>
-      </nav>
-    </div>
-  </header>
-  <div class="mdl-layout__drawer">
-    <span class="mdl-layout-title">Title</span>
-    <nav class="mdl-navigation">
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-      <a class="mdl-navigation__link" href="">Link</a>
-    </nav>
-  </div>
-  <main class="mdl-layout__content">
-    <div class="page-content">
+		 
+<div  align="center" class="Logo"><img src="resources/images/logo.png"  width="112" height="112"></div>
+	<header>
+		<input type="checkbox" id="btn-menu">
+		<label for="btn-menu"><img src="resources/images/list.png" width="30" height="30" alt=""/></label>
+		<nav class="Menu">
+			<ul>
+				<li><a href="#"><span class="fa fa-home icon-menu">  Home</a></li>
+				<li><a href="#"><span class="fa fa-search">  Search</a></li>
+				<li><a href="#"><span class="fa fa-magic">  Create</a></li>
+				<li><a href="#"><span class="fa fa-user-circle">  Login</a></li>
+				<li><a href="#"><span class="fa fa-smile-o">  About</a></li>
+			</ul>
+		</nav>	
+	</header>
+
+
+
     <!-- Your content goes here -->
     <header class="mdl-layout__header " style="background-color:#E0E0E0;padding-top:10px;">
         <h5>      HOT  POST</h1>
@@ -93,11 +83,7 @@ require_once('resources/PHP/func.php');
 
 
 
-
-
-    </div>
-</div>
-  </main>
+ 
 
 
 

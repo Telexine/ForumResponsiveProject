@@ -28,10 +28,11 @@
 	 <div class="hotpost" ><div class="line" style="height:30px; background-color:#9192B9; margin-top:10px; padding-left:20px;padding-top:15px;">
      <b>HOT POST</b> </div>
      <div class="hotcontent" style="height:495px; background-color:#39C;">
-     		<div class="contenthotpost" style="margin:20px; height:90%; width:20%; min-width:15%; min-height:50%; border-radius:10px; background-color:#CCC; float:left">sadfasdf</div>
-            <div class="contenthotpost" style="margin:20px; height:90%; width:20%; min-width:15%; min-height:50%; border-radius:10px; background-color:#CCC; float:left">sadfasdf</div>
-            <div class="contenthotpost" style="margin:20px; height:90%; width:20%; min-width:15%; min-height:50%; border-radius:10px; background-color:#CCC; float:left">sadfasdf</div>
-            <div class="contenthotpost" style="margin:20px; height:90%; width:20%; min-width:15%; min-height:50%; border-radius:10px; background-color:#CCC; float:left">sadfasdf</div>
+			 
+	 
+
+
+	 
      </div>
      </div>
      <div class="recomend" ><div class="line" style="height:30px; background-color:#9192B9; margin-top:10px; padding-left:20px;padding-top:15px;">
@@ -43,11 +44,7 @@
             <div class="contenthotpost" style="margin:10px; height:90%; width:20%; min-width:15%; min-height:50%; border-radius:10px; background-color:#CCC; float:left">sadfasdf</div>
      </div>
      </div>
-	<!----<main>
-	<h2>Header</h2>
-	<p>asdfdadsasdffdsdasdsasdasdfasdfasdafsdafsdafsadfsdaf
-	dfasddsfafasddsadsafdsfdsfdsfadsdfadfds</p>
-	</main>---->
+
 	
 </body>
 
