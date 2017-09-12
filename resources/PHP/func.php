@@ -122,7 +122,7 @@ function getPost($PostID)
 {
     $conn = initDB();
     
-    $sql = "SELECT a.`Post_ID`,a.`Title`,b.`content`,b.`User_ID`,b.`imageURL`,b.`isOP` FROM `ForumResponsive.TBPost` as a ,  `ForumResponsive.TBmeta` as b  WHERE  a.Post_ID = b.Post_ID and a.Post_ID =  '$PostID' ";
+    $sql = "SELECT a.`Post_ID`,a.`Title`,b.`content`,b.`User_ID`,b.`imageURL`,b.`isOP`,c.AvatarURL  FROM ForumResponsive.TBPost as a ,  ForumResponsive.TBmeta as b , ForumResponsive.TBUser as C WHERE b.User_ID=c.User_ID AND a.Post_ID = b.Post_ID and a.Post_ID =  '$PostID' AND b.isOP = '1'  ";
  
     // query insert
     $fetch = $conn->query($sql); 
@@ -131,15 +131,10 @@ function getPost($PostID)
 
 
         // ADD TAG,RATE LATER
-        $row                   = $fetch->fetch_assoc();
-        $Post_info             = array(
-            "Post_ID" => $row["Post_ID"],
-            "Title" => $row['Title'],
-            "User_ID" => $row['User_ID'],
-            "imageURL" => $row['imageURL'],
-            "isOP" => $row['isOP']
-        );
-        return  $Post_info;
+
+        // fetch all to arr 
+       while(($Post_OP[] = mysqli_fetch_assoc($fetch)) || array_pop($Post_OP)); 
+       return $Post_OP;
     }else{
         return false;// ไม่พบโพส
     }
@@ -151,7 +146,7 @@ function getPostComment($PostID){
 
     $conn = initDB();
     
-    $sql = "SELECT * FROM ForumResponsive.TBmeta   WHERE  Post_ID =  '$PostID' AND isOP = '0' ";
+    $sql = "SELECT a.*,b.AvatarURL FROM ForumResponsive.TBmeta  as a , ForumResponsive.TBUser as b WHERE a.User_ID=b.User_ID AND a.Post_ID =  '$PostID' AND a.isOP = '0' ";
     // query 
     $fetch = $conn->query($sql); 
     // fetch all to arr 
@@ -165,6 +160,7 @@ function showPost()
 
 function getAvartar($UserName){
 
+    
 
 }
 

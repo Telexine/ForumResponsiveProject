@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 21, 2017 at 04:42 PM
+-- Generation Time: Sep 12, 2017 at 07:06 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -42,7 +42,9 @@ CREATE TABLE `TBmeta` (
 --
 
 INSERT INTO `TBmeta` (`Post_ID`, `Date`, `content`, `User_ID`, `imageURL`, `isOP`) VALUES
-('OP1503326319?9', '2017-08-21 14:38:44', 'Content', 9, 'dd', 1);
+('OP1503326319?9', '2017-08-21 14:38:44', 'Content', 9, 'dd', 1),
+('OP1503326319?9', '2017-09-11 17:00:00', 'sdsdsd', 9, 'dddddsfsfsfaf', 0),
+('OP1503326319?9', '2017-09-12 16:29:44', 'Contentdddd', 9, 'ddddd', 0);
 
 -- --------------------------------------------------------
 
@@ -107,10 +109,12 @@ CREATE TABLE `TBUser` (
 --
 
 INSERT INTO `TBUser` (`User_ID`, `Name`, `UserName`, `PW`, `Created_date`, `AvatarURL`) VALUES
-(1, 'TAE', 'test', '123232323', '2017-08-19 09:54:27', ''),
-(9, 'เต้', 'tachihd', '54a68bd17f8a56f940f69ab0d703b5df', '2017-08-20 03:16:57', ''),
+(1, 'TAE', 'test', '202cb962ac59075b964b07152d234b70', '2017-08-19 09:54:27', ''),
+(9, 'เต้', 'tachihd', '54a68bd17f8a56f940f69ab0d703b5df', '2017-08-20 03:16:57', 'AVARTar URL'),
 (11, 'ดาว', 'dao', '202cb962ac59075b964b07152d234b70', '2017-08-20 14:11:04', ''),
-(12, 'Tachid', 'Tachid', '81dc9bdb52d04dc20036dbd8313ed055', '2017-08-21 06:18:52', '/resources/images/avatar/default_Avatar.jpg');
+(12, 'Tachid', 'Tachid', '81dc9bdb52d04dc20036dbd8313ed055', '2017-08-21 06:18:52', '/resources/images/avatar/default_Avatar.jpg'),
+(13, 'dddd', 'dddd', '77963b7a931377ad4ab5ad6a9cd718aa', '2017-08-25 01:38:47', '/resources/images/avatar/default_Avatar.jpg'),
+(14, 'tttt', 'testttt', '9990775155c3518a0d7917f7780b24aa', '2017-08-25 06:11:20', '/resources/images/avatar/default_Avatar.jpg');
 
 --
 -- Indexes for dumped tables
@@ -156,7 +160,7 @@ ALTER TABLE `TBUser`
 -- AUTO_INCREMENT for table `TBUser`
 --
 ALTER TABLE `TBUser`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 --
 -- Constraints for dumped tables
 --
