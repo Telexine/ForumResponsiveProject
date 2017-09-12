@@ -122,7 +122,7 @@ function getPost($PostID)
 {
     $conn = initDB();
     
-    $sql = "SELECT a.`Post_ID`,a.`Title`,b.`content`,b.`User_ID`,b.`imageURL`,b.`isOP` FROM `TBPost` as a ,  `TBmeta` as b  WHERE  a.Post_ID = b.Post_ID and a.Post_ID =  '$PostID' ";
+    $sql = "SELECT a.`Post_ID`,a.`Title`,b.`content`,b.`User_ID`,b.`imageURL`,b.`isOP` FROM `ForumResponsive.TBPost` as a ,  `ForumResponsive.TBmeta` as b  WHERE  a.Post_ID = b.Post_ID and a.Post_ID =  '$PostID' ";
  
     // query insert
     $fetch = $conn->query($sql); 
@@ -146,6 +146,19 @@ function getPost($PostID)
 
     
 }
+
+function getPostComment($PostID){
+
+    $conn = initDB();
+    
+    $sql = "SELECT * FROM ForumResponsive.TBmeta   WHERE  Post_ID =  '$PostID' AND isOP = '0' ";
+    // query 
+    $fetch = $conn->query($sql); 
+    // fetch all to arr 
+   while(($Post_Comment[] = mysqli_fetch_assoc($fetch)) || array_pop($Post_Comment)); 
+   return $Post_Comment;
+}
+
 function showPost()
 {
 }
