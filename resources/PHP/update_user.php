@@ -1,5 +1,4 @@
-
-<?
+<?php
 
 require_once('db_config.php');
 require_once('func.php'); 
@@ -14,7 +13,6 @@ if (!isset($_SESSION)) {
        $password = ($_GET['password']);
  
        $conn  = initDB();
-      
        // เช็คว่ามี USER นี้ยัง ก่อนจะ แก้ไข
        if(UpdateUser($Username, $name, $password, $avatarURL)){
         // สำเร็จ

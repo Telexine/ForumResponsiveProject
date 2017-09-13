@@ -158,12 +158,22 @@ function showPost()
 {
 }
 
-function getAvartar($UserName){
+function getHotPost($lim/*limit default 3*/){
 
-    
 
+    $conn = initDB();
+    $sql ="SELECT  a.Post_ID, COUNT(a.Post_ID) count, b.DATE
+        FROM ForumResponsive.TBPost as a ,ForumResponsive.TBmeta as b 
+        WHERE a.Post_ID = b.Post_ID  
+        GROUP BY a.Post_ID
+        ORDER BY count,b.DATE DESC LIMIT $lim;";
+
+    // query 
+    $fetch = $conn->query($sql); 
+    // fetch all to arr 
+    while(($hPost[] = mysqli_fetch_assoc($fetch)) || array_pop($hPost)); 
+    return $hPost;
 }
-
 
 
 //  jQuery/AJAX UI  FUNCTION ----------------------------------------------------------- 

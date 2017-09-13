@@ -98,9 +98,23 @@ require_once('resources/PHP/func.php');
 <!-- TAE  -->
 <script>
 
+
+
+	/*
+	
+	SELECT  a.Post_ID, COUNT(a.Post_ID) count, b.DATE
+FROM ForumResponsive.TBPost as a ,ForumResponsive.TBmeta as b 
+WHERE a.Post_ID = b.Post_ID  
+GROUP BY a.Post_ID
+ORDER BY b.DATE DESC LIMIT 3;
+	
+	*/
+
+	
+
+
 	 // Add a message to the messages element.
 	 function appendPost(PostID,imageURL,Title,Nickname,content) {
-
 		 imageURL = "";
 		  Title="title";Nickname="nickname";content="content";
 	   //GET WHERE to append post
@@ -146,10 +160,6 @@ require_once('resources/PHP/func.php');
 
 	   cardElement.appendChild(cardDivElement);
 	 }
-
-
-
-
 </script>
 
 <style>
