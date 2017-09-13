@@ -55,7 +55,7 @@ function UpdateUser($UserName, $NAME, $PW, $avatar)
 {
     $conn = initDB();
     if ((!isUserCreated($UserName)) or ((trim($NAME) == "") && (trim($PW) == "") && (trim($avatar) == ""))) {
-        return;
+        return false;
     } //ถ้าไม่มีIDนี้ หรือไม่มีค่าทุก field จะยกเลิก
     
     $sql = "UPDATE ForumResponsive.TBUser SET " . (!trim($NAME) == "" ? " `Name` ='$NAME' " : "") . "" . (!trim($PW) == "" ? " `PW`   ='$PW'    " : "") . "" . (!trim($avatar) == "" ? "`avatarURL`= '$avatar' " : "") . "WHERE `UserName` = '$UserName' ";
