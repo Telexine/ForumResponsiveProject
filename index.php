@@ -38,7 +38,7 @@ require_once('resources/PHP/func.php');
 	<header>
 		<input type="checkbox" id="btn-menu">
 		<label for="btn-menu"><img src="resources/images/list.png" width="30" height="30" alt=""/></label>
-		<nav class="Menu">
+		<nav class="Menu" style=" z-index:14">
 			<ul>
 				<li><a href="#"><span class="fa fa-home icon-menu">  Home</a></li>
 				<li><a href="#"><span class="fa fa-search">  Search</a></li>
@@ -110,7 +110,7 @@ ORDER BY b.DATE DESC LIMIT 3;
 	
 	*/
 
-	
+
 
 
 	 // Add a message to the messages element.
