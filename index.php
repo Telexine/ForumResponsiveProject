@@ -28,6 +28,21 @@ require_once('resources/PHP/func.php');
     url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
 }
 
+
+/* Xureality tag*/
+.taginput {
+            border: none;
+            background: transparent;
+            width: 100%
+        }
+		.tagbox {
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+/*end  Xureality  tag*/
 </style>
 </head>
 
@@ -53,6 +68,19 @@ require_once('resources/PHP/func.php');
 
     <!-- Your content goes here -->
     <header class="mdl-layout__header " style="background-color:#E0E0E0;padding-top:10px;">
+
+  <!-- Xureality Tag-->
+		<div>
+		<form>
+           <div id="tagbox"><span id="tagDisplay"></span><input id="textin" class="taginput" type="text" onkeyup="showHint(this.value)"></div>
+        </form>
+        
+        <p>
+           <span id="tagHint"></span>
+        </p></div>
+
+  <!-- Xureality Tag-->
+	
         <h5>      HOT  POST</h1>
         </header>
     <div id="hotpost" style="width:87%;margin:auto">
