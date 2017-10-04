@@ -188,6 +188,101 @@ ORDER BY b.DATE DESC LIMIT 3;
 
 	   cardElement.appendChild(cardDivElement);
 	 }
+
+
+
+
+
+
+	 // XU
+	 var tagged = [];
+            function showHint(str) 
+			{
+				console.log(tagged);
+                if (str.length == 0) 
+				{
+                    document.getElementById("tagHint").innerHTML = "";
+                    return;
+                } 
+                else 
+				{
+                    var xmlhttp = new XMLHttpRequest();
+					
+                    xmlhttp.onreadystatechange = function() 
+					{
+                        if (this.readyState == 4 && this.status == 200) 
+						{
+                            document.getElementById("tagHint").innerHTML = "";
+                            var a = this.responseText.split(" ");
+							console.log(a);
+							var i,j;
+							for (i = 0; i < a.length; ++i) 	
+							{
+								for (j = 0; j < tagged.length; ++j)
+								{
+									if ((a[i] + " ") == tagged[j])
+									{
+										a[i] = "";
+									}
+								}									
+							}
+							
+							for (i = 0; i < a.length; ++i) 
+							{
+                                var data = a[i];
+                                
+								link = document.createElement('span');
+								link.id = "hintdisp";
+                                link.href =  '#';
+                                link.addEventListener("click", function (e) 
+								{ 
+									frag = fragmentFromString("<span id='hint'><span id='hinttext'>" + e.target.innerHTML + "</span><span><span class='close'>[x]</span></span></span> ");
+									tagged.push(e.target.innerHTML);
+                                    document.getElementById("tagDisplay").appendChild(frag); 
+									document.getElementById("textin").value = "";
+									e.target.parentElement.removeChild(e.target);
+									makecloseable();
+                                }
+								, false);
+                                link.innerHTML = data + " ";
+								
+                                document.getElementById("tagHint").appendChild(link);
+                                //document.getElementById("tagHint").appendChild(document.createElement('br'));
+                            }
+                        }
+                    };
+					
+                    xmlhttp.open("GET", "resources/php/taglist.php?query=" + str, true);
+                    xmlhttp.send();
+                }
+            }
+			function fragmentFromString(strHTML) {
+				var temp = document.createElement('template');
+				temp.innerHTML = strHTML;
+				return temp.content;
+			}
+			function makecloseable() {
+				var elements = document.getElementsByClassName('close');
+				for (i = 0; i < elements.length; ++i){
+					elements[i].addEventListener("click", function (e){
+						var frag = fragmentFromString(this.parentNode.parentNode.parentNode.innerHTML);
+						var list = frag.getElementById("hinttext").innerHTML;
+						console.log(list);
+						for (j = 0; j < tagged.length; ++j)
+						{
+							if (list == tagged[j])
+							{
+								tagged.splice(j, 1);
+							}
+						}
+						this.parentNode.parentNode.parentNode
+						.removeChild(this.parentNode.parentNode);
+						return false;
+					}, false);
+				}	
+			};
+
+	 // XU
 </script>
 
 <style>
