@@ -27,10 +27,22 @@ require_once('resources/PHP/func.php');
   background:
     url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
 }
-.rate{
+.rateStar{
 	height:30px;
+	position:absolute;
+	float: right;
+    right: 0;
 }
-
+.star{
+	background: url('resources/images/Star.png') ;
+	background-size: contain;
+	height:30px;
+	width:30px;
+	clear:both;
+	float:right;
+	right:10px
+	
+}
 
 /* Xureality tag*/
 .taginput {
@@ -44,7 +56,6 @@ require_once('resources/PHP/func.php');
             overflow: hidden;
             white-space: nowrap;
         }
-
 /*end  Xureality  tag*/
 </style>
 </head>
@@ -87,9 +98,18 @@ require_once('resources/PHP/func.php');
         <h5>      HOT  POST</h1>
         </header>
     <div id="hotpost" style="width:87%;margin:auto">
-    
+	
+	
+
+	
     <div class="demo-card-square mdl-card mdl-shadow--2dp floatLeft">
+	
+
+	<div class="rateStar"id="rate?1">
+
+	</div>
 			<div class="mdl-card__title mdl-card--expand">
+
 				<h2 class="mdl-card__title-text">ประกาศจ้าา    <p> tae</p> </h2> 
 			</div>
 
@@ -100,7 +120,7 @@ require_once('resources/PHP/func.php');
 			<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
 				Go to Post
 			</a>
-			<div class="rate"></div>
+
 		</div>
 </div>
 
@@ -142,6 +162,24 @@ ORDER BY b.DATE DESC LIMIT 3;
 	*/
 
 
+
+
+
+function rateStar(rate,PostID) {  
+	// รับค่าตัวเลขแล้วแปลงเป็น ดาว
+	let star = Math.round(rate/2); // To get 10.0 to five star 
+	//get Post Rate box
+	const Ratebox = document.getElementById("rate?"+PostID);
+	 
+ 
+	 for(i=1; i<star;i++){
+		Stars = document.createElement('div');
+		Stars.className = "Star";
+		
+		Ratebox.appendChild(Stars);
+	 
+	}
+}
 
 
 	 // Add a message to the messages element.
