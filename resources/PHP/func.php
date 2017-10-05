@@ -171,16 +171,30 @@ function showPost()
 {
 }
 
+function getAllPostNum(){
+
+
+    $conn = initDB();
+    $sql ="SELECT COUNT(Post_ID) num
+        FROM ForumResponsive.TBPost  ";
+      
+
+      $fetch = $conn->query($sql); 
+      $row = $fetch->fetch_assoc();
+  
+      return $row['num'];
+}
+
+
 function getHotPost($lim/*limit default 3*/){
 
 
     $conn = initDB();
-    $sql ="SELECT  a.Post_ID, COUNT(a.Post_ID) count, b.DATE
-        FROM ForumResponsive.TBPost as a ,ForumResponsive.TBmeta as b 
-        WHERE a.Post_ID = b.Post_ID  
-        GROUP BY a.Post_ID
-        ORDER BY count,b.DATE DESC LIMIT $lim;";
-
+    $sql ="SELECT a.Post_ID, a.title,COUNT(a.Post_ID) count, b.DATE ,(SUM(c.Rating) /count(a.Post_ID)) as popular,
+     b.imageURL,b.content,u.name FROM ForumResponsive.TBPost as a ,ForumResponsive.TBmeta as b ,ForumResponsive.TBrate 
+     as c, ForumResponsive.TBUser as u WHERE a.Post_ID = b.Post_ID and a.Post_ID = c.Post_ID and b.user_id = u.user_id
+      GROUP BY a.Post_ID ORDER BY popular, count,b.DATE DESC LIMIT $lim;";
+    
     // query 
     $fetch = $conn->query($sql); 
     // fetch all to arr 
