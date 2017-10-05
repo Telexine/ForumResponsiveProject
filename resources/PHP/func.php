@@ -118,6 +118,19 @@ function SearchPost()
 {
 
 } // return array?
+
+
+function getPostRate($PostID){
+    
+        $conn = initDB();
+        $sql ="SELECT  (SUM(b.Rating) /count(a.Post_ID)) as Rate FROM Forumresponsive.TBPost as a , Forumresponsive.TBrate as b WHERE a.Post_ID = b.Post_ID AND a.Post_ID = '$PostID' ";
+        $fetch = $conn->query($sql); 
+        $row = $fetch->fetch_assoc();
+    
+        return $row['Rate'];
+    }
+
+    
 function getPost($PostID)
 {
     $conn = initDB();

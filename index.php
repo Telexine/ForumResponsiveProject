@@ -27,6 +27,9 @@ require_once('resources/PHP/func.php');
   background:
     url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
 }
+.rate{
+	height:30px;
+}
 
 
 /* Xureality tag*/
