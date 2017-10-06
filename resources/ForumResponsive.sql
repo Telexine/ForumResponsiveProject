@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 12, 2017 at 07:06 PM
+-- Generation Time: Oct 06, 2017 at 06:18 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 7.1.7
 
@@ -44,7 +44,8 @@ CREATE TABLE `TBmeta` (
 INSERT INTO `TBmeta` (`Post_ID`, `Date`, `content`, `User_ID`, `imageURL`, `isOP`) VALUES
 ('OP1503326319?9', '2017-08-21 14:38:44', 'Content', 9, 'dd', 1),
 ('OP1503326319?9', '2017-09-11 17:00:00', 'sdsdsd', 9, 'dddddsfsfsfaf', 0),
-('OP1503326319?9', '2017-09-12 16:29:44', 'Contentdddd', 9, 'ddddd', 0);
+('OP1503326319?9', '2017-09-12 16:29:44', 'Contentdddd', 9, 'ddddd', 0),
+('OP1507304724?22', '2017-10-06 15:45:24', '<p>Anna <img alt=\"\" src=\"https://pbs.twimg.com/profile_images/790215567454134273/Lc62IdWF.jpg\" style=\"height:512px; width:512px\" /></p>\n', 22, '', 1);
 
 -- --------------------------------------------------------
 
@@ -64,7 +65,10 @@ CREATE TABLE `TBPost` (
 
 INSERT INTO `TBPost` (`Post_ID`, `Title`, `DateCreated`) VALUES
 ('1', 'Hi', '2017-08-21 02:07:40'),
-('OP1503326319?9', 'TEST', '2017-08-21 14:38:39');
+('OP1503326319?9', 'TEST', '2017-08-21 14:38:39'),
+('OP1507304608?22', '', '2017-10-06 15:43:28'),
+('OP1507304626?22', '', '2017-10-06 15:43:46'),
+('OP1507304724?22', 'One more Step To begin ', '2017-10-06 15:45:24');
 
 -- --------------------------------------------------------
 
@@ -78,6 +82,14 @@ CREATE TABLE `TBrate` (
   `Rating` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `TBrate`
+--
+
+INSERT INTO `TBrate` (`Post_ID`, `User_ID`, `Rating`) VALUES
+('OP1503326319?9', 12, 8),
+('OP1503326319?9', 14, 9);
+
 -- --------------------------------------------------------
 
 --
@@ -88,6 +100,15 @@ CREATE TABLE `TBTag` (
   `Post_ID` varchar(255) NOT NULL,
   `Tag` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `TBTag`
+--
+
+INSERT INTO `TBTag` (`Post_ID`, `Tag`) VALUES
+('OP1503326319?9', 'Alpaca'),
+('OP1503326319?9', 'Alpanb'),
+('OP1503326319?9', 'Alpha');
 
 -- --------------------------------------------------------
 
@@ -114,7 +135,7 @@ INSERT INTO `TBUser` (`User_ID`, `Name`, `UserName`, `PW`, `Created_date`, `Avat
 (11, 'ดาว', 'dao', '202cb962ac59075b964b07152d234b70', '2017-08-20 14:11:04', ''),
 (12, 'Tachid', 'Tachid', '81dc9bdb52d04dc20036dbd8313ed055', '2017-08-21 06:18:52', '/resources/images/avatar/default_Avatar.jpg'),
 (13, 'dddd', 'dddd', '77963b7a931377ad4ab5ad6a9cd718aa', '2017-08-25 01:38:47', '/resources/images/avatar/default_Avatar.jpg'),
-(14, 'tttt', 'testttt', '9990775155c3518a0d7917f7780b24aa', '2017-08-25 06:11:20', '/resources/images/avatar/default_Avatar.jpg');
+(22, 'Anne', 'Anne', '19fdf51d7001bd6430bc30fcaaa570c5', '2017-10-06 15:42:40', '/resources/images/avatar/default_Avatar.jpg');
 
 --
 -- Indexes for dumped tables
@@ -160,7 +181,7 @@ ALTER TABLE `TBUser`
 -- AUTO_INCREMENT for table `TBUser`
 --
 ALTER TABLE `TBUser`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- Constraints for dumped tables
 --
