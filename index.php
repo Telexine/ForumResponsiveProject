@@ -265,16 +265,17 @@ END REGISTER , LOGIN CSS
 
 <div style="margin-bottom: 50px; color: aliceblue; text-align: center;" class="col-l-12">
                     <div align="center"  class=" col-l-12 col-m-12" style="border-radius:10px;background-color:#dbe4ea;">
-        			<form action="insert-p.php" method="get">
+        			 
 					<button type="button" class="closebtnModal"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
+	
 	<table align="center" class="Font2 fa-2x" style="padding:30px; ">
     	<tr><td colspan="1">Title: </td>
-        <td><input type="text" name="title" class="fa" style="width:100%; border-radius:5px;"></td></tr>
-        <tr><td>Subtitle: </td><td><input type="text" name="subtitle" style="width:100%;border-radius:5px;" class="fa"></td></tr>
-        <tr><td>Content: </td><td><textarea name="address" id="address" ></textarea>
+        <td><input type="text" name="title" class="fa" id="PostTitle" style="width:100%; border-radius:5px;"></td></tr>
+        <tr><td>Subtitle: </td><td><input type="text" id="PostSubtitle"name="subtitle" style="width:100%;border-radius:5px;" class="fa"></td></tr>
+        <tr><td>Content: </td><td><textarea name="Postaddress" id="PostContent" ></textarea>
            	<script type="text/javascript">
 			//<![CDATA[
-				CKEDITOR.replace( 'address',{
+				CKEDITOR.replace( 'PostContent',{
 					skin : 'office2013',				
 					
 					
@@ -289,8 +290,8 @@ END REGISTER , LOGIN CSS
 			//]]>
 			</script>
     </td></tr>
-        <tr><td>TAG: </td><td><input type="text" name="tag" class="fa" style="width:100%; border-radius:5px;"></td></tr>
-        <tr><td colspan="2" align="right"><input type="submit" value="Submit" class="Font2 fa" style="border-radius:5px; 
+        <tr><td>TAG: </td><td><input id="PostTag" type="text" name="tag" class="fa" style="width:100%; border-radius:5px;"></td></tr>
+        <tr><td colspan="2" align="right"><input type="submit" onClick="submitPost();" value="Submit" class="Font2 fa" style="border-radius:5px; 
         background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td></tr>
     </table>
                     </div>
@@ -616,6 +617,51 @@ function PopRegisterPost(){  // โชว Resgist  Post
 	$('#backdrop').removeClass( " hide " ).addClass( " show " );
 	
 }
+
+function submitPost(){
+//check validate here 
+
+
+
+let PostTitle = document.getElementById('PostTitle').value;
+let PostSubtitle = document.getElementById('PostSubtitle').value; //!@#$%^ คืออะไร
+let PostContent = document.getElementById('PostContent').value;
+let PostTag = document.getElementById('PostTag').value;
+let User_ID = '1' ;//$_SESSION['curUser_ID'];
+
+
+console.log("resources/PHP/createPost.php?PostTitle="+PostTitle+"&PostSubtitle="+PostSubtitle+"&PostContent="+PostContent+"&PostTag="+PostTag+"&User_ID="+User_ID);
+    // All clear  เขียนลง DB
+    
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response =  this.responseText;
+					 
+					if(parseInt(this.responseText)==406){  // response == 406
+                        alert("ERROR"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
+                       }
+                    else{
+                        alert("success"); //จะขึ้น Modal, Breadcrumb
+
+						$(location).attr('href', 'post.php?PostID='+response)
+					 
+                    }
+                }
+            };
+             
+            xmlhttp.open("GET","resources/PHP/createPost.php?PostTitle="+PostTitle+"&PostSubtitle="+PostSubtitle+"&PostContent="+PostContent+"&PostTag="+PostTag+"&User_ID="+User_ID,true);
+            xmlhttp.send();
+
+}
 // FUNCTION POSTforumn
 
 // END  FUNCTION POSTforumn
@@ -701,7 +747,7 @@ function validate(classNa){
                         $('#regisOption').addClass(" fadepopOut"); 
 
                     }else if(response==406){
-                        alert("Response : This Username "+ Username +" Already taken plz try again"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                        alert("Response : This Username "+ Username +" Already taken please try again"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
                        }
                 }

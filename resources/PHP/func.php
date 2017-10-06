@@ -94,17 +94,18 @@ function logout(){
     session_destroy();
     session_write_close();
 }
-function createPost($Title,$Content,$UserID,$imageURL,$IsO,$Tags)
-{
+function createPost($Title,$Content,$UserID,$imageURL,$IsOP,$Tags)
+{ //$Isop = true คือ หัวโพส
     // ก่อนเรียก ฟังชั่นนี้ ต้องเช็คก่อนว่า มี field ครบไหม
-    if($Title==""||$Content==""||!isUserIDexist($UserID)){return;}
+ 
+ 
 
     $conn = initDB();
 
-    //generate Uniq PostID // op = หัวโพส  Com = comment
+    //generate Uniq PostID // op = หัวโพส  Co = comment
     $PostID = ($IsOP?"OP":"CO").strtotime("now").'?'.$UserID;
     $sql = "INSERT INTO ForumResponsive.TBPost (`Post_ID`,`Title`) VALUES ('$PostID','$Title')";
-    
+ 
     // query insert
     $conn->query($sql);
     //isOP 1 == true
@@ -112,12 +113,12 @@ function createPost($Title,$Content,$UserID,$imageURL,$IsO,$Tags)
      // query insert
     $conn->query($sql);
     
+
+    // sucess จะreturn POST ID 
+     return $PostID;
 }
 
-function SearchPost()
-{
-
-} // return array?
+ 
 
 
 function getPostRate($PostID){
