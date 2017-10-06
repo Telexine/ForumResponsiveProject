@@ -1,0 +1,224 @@
+<style>
+.content-grid {
+      max-width: 100%;
+}
+    
+.TAGbot{
+    font-size: 30px;
+    width: 100px;
+    height: 80px;
+    margin: 0px;
+    margin-right: 1px;
+    width: 100%;
+}
+.demo-card-square.mdl-card {
+width: 320px;
+height: 320px;
+margin:0px;
+width:100%; 
+}
+.demo-card-square > .mdl-card__title {
+color: #fff;
+background:
+url('../assets/demos/dog.png') bottom right 15% no-repeat #46B6AC;
+}
+.button {
+background-color:hsla(0,0%,100%,0.00);
+border: none;
+text-align: center;
+text-decoration: none;
+cursor: pointer;
+}
+.Font{
+    font-family:Orator Std;
+    font-size: 18px;
+}
+.Font2{
+    font-family:Orator Std;
+    color: #263c4b;
+}
+
+
+.rateStar{
+height:30px;
+width:100%;
+position:absolute;
+float: right;
+right: 0;
+
+}
+.star{
+background: url('resources/images/Star.png') ;
+background-size: contain;
+height:30px;
+width:30px;
+float:right;
+right:10px
+
+}
+.postBorder{
+position: relative;
+float: left;
+overflow: hidden;
+width: 467px;
+margin-right: 10px;
+height: 340px;
+
+}
+
+/* Xureality tag*/
+.taginput {
+    
+       
+
+        width: 100%;
+border-radius: 5px;
+height:40px;
+    }
+    .tagbox {
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+/*end  Xureality  tag*/
+
+/*TAE UI*/
+.hintbox{
+position: absolute;
+left: 20%;
+background-color: darkseagreen;
+border-radius: 10px;
+padding: 2px;
+}
+.Modal{
+
+box-sizing:border-box;position: fixed; z-index: 999;width:100%;margin:10px auto 10px auto;
+transition: opacity 0.3s, visibility 0.3s;
+}
+#backdrop{
+width: 100%;
+height: 200%;
+position: fixed;
+top: -50%;
+z-index: 500;
+background-color:rgba(0,0,0,0.6)    
+}
+
+.closebtnModal{
+
+-webkit-appearance: none;
+                padding: 0;
+                cursor: pointer;
+                position: fixed;
+                background: 0 0;
+                border: 0;
+                padding-right: 10px;
+                right: 10px;
+}
+.floatLeft{
+float: left;
+
+}
+
+
+.hide{
+visibility: hidden;
+display: none;
+} 
+.show{
+visibility: visible;
+display: block;
+}
+.unfocus{
+
+}
+/*
+
+REGISTER , LOGIN CSS
+
+*/
+
+
+.error {
+position: relative;
+animation: shake 0.5s cubic-bezier(0, 1.8, 0.5, 1.8) 0s 2;
+animation-iteration-count: 3;
+}
+.required{ 
+border:1px solid red;
+}
+@keyframes shake {
+0% {
+    left: 0px;
+  }
+  20% {
+    left: 8px;
+  }
+  40% {
+    left: -4px;
+  }
+  60% {
+    left: 4px;
+  }
+  100% {
+    left: 0px;
+  }
+}
+.fadepopIN{
+
+animation: Popup .5s ease-out ;
+}
+.fadepopOut{
+ 
+animation: PopupOUT .5s ease-out ;
+opacity: 0;
+transition: visibility 0s 2s, opacity 2s linear;
+}
+@keyframes Popup {
+0% {
+    display: none;
+    top: -500px;
+    opacity:0;
+}
+1% {
+    display: block;
+    opacity: 0;
+}
+  100% {
+    display: block;
+    top: 0px;
+    opacity:1;
+  }
+}
+
+@keyframes PopupOUT {
+0% {
+    display: none;
+    top: 0px;
+    opacity:1;
+}
+1% {
+    display: block;
+    opacity: 1;
+}
+  100% {
+    display: none;
+    top: -500px;
+    opacity:0;
+  }
+}
+
+.hideErrorMessage{
+opacity: 0;
+}
+
+.errmsg
+{
+color:red;
+}
+/*
+
+END REGISTER , LOGIN CSS
+
+*/

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class=" -moz-"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="stylesheet.css">
+<link href="https://fonts.googleapis.com/css?family=Orbitron:400,900,700,500|Open+Sans:400,400italic,700,700italic" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<div class="header">
+    <div class="cutCorner">
+      <span>Pattara Nanongtoom</span>
+    </div>
+    <div class="header-content">
+      <a href="index.html">Home</a>
+      <a href="category_projects.html">Projects</a>
+      <a href="gallery.html">Gallery</a>
+    </div>
+  </div>
+<div class="diy-slideshow">
+	<figure class="">
+		<img src="img/1.jpg">
+	</figure>
+  <figure class="show">
+    <img src="img/2.jpg">
+	</figure>
+	<figure class="">
+		<img src="img/3.jpg">
+	</figure>
+  <figure class="">
+		<img src="img/4.jpg">
+	</figure>
+  <figure class="">
+		<img src="img/5.jpg">
+	</figure>
+  <figure class="">
+		<img src="img/6.jpg">
+	</figure>
+  <figure class="">
+		<img src="img/7.jpg">
+	</figure>
+  <figure class="">
+		<img src="img/8.jpg">
+	</figure>
+  <figure class="">
+		<img src="img/9.jpg">
+	</figure>
+</div>
+<span class="prev">«Prev</span>
+<span class="next">Next»</span>
+<script>(function () {
+    var counter = 0, $items = document.querySelectorAll('.diy-slideshow figure'), numItems = $items.length;
+    var showCurrent = function () {
+        var itemToShow = Math.abs(counter % numItems);
+        [].forEach.call($items, function (el) {
+            el.classList.remove('show');
+        });
+        $items[itemToShow].classList.add('show');
+    };
+    document.querySelector('.next').addEventListener('click', function () {
+        counter++;
+        showCurrent();
+    }, false);
+    document.querySelector('.prev').addEventListener('click', function () {
+        counter--;
+        showCurrent();
+    }, false);
+}());
+</script>
+</body></html>
