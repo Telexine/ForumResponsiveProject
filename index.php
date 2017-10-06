@@ -1,6 +1,20 @@
 
 <?php
+/*
+
+ $usr_info   = array(
+            "User_ID" => $row["User_ID"],
+            "name" => $row['Name'],
+            "AvatarURL" => $row['AvatarURL']
+        );
+
+
+
+*/
 require_once('resources/PHP/func.php');
+if (!isset($_SESSION)) {
+    session_start();
+}
 
 $Allpostnum = getAllPostNum();  // count all post in the system
 $Hotpost = getHotPost(5); // 5 is select top 5
@@ -18,6 +32,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
   <link rel="stylesheet" type="text/css" media="all" href="resources/css/TAGstyles.css">
   <script type="text/javascript" src="resources/JS/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="resources/JS/responsiveCarousel.min.js"></script>
+  <script type="text/javascript" src="resources/JS/MD5.js"></script>
   <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
 <style>
 	.content-grid {
@@ -178,11 +193,11 @@ REGISTER , LOGIN CSS
       }
 }
 .fadepopIN{
-    position: relative;
+   
     animation: Popup .5s ease-out ;
 }
 .fadepopOut{
-    position: relative;
+     
     animation: PopupOUT .5s ease-out ;
     opacity: 0;
     transition: visibility 0s 2s, opacity 2s linear;
@@ -303,11 +318,11 @@ END REGISTER , LOGIN CSS
 
 
 <!-- Login RegisterBox -->
-<div id="RegisterBox"class="modal hide">
+<div id="RegisterBox"class="modal hide fadepopIN">
 	
 <div style="background-color:#dbe4ea; border-radius:15px; height:300px;width: 80%;margin: auto;" align="center"> 
 	<div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
-<div class="fadepopIN" id="regisOption" style="margin:auto;width:80%;padding-top:30px">
+<div class=" " id="regisOption" style="margin:auto;width:80%;padding-top:30px">
 
 <div id="sighup" style="float:left;width:50%;height: -webkit-fill-available;">
 	
@@ -600,10 +615,11 @@ $(function(){
 
 
 function PopcreatePost(){  // โชว Create Post
-	 
+ 
+	if(<?php echo islogged();?>){ // Check islog in in php
 	$('#CreatePostBox').removeClass( " hide " ).addClass( " show " );
 	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	
+	}else{PopRegisterPost();}// go to login instead
 }
 function hideAll(){ // โชว Create Post
 	$('#CreatePostBox').removeClass( " show " ).addClass( " hide " );
@@ -624,6 +640,8 @@ function updateDiv(){
     $('#PostContent').html(editorText);
 }
 
+
+// FUNCTION POSTforumn
 function submitPost(){
 //check validate here 
 
@@ -633,7 +651,7 @@ let xPostTitle = document.getElementById('PostTitle').value;
 let xPostSubtitle = document.getElementById('PostSubtitle').value; //!@#$%^ คืออะไร
 let xPostContent = document.getElementById('PostContent').value;
 let xPostTag = document.getElementById('PostTag').value;
-let xUser_ID = '1' ;//$_SESSION['curUser_ID'];
+let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
  
 
 $.post("resources/PHP/createPost.php",
@@ -656,52 +674,13 @@ function(data,status){
                     }
 });
 
-
-
-
- 
-    // All clear  เขียนลง DB
-    /*
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else {
-                // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    let response =  this.responseText;
-					 
-					if(parseInt(this.responseText)==406){  // response == 406
-                        alert("ERROR"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
-                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
-                       }
-                    else{
-                        alert("success"); //จะขึ้น Modal, Breadcrumb
-
-						$(location).attr('href', 'post.php?PostID='+response)
-					 
-                    }
-                }
-            };
-             
-            xmlhttp.open("GET","resources/PHP/createPost.php?PostTitle="+PostTitle+"&PostSubtitle="+PostSubtitle+"&PostContent="+PostContent+"&PostTag="+PostTag+"&User_ID="+User_ID,true);
-            xmlhttp.send();
-*/
-
 }
-// FUNCTION POSTforumn
-
 // END  FUNCTION POSTforumn
 
 
 // FUNCTION REGISTER / LOGIN 
 
-
 let G_User_ID, G_name,  G_AvatarURL;
-
 //Validate 
 function validate(classNa){
     let check = document.getElementsByClassName(classNa);
@@ -740,6 +719,8 @@ function validate(classNa){
 }
 // REGISTER
 
+
+   
   function register(){
     // validate
     if(!validate('require')){return;}
@@ -771,11 +752,11 @@ function validate(classNa){
                     let response =parseInt(this.responseText);
                     if(response==200){
                         alert("success"); //จะขึ้น Modal, Breadcrumb
-
+					 
                         //fade out
                         $('#regisOption').removeClass(" fadepopIN"); 
                         $('#regisOption').addClass(" fadepopOut"); 
-
+						location.reload(); // reload
                     }else if(response==406){
                         alert("Response : This Username "+ Username +" Already taken please try again"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
@@ -792,6 +773,7 @@ function validate(classNa){
 
 
 // Login 
+
 function Loginpage(){
  
    if(!validate('reqLog')){return;}
@@ -826,7 +808,8 @@ function Loginpage(){
 
                             //fade out
                         $('#regisOption').removeClass(" fadepopIN"); 
-                        $('#regisOption').addClass(" fadepopOut"); 
+						$('#regisOption').addClass(" fadepopOut");
+						location.reload(); 
                     }else if(response==406){
                         alert("Response : Username or password are incorrect"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
@@ -839,8 +822,26 @@ function Loginpage(){
 
 
 }
+console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getname();?> ");
+
+function logout(){
 
 
+
+$.post("resources/PHP/logout.php",
+{ },
+function(data,status){
+					if(status!='success'){  
+                        alert("ERROR");  
+                       }
+                    else{
+                        alert("Logingout"); //จะขึ้น Modal, Breadcrumb
+						location.reload(); 
+                    }
+});
+
+
+}
 //END FUNCTION REGISTER / LOGIN 
 </script>
 
@@ -857,6 +858,14 @@ function htmlStar($rate){
 
 	return $html ;
 }
+
+// PHP pass data to js
+function islogged(){
+   if(isset($_SESSION['user_info']['User_ID'])){return  'true';}else return 'false';
+}
+function getUserID(){ if(isset( $_SESSION['user_info']['User_ID'])){return $_SESSION['user_info']['User_ID']; }else return 'false'; }
+function getname(){ if(isset( $_SESSION['user_info']['name'])){return $_SESSION['user_info']['name']; }else return 'false'; }
+function getAvatarURL(){ if(isset( $_SESSION['user_info']['AvatarURL'])){return $_SESSION['user_info']['AvatarURL']; }else return 'false'; }
+ 
 ?>
-
-
+ 

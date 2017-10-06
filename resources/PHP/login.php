@@ -11,7 +11,7 @@ if (!isset($_SESSION)) {
       
        $Username = ($_GET['Username']);
        $password = ($_GET['password']);
- 
+        
        $conn  = initDB();
 
        // เช็คว่ามี USER นี้ยัง

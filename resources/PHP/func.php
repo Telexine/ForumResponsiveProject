@@ -2,9 +2,7 @@
 
 require_once('db_config.php');
 
-if (!isset($_SESSION)) {
-    session_start();
-}
+
 
 //  PHP DATABASE FUNCTION ----------------------------------------------------------- 
 
@@ -48,6 +46,7 @@ function CreateUser( $NAME, $UserName,$PW, $avatar) // PW ตอนเรีย�
     $sql = "INSERT INTO ForumResponsive.TBUser (`User_ID`, `Name`, `UserName`, `PW`, `Created_date`, `avatarURL`)" . "VALUES (NULL,'$NAME','$UserName','$PW',CURRENT_TIMESTAMP, '$avatar')";
     // query insert
     $conn->query($sql);
+    login($UserName, $PW);
     return true;
 }
 
@@ -77,7 +76,8 @@ function login($UserName, $Password) // PW ตอนเรียกต้อง�
             "name" => $row['Name'],
             "AvatarURL" => $row['AvatarURL']
         );
-        $_SESSION['user_info'] = $usr_info; // fetch current user data to array session 
+         $_SESSION['user_info'] = $usr_info; // fetch current user data to array session 
+        
         return true; // login
         //  TAE : EXAMPLE  echo $_SESSION['user_info']['User_ID']. $_SESSION['user_info']['name'];
     } else {
