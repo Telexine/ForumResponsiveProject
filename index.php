@@ -104,9 +104,12 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
 /* Xureality tag*/
 .taginput {
-            border: none;
-            background: transparent;
-            width: 100%
+        
+           
+ 
+			width: 100%;
+	border-radius: 5px;
+	height:40px;
         }
 		.tagbox {
             border-style: solid;
@@ -117,7 +120,13 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 /*end  Xureality  tag*/
 
 /*TAE UI*/
-
+.hintbox{
+	position: absolute;
+    left: 20%;
+    background-color: darkseagreen;
+    border-radius: 10px;
+    padding: 2px;
+}
 .Modal{
  
  box-sizing:border-box;position: fixed; z-index: 999;width:100%;margin:10px auto 10px auto;
@@ -263,7 +272,7 @@ END REGISTER , LOGIN CSS
 		<nav class="Menu" style=" z-index:14">
 			<ul>
 				<li><a href="#" class="o"><span class="fa fa-home" style="font-size: 30px;padding-top: 12px;"><p class="Font">  HomePage</p></a></li>
-				<li><a href="#" class="o"><span  onClick="createPostPop();"class="fa fa-search" style="font-size: 30px;padding-top: 12px;"><p class="Font">  Search</p></a></li>
+				<li><a href="#" class="o"><span  onClick="PopSearch();"class="fa fa-search" style="font-size: 30px;padding-top: 12px;"><p class="Font">  Search</p></a></li>
 				<li><div align="center" class="Logo2 col-s-hidden col-m-12 col-l-12">
 				<a href="#" class="button"><img src="resources/images/logo.png" style="padding-top: 10px;" width="112" height="112"></a></div></li>
 				<li><a href="#" onClick="PopcreatePost();" class="o"><span class="fa fa-magic" style="font-size: 30px;padding-top: 12px;"><p class="Font">  CreatePost</p></a></li>
@@ -324,7 +333,7 @@ END REGISTER , LOGIN CSS
 	<div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
 <div class=" " id="regisOption" style="margin:auto;width:80%;padding-top:30px">
 
-<div id="sighup" style="float:left;width:50%;height: -webkit-fill-available;">
+<div id="signup" style="float:left;width:50%;height: -webkit-fill-available;">
 	
         <table style="margin:auto">
          <form>
@@ -421,7 +430,71 @@ END REGISTER , LOGIN CSS
 <!--END Login RegisterBox -->
 
 
+<!-- SEARCH Box -->
+<div id="SearchBox"class="modal hide fadepopIN">
+	
+<div style="background-color:#dbe4ea; border-radius:15px;width: 80%;margin: auto;" align="center"> 
+	<div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
+<div class=" " style="margin:auto;width:80%;padding-top:30px">
 
+ 			 <!-- Xureality Tag -->
+		<div>
+		<form>
+           <div id="tagbox"><span id="tagDisplay" style="top: 5px;position: absolute;"></span><input   id="textin" class="taginput fa" type="text" onkeyup="showHint(this.value)"></div>
+        </form>
+        
+        <p>
+           <span id="tagHint" ></span>
+        </p></div>
+
+ 	 <!--    Xureality Tag-->
+			
+<ul class="demo-list-three mdl-list">
+  <li class="mdl-list__item mdl-list__item--three-line">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons mdl-list__item-avatar">person</i>
+      <span>Bryan Cranston</span>
+      <span class="mdl-list__item-text-body">
+        Bryan Cranston played the role of Walter in Breaking Bad. He is also known
+        for playing Hal in Malcom in the Middle.
+      </span>
+    </span>
+    <span class="mdl-list__item-secondary-content">
+      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+    </span>
+  </li>
+  <li class="mdl-list__item mdl-list__item--three-line">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">person</i>
+      <span>Aaron Paul</span>
+      <span class="mdl-list__item-text-body">
+        Aaron Paul played the role of Jesse in Breaking Bad. He also featured in
+        the "Need For Speed" Movie.
+      </span>
+    </span>
+    <span class="mdl-list__item-secondary-content">
+      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+    </span>
+  </li>
+  <li class="mdl-list__item mdl-list__item--three-line">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">person</i>
+      <span>Bob Odenkirk</span>
+      <span class="mdl-list__item-text-body">
+        Bob Odinkrik played the role of Saul in Breaking Bad. Due to public fondness for the
+        character, Bob stars in his own show now, called "Better Call Saul".
+      </span>
+    </span>
+    <span class="mdl-list__item-secondary-content">
+      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+    </span>
+  </li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!--END Login RegisterBox -->
 
 
 <main id="main">
@@ -432,17 +505,7 @@ END REGISTER , LOGIN CSS
 		<div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-phone" style="background-color:#f1f4ff;padding-top:0px;border-radius: 8px; ">
 			<h5 class="Font2"><dd> HOT  POST</dd></h5>
 
-			 <!-- Xureality Tag 
-		<div>
-		<form>
-           <div id="tagbox"><span id="tagDisplay"></span><input id="textin" class="taginput" type="text" onkeyup="showHint(this.value)"></div>
-        </form>
-        
-        <p>
-           <span id="tagHint"></span>
-        </p></div>
 
-    Xureality Tag-->
    		 </div>
 	</div>
         
@@ -625,6 +688,7 @@ function hideAll(){ // โชว Create Post
 	$('#CreatePostBox').removeClass( " show " ).addClass( " hide " );
 	$('#RegisterBox').removeClass( " show " ).addClass( " hide " );
 	$('#backdrop').removeClass( " show " ).addClass( " hide " );
+	$('#SearchBox').removeClass( " show " ).addClass( " hide " );
 }
 
 function PopRegisterPost(){  // โชว Resgist  Post
@@ -633,7 +697,12 @@ function PopRegisterPost(){  // โชว Resgist  Post
 	$('#backdrop').removeClass( " hide " ).addClass( " show " );
 	
 }
-
+function PopSearch(){  // โชว Resgist  Post
+	 
+	$('#SearchBox').removeClass( " hide " ).addClass( " show " );
+	$('#backdrop').removeClass( " hide " ).addClass( " show " );
+	
+}
 timer = setInterval(updateDiv,100);
 function updateDiv(){
     var editorText = CKEDITOR.instances.PostContent.getData();
@@ -843,6 +912,97 @@ function(data,status){
 
 }
 //END FUNCTION REGISTER / LOGIN 
+
+
+	 // XU
+	 var tagged = [];
+            function showHint(str) 
+			{
+				console.log(tagged);
+                if (str.length == 0) 
+				{
+                    document.getElementById("tagHint").innerHTML = "";
+                    return;
+                } 
+                else 
+				{
+                    var xmlhttp = new XMLHttpRequest();
+					
+                    xmlhttp.onreadystatechange = function() 
+					{
+                        if (this.readyState == 4 && this.status == 200) 
+						{
+                            document.getElementById("tagHint").innerHTML = "";
+                            var a = this.responseText.split(" ");
+							console.log(a);
+							var i,j;
+							for (i = 0; i < a.length; ++i) 	
+							{
+								for (j = 0; j < tagged.length; ++j)
+								{
+									if ((a[i] + " ") == tagged[j])
+									{
+										a[i] = "";
+									}
+								}									
+							}
+							
+							for (i = 0; i < a.length; ++i) 
+							{
+                                var data = a[i];
+                                // string ว่างไม่ควรโชว
+								link = document.createElement('span');
+								link.id = "hintdisp";
+								link.className= "mdl-chip__text";
+                                link.href =  '#';
+                                link.addEventListener("click", function (e) 
+								{ 
+									frag = fragmentFromString("<span id='hint' class=''><span id='hinttext'>" + e.target.innerHTML + "</span><span><button type='button' class='mdl-chip__action'><i class='material-icons close '>cancel</i></button></span></span> ");
+									tagged.push(e.target.innerHTML);
+                                    document.getElementById("tagDisplay").appendChild(frag); 
+									document.getElementById("textin").value = "";
+									e.target.parentElement.removeChild(e.target);
+									makecloseable();
+                                }
+								, false);
+                                link.innerHTML = data + " ";
+								 
+                                document.getElementById("tagHint").appendChild(link);
+                                //document.getElementById("tagHint").appendChild(document.createElement('br'));
+                            }
+                        }
+                    };
+					
+                    xmlhttp.open("GET", "resources/php/taglist.php?query=" + str, true);
+                    xmlhttp.send();
+                }
+            }
+			function fragmentFromString(strHTML) {
+				var temp = document.createElement('template');
+				temp.innerHTML = strHTML;
+				return temp.content;
+			}
+			function makecloseable() {
+				var elements = document.getElementsByClassName('close');
+				for (i = 0; i < elements.length; ++i){
+					elements[i].addEventListener("click", function (e){
+						var frag = fragmentFromString(this.parentNode.parentNode.parentNode.innerHTML);
+						var list = frag.getElementById("hinttext").innerHTML;
+						console.log(list);
+						for (j = 0; j < tagged.length; ++j)
+						{
+							if (list == tagged[j])
+							{
+								tagged.splice(j, 1);
+							}
+						}
+						this.parentNode.parentNode.parentNode
+						.removeChild(this.parentNode.parentNode);
+						return false;
+					}, false);
+				}	
+			};
+	 // XU
 </script>
 
 <?php
