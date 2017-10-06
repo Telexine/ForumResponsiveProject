@@ -467,11 +467,11 @@ END REGISTER , LOGIN CSS
 				'.		  htmlStar(getPostRate($Hotpost[$i]['Post_ID'])).
 				'</div> 
 				<div class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">'.$Hotpost[$i]['title'].' <p> '.$Hotpost[$i]['name'].' </p> </h2> 
+				<h2 class="mdl-card__title-text">'.$Hotpost[$i]['title'].'</h2> 
 				</div>
 				
-				<div class="mdl-card__supporting-text">
-				'.$Hotpost[$i]['content'].'
+				<div class="mdl-card__supporting-text"> by :  
+				'.$Hotpost[$i]['name'].'
 					</div>
 				<div class="mdl-card__actions mdl-card--border">
 				<a href="post.php?PostID='.$Hotpost[$i]['Post_ID'].'" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
@@ -618,21 +618,50 @@ function PopRegisterPost(){  // โชว Resgist  Post
 	
 }
 
+timer = setInterval(updateDiv,100);
+function updateDiv(){
+    var editorText = CKEDITOR.instances.PostContent.getData();
+    $('#PostContent').html(editorText);
+}
+
 function submitPost(){
 //check validate here 
 
 
 
-let PostTitle = document.getElementById('PostTitle').value;
-let PostSubtitle = document.getElementById('PostSubtitle').value; //!@#$%^ คืออะไร
-let PostContent = document.getElementById('PostContent').value;
-let PostTag = document.getElementById('PostTag').value;
-let User_ID = '1' ;//$_SESSION['curUser_ID'];
+let xPostTitle = document.getElementById('PostTitle').value;
+let xPostSubtitle = document.getElementById('PostSubtitle').value; //!@#$%^ คืออะไร
+let xPostContent = document.getElementById('PostContent').value;
+let xPostTag = document.getElementById('PostTag').value;
+let xUser_ID = '1' ;//$_SESSION['curUser_ID'];
+ 
+
+$.post("resources/PHP/createPost.php",
+{ 
+	PostTitle: xPostTitle,
+	PostTitle  : xPostSubtitle,
+ 	PostSubtitle : xPostSubtitle, 
+ 	PostContent :xPostContent,
+	 PostTag  : xPostTag,
+	 User_ID  : xUser_ID
+},
+function(data,status){
+					if(status!='success'){  // response == 406
+                        alert("ERROR"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
+                       }
+                    else{
+                        alert("success: click ok to go to page"); //จะขึ้น Modal, Breadcrumb
+						$(location).attr('href', 'post.php?PostID='+data);
+                    }
+});
 
 
-console.log("resources/PHP/createPost.php?PostTitle="+PostTitle+"&PostSubtitle="+PostSubtitle+"&PostContent="+PostContent+"&PostTag="+PostTag+"&User_ID="+User_ID);
+
+
+ 
     // All clear  เขียนลง DB
-    
+    /*
             if (window.XMLHttpRequest) {
                 // code for IE7+, Firefox, Chrome, Opera, Safari
                 xmlhttp = new XMLHttpRequest();
@@ -660,6 +689,7 @@ console.log("resources/PHP/createPost.php?PostTitle="+PostTitle+"&PostSubtitle="
              
             xmlhttp.open("GET","resources/PHP/createPost.php?PostTitle="+PostTitle+"&PostSubtitle="+PostSubtitle+"&PostContent="+PostContent+"&PostTag="+PostTag+"&User_ID="+User_ID,true);
             xmlhttp.send();
+*/
 
 }
 // FUNCTION POSTforumn

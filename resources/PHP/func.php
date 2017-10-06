@@ -88,6 +88,31 @@ function login($UserName, $Password) // PW ตอนเรียกต้อง�
 
 
 
+// XU
+function searchPost($searchTerms){
+    $conn = initDB();
+  mysqli_select_db("ForumResponsive");
+  
+  $searchTStore = "";
+  
+  foreach ($searchTerms as $tag)
+    $searchTStore += $tag;
+  
+    $sql ="SELECT TBPost.Post_ID 
+  FROM ((TBPost INNER JOIN TBTag ON TBPost.Post_ID = TBTag.Post_ID)
+    INNER JOIN TBmeta ON TBPost.Post_ID = TBmeta.Post_ID) 
+  WHERE TBTag.Tag IN (" . $searchTStore . ")
+  GROUP BY TBPost.Post_ID 
+  HAVING Count(DISTINCT TBTag.Tag) = ". $searchTerms.count() ."
+  ORDER BY popular, count, TBmeta.DATE DESC;";
+    // query 
+    $fetch = $conn->query($sql); 
+    // fetch all to arr 
+    while(($hPost[] = mysqli_fetch_assoc($fetch)) || array_pop($hPost)); 
+    return $hPost;
+}// XU
+
+
 function logout(){
     session_start();
     session_unset();

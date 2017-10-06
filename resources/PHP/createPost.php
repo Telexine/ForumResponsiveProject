@@ -8,11 +8,11 @@ if (!isset($_SESSION)) {
     session_start();
 }
  
-       $PostTitle = ($_GET['PostTitle']);
-       $PostSubtitle = ($_GET['PostSubtitle']); //!@#$%^ คืออะไร
-       $PostContent = ($_GET['PostContent']);
-       $PostTag = ($_GET['PostTag']);
-       $User_ID = ($_GET['User_ID']);
+       $PostTitle = ($_POST['PostTitle']);
+       $PostSubtitle = ($_POST['PostSubtitle']); //!@#$%^ คืออะไร
+       $PostContent = ($_POST['PostContent']);
+       $PostTag = ($_POST['PostTag']);
+       $User_ID = ($_POST['User_ID']);
 
  
        $conn  = initDB();
