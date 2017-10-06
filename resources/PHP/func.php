@@ -226,11 +226,7 @@ function getHotPost($lim/*limit default 3*/){
 
 
     $conn = initDB();
-    $sql ="SELECT a.Post_ID, a.title,COUNT(a.Post_ID) count, b.DATE ,(SUM(c.Rating) /count(a.Post_ID)) as popular
-    , b.imageURL,b.content,u.name 
-    FROM ForumResponsive.TBPost as a , ForumResponsive.TBUser as u ,
-     ForumResponsive.TBmeta as b LEFT JOIN ForumResponsive.TBrate c ON b.Post_ID = c.Post_ID 
-     WHERE a.Post_ID = b.Post_ID and b.user_id = u.user_id GROUP BY a.Post_ID ORDER BY popular, count,b.DATE DESC LIMIT $lim";
+    $sql ="SELECT a.Post_ID, a.title,COUNT(a.Post_ID) count, b.DATE ,(SUM(c.Rating) /count(a.Post_ID)) as popular , b.imageURL,b.content,u.name FROM ForumResponsive.TBPost as a , ForumResponsive.TBUser as u , ForumResponsive.TBmeta as b LEFT JOIN ForumResponsive.TBrate c ON b.Post_ID = c.Post_ID WHERE a.Post_ID = b.Post_ID and b.user_id = u.user_id GROUP BY a.Post_ID ORDER BY `popular` DESC LIMIT $lim";
  
     // query 
     $fetch = $conn->query($sql); 
@@ -239,45 +235,7 @@ function getHotPost($lim/*limit default 3*/){
     return $hPost;
 }
 
-
-//  jQuery/AJAX UI  FUNCTION ----------------------------------------------------------- 
  
-
-
-/*
-function checkVal(){
-
-    var chk = $("#chk");
-    
-        if (chk.val()) {
-        
-        }    
-
-}
-
-
-init : function(){
-     document.getElementById('submit').onclick = obj.validate;
-  },
-
-  validate : function(){
-     var check = document.getElementsByTagName('input');
-     var len = check.length;
-     for(var i=0;i<len;i++) {
-       if (check[i].value ==='')
-       {
-          alert('required');
-          return false;
-       }; 
-     };
-  }
-
-*/
-
-
-
-
-
 
 
 
