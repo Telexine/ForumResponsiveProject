@@ -145,8 +145,96 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 .unfocus{
 
 }
+/*
 
- 
+REGISTER , LOGIN CSS
+
+*/
+
+
+.error {
+    position: relative;
+    animation: shake 0.5s cubic-bezier(0, 1.8, 0.5, 1.8) 0s 2;
+    animation-iteration-count: 3;
+}
+.required{ 
+    border:1px solid red;
+}
+@keyframes shake {
+    0% {
+        left: 0px;
+      }
+      20% {
+        left: 8px;
+      }
+      40% {
+        left: -4px;
+      }
+      60% {
+        left: 4px;
+      }
+      100% {
+        left: 0px;
+      }
+}
+.fadepopIN{
+    position: relative;
+    animation: Popup .5s ease-out ;
+}
+.fadepopOut{
+    position: relative;
+    animation: PopupOUT .5s ease-out ;
+    opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear;
+}
+@keyframes Popup {
+    0% {
+        display: none;
+        top: -500px;
+        opacity:0;
+    }
+    1% {
+        display: block;
+        opacity: 0;
+    }
+      100% {
+        display: block;
+        top: 0px;
+        opacity:1;
+      }
+}
+
+@keyframes PopupOUT {
+    0% {
+        display: none;
+        top: 0px;
+        opacity:1;
+    }
+    1% {
+        display: block;
+        opacity: 1;
+    }
+      100% {
+        display: none;
+        top: -500px;
+        opacity:0;
+      }
+}
+
+.hideErrorMessage{
+    opacity: 0;
+}
+
+.errmsg
+{
+    color:red;
+}
+ /*
+
+END REGISTER , LOGIN CSS
+
+*/
+
 </style>
 </head>
 
@@ -522,12 +610,162 @@ function hideAll(){ // โชว Create Post
 	$('#backdrop').removeClass( " show " ).addClass( " hide " );
 }
 
-function PopRegisterPost(){  // โชว R Post
+function PopRegisterPost(){  // โชว Resgist  Post
 	 
 	$('#RegisterBox').removeClass( " hide " ).addClass( " show " );
 	$('#backdrop').removeClass( " hide " ).addClass( " show " );
 	
 }
+// FUNCTION POSTforumn
+
+// END  FUNCTION POSTforumn
+
+
+// FUNCTION REGISTER / LOGIN 
+
+
+let G_User_ID, G_name,  G_AvatarURL;
+
+//Validate 
+function validate(classNa){
+    let check = document.getElementsByClassName(classNa);
+     let len = check.length;
+     let valid = true;
+     for(var i=0;i<len;i++) {
+       if (check[i].value.trim() ==='')
+       {    
+
+           let obj = check[i].id;
+ 
+           $("#"+obj).addClass(" required");  // กล่องแดง
+            $("#"+obj).addClass(" error");    // สั่น
+            $("#"+obj+"_error").removeClass("hideErrorMessage");
+              setTimeout(function() {
+              $("#"+obj).removeClass("error");
+            }, 300);
+            valid= false;
+            
+          //alert('required Field '+check[i].name); //เดวเราทำ js เพิ่ม เราไม่ควรใช้  alert
+
+           
+       }
+       else{
+        let obj = check[i].id;
+        $("#"+obj).removeClass(" required");  // กล่องแดง
+        $("#"+obj+"_error").addClass(" hideErrorMessage");
+
+       }
+ ;
+      
+     }
+    
+    return valid;
+
+}
+// REGISTER
+
+  function register(){
+    // validate
+    if(!validate('require')){return;}
+    // password check 
+    pw1 = document.getElementById('Password2').value;
+    pw2 = document.getElementById('Password').value;
+    if(pw1!=pw2){
+        //pass word is not the same / alert something
+        alert('Password is not match');
+        return;
+    }
+
+    // All clear  เขียนลง DB
+    
+        let name = document.getElementById('Name').value;
+        let avatarURL = document.getElementById('avatarPath').value; // เดี๋ยวทำ
+        let Username = document.getElementById('username').value;
+        let password = md5(document.getElementById('Password').value);
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response =parseInt(this.responseText);
+                    if(response==200){
+                        alert("success"); //จะขึ้น Modal, Breadcrumb
+
+                        //fade out
+                        $('#regisOption').removeClass(" fadepopIN"); 
+                        $('#regisOption').addClass(" fadepopOut"); 
+
+                    }else if(response==406){
+                        alert("Response : This Username "+ Username +" Already taken plz try again"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
+                       }
+                }
+            };
+             
+            xmlhttp.open("GET","resources/PHP/register.php?name="+name+"&avatarURL="+avatarURL+"&Username="+Username+"&password="+password,true);
+            xmlhttp.send();
+  }
+
+
+//REGISTER BUTTON 
+
+
+// Login 
+function Loginpage(){
+ 
+   if(!validate('reqLog')){return;}
+   
+    let Username = document.getElementById('Login_ID').value;
+    let password = md5(document.getElementById('Login_Pass').value);
+
+    
+    if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            } else {
+                // code for IE6, IE5
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+            }
+
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response =parseInt(this.responseText);
+                    if(response==200){
+
+
+
+                        //ส่งค่า SESSION บางส่วนลง JS 
+                        <?php if(isset($_SESSION['user_info'])){ ?>
+                        <?php echo 'G_User_ID = '.json_encode($_SESSION['user_info']['User_ID']).';';?>
+                        <?php echo 'G_name = '.json_encode($_SESSION['user_info']['name']).';';?>
+                        <?php echo 'G_AvatarURL = '.json_encode($_SESSION['user_info']['AvatarURL']).';';?>
+                        <?php  } ?> 
+                        
+                        alert("Login success : "+G_name); //จะขึ้น Modal, Breadcrumb
+
+                            //fade out
+                        $('#regisOption').removeClass(" fadepopIN"); 
+                        $('#regisOption').addClass(" fadepopOut"); 
+                    }else if(response==406){
+                        alert("Response : Username or password are incorrect"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
+                       }
+                }
+            };
+             
+            xmlhttp.open("GET","resources/PHP/login.php?Username="+Username+"&password="+password,true);
+            xmlhttp.send();
+
+
+}
+
+
+//END FUNCTION REGISTER / LOGIN 
 </script>
 
 <?php
