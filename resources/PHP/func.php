@@ -94,7 +94,7 @@ function logout(){
     session_destroy();
     session_write_close();
 }
-function createPost($Title,$Content,$UserID,$imageURL,$IsOP)
+function createPost($Title,$Content,$UserID,$imageURL,$IsO,$Tags)
 {
     // ก่อนเรียก ฟังชั่นนี้ ต้องเช็คก่อนว่า มี field ครบไหม
     if($Title==""||$Content==""||!isUserIDexist($UserID)){return;}
@@ -154,6 +154,16 @@ function getPost($PostID)
 
     
 }
+
+function getAllTag(){
+    $conn = initDB();
+    $sql ="SELECT DISTINCT Tag FROM ForumResponsive.TBTag";
+    $fetch = $conn->query($sql); 
+    while(($Tags[] = mysqli_fetch_assoc($fetch)) || array_pop($Tags)); 
+    return $Tags;
+
+}
+
 
 function getPostComment($PostID){
 

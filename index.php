@@ -116,6 +116,37 @@ $Hotpost = getHotPost(5); // 5 is select top 5
     z-index: 500;
 	background-color:rgba(0,0,0,0.6)    
 }
+ 
+.closebtnModal{
+
+	-webkit-appearance: none;
+					padding: 0;
+					cursor: pointer;
+					position: fixed;
+					background: 0 0;
+					border: 0;
+					padding-right: 10px;
+					right: 10px;
+}
+.floatLeft{
+	float: left;
+
+}
+
+
+.hide{
+	visibility: hidden;
+    display: none;
+} 
+.show{
+	visibility: visible;
+    display: block;
+}
+.unfocus{
+
+}
+
+ 
 </style>
 </head>
 
@@ -132,22 +163,22 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 				<li><a href="#" class="o"><span  onClick="createPostPop();"class="fa fa-search" style="font-size: 30px;padding-top: 12px;"><p class="Font">  Search</p></a></li>
 				<li><div align="center" class="Logo2 col-s-hidden col-m-12 col-l-12">
 				<a href="#" class="button"><img src="resources/images/logo.png" style="padding-top: 10px;" width="112" height="112"></a></div></li>
-				<li><a href="#" class="o"><span class="fa fa-magic" style="font-size: 30px;padding-top: 12px;"><p class="Font">  CreatePost</p></a></li>
+				<li><a href="#" onClick="PopcreatePost();" class="o"><span class="fa fa-magic" style="font-size: 30px;padding-top: 12px;"><p class="Font">  CreatePost</p></a></li>
 				<li><a href="#" class="o"><span class="fa fa-smile-o" style="font-size: 30px;padding-top: 12px;"><p class="Font">  About</p></a></li>
 			</ul>
 		</nav>	
 		</header>
 
 
-
+<!-- CreatePostBox -->
 <div id='backdrop' class="modal hide" onClick="hideAll();"></div>
-<div id="CreatePostBox"class="modal hide"><!-- CreatePostBox -->
+<div id="CreatePostBox"class="modal hide">
 
 
 <div style="margin-bottom: 50px; color: aliceblue; text-align: center;" class="col-l-12">
-                    <div align="center"  class=" col-l-12 col-m-12" style="border-radius:10px; 
-	background-color:#dbe4ea;">
-                    	<form action="insert-p.php" method="get">
+                    <div align="center"  class=" col-l-12 col-m-12" style="border-radius:10px;background-color:#dbe4ea;">
+        			<form action="insert-p.php" method="get">
+					<button type="button" class="closebtnModal"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
 	<table align="center" class="Font2 fa-2x" style="padding:30px; ">
     	<tr><td colspan="1">Title: </td>
         <td><input type="text" name="title" class="fa" style="width:100%; border-radius:5px;"></td></tr>
@@ -179,7 +210,115 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
 
 
-</div> <!-- CreatePostBox -->
+</div> <!--END CreatePostBox  -->
+
+
+<!-- Login RegisterBox -->
+<div id="RegisterBox"class="modal hide">
+	
+<div style="background-color:#dbe4ea; border-radius:15px; height:300px;width: 80%;margin: auto;" align="center"> 
+	<div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
+<div class="fadepopIN" id="regisOption" style="margin:auto;width:80%;padding-top:30px">
+
+<div id="sighup" style="float:left;width:50%;height: -webkit-fill-available;">
+	
+        <table style="margin:auto">
+         <form>
+            <tr>
+            	<td width="102" class="Font">NickName
+                </td>
+                <td width="144" > 
+                 <input class="require Regisinput"  ID="Name" name="Nick Name" type="text">  <!--  TAE   -->
+                 <div id="Name_error" class="hideErrorMessage errmsg Font" >Require</div><!--  TAE   -->
+                </td>
+
+
+            </tr>
+
+            <tr>
+                 <td width="102" class="Font">Avatar
+                </td>
+                <td width="144"> 
+                 <input   id="avatarPath"  class="Regisinput" name = "avatar" type="file" value="Upload" accept="image/*"/>   <!--  TAE   -->
+                 <div id="avatar_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+                </td>
+
+                
+            </tr>
+            
+            	 <tr>
+            	<td class="Font">Username
+                </td>
+                <td> 
+                 <input class="require Regisinput" ID="username" name="username" type="text"> <!--  TAE   -->
+                 <div id="username_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+                </td>
+            </tr>
+             <tr>
+            	<td class="Font">Password
+                </td>
+                <td> 
+                 <input class="require Regisinput" id ='Password' name="password" type="password"> <!--  TAE   -->
+                
+                </td>
+            </tr>
+             <tr>
+            	<td class="Font">Confirm Password
+                </td>
+                <td> 
+                 <input class="require Regisinput" id ='Password2'name="passwordconfirm" type="password"> <!--  TAE   -->
+                 <div id="Password_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+                </td>
+            </tr>
+            	 <tr>
+                <td>
+                </td>
+                <td> 
+                 <input onclick ="register();" id="Register"type="button" value="Sign up" class="Font"/>  <!--  TAE   -->
+                </td>
+            </tr>
+           
+             </form>
+        </table>
+   
+</div>
+<div id="login" style="float:left;width:50%;height: -webkit-fill-available;">
+ <table style="margin:auto">
+         <form>
+			 <tr>
+            	<td class="Font">Username
+                </td>
+                <td> 
+                 <input id="Login_ID" name="username" class="reqLog Regisinput" type="text">  <!-- TAE  -->
+                 <div id="Login_ID_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+                </td>
+            </tr>
+             <tr>
+            	<td class="Font">Password
+                </td>
+                <td> 
+                 <input id="Login_Pass" name="password" class="reqLog Regisinput" type="text"> <!-- TAE  -->
+                 <div id="Login_Pass_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+                </td>
+            </tr>
+            <tr>
+            <td> 
+                </td>
+             <td align="right"> 
+                 <input type="button" onclick = 'Loginpage();' value="Log in" class="Font"/>
+                </td>
+            </tr>
+		</form>
+ </table>
+</div>
+</div></div>
+</div>
+</div>
+<!--END Login RegisterBox -->
+
+
+
+
 
 <main id="main">
 
@@ -226,20 +365,10 @@ $Hotpost = getHotPost(5); // 5 is select top 5
     
 
              
- <!-- post   -->
+ <!--  Generate Hot posts   -->
  
 		 <?php 
 		 
-		 //$Hotpostnum = count($Hotpost);  // number of fetch hot post 
-
-		 /*
-		 
-		 Array ( [0] => Array ( [Post_ID] => OP1503326319?9 [title] => TEST [count] => 6 
-		 [DATE] => 2017-08-21 21:38:44 [popular] => 8.5000 [imageURL] => dd [content] => Content [name] => เต้ ) ) 
-		 
-		 */
-		//print_r($Hotpost);
-	//	echo $Hotpost[0]['Post_ID'];
 		  for($i = 0;$i<count($Hotpost);$i++){
 	
 				echo '  
@@ -263,7 +392,6 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 				</div>
 	  			</div>
 				';
-
 		  }
   
 		 
@@ -297,85 +425,24 @@ $Hotpost = getHotPost(5); // 5 is select top 5
     
     <div class="res crsl-items" data-navigation="navbtnsTAG">
       <div class="crsl-wrap">
-        
-        <div class="crsl-item">        
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
- 			style="background-color:#A4C8F0;padding-top:0px;border-radius: 8px; "> 1 </button>
- 		</div><!-- @end .crsl-items -->
- 		
- 		<div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#88BBDD;padding-top:0px;border-radius: 8px; "> 2 </button>
-		</div><!-- @end .crsl-items -->
-     
-     <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#6699AA;padding-top:0px;border-radius: 8px; "> 3 </button>
-		</div><!-- @end .crsl-items -->
-    
-    <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#A3E7D8;padding-top:0px;border-radius: 8px; "> 4 </button>
-		</div><!-- @end .crsl-items -->
-    
-    <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#88DDBB;padding-top:0px;border-radius: 8px; "> 5 </button>
-		</div><!-- @end .crsl-items -->
-   
-    <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#88BBAA;padding-top:0px;border-radius: 8px; "> 6 </button>
-		</div><!-- @end .crsl-items -->
-    
-     <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#B9E3AE;padding-top:0px;border-radius: 8px; "> 7 </button>
-		</div><!-- @end .crsl-items -->
-    
-     <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#BACAB3;padding-top:0px;border-radius: 8px; "> 8 </button>
-		</div><!-- @end .crsl-items -->
-    
-     <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#FFFF88;padding-top:0px;border-radius: 8px; "> 9 </button>
-		</div><!-- @end .crsl-items -->
-    
-     <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#E1FD8E;padding-top:0px;border-radius: 8px; "> 10 </button>
-		</div><!-- @end .crsl-items -->
-    
-     <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#F2ED8C;padding-top:0px;border-radius: 8px; "> 11 </button>
-		</div><!-- @end .crsl-items -->
-    
-     <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#F4EFAF;padding-top:0px;border-radius: 8px; "> 12 </button>
-		</div><!-- @end .crsl-items -->
-    
-     <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#CBAB8D;padding-top:0px;border-radius: 8px; "> 13 </button>
-		</div><!-- @end .crsl-items -->
-    
-     <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#FFDDDD;padding-top:0px;border-radius: 8px; "> 14 </button>
-		</div><!-- @end .crsl-items -->
-    
-     <div class="crsl-item">   
-			<button class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-			style="background-color:#FDB4BF;padding-top:0px;border-radius: 8px; "> 15 </button>
-		</div><!-- @end .crsl-items -->
-    
-    
-     
-      
+		
+	<?php 
+	  
+	  $Tags = getAllTag();
+ 
+	  $TagsColor =array('#A4C8F0','#88BBDD','#6699AA','#A3E7D8','#88DDBB','#88BBAA','#B9E3AE','#BACAB3','#FFFF88','#E1FD8E','#F2ED8C','#F4EFAF','#CBAB8D','#FFDDDD','#FDB4BF'); //15 color
+	  $j=0; // for loop TagsColors
+	  for($i = 0;$i<count($Tags);$i++){
+
+		if($j==14){$j=0;}//reset color pallet
+
+		echo '<div class="crsl-item">        
+					<span class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
+					style="background-color:'.$TagsColor[$j++].';padding-top:0px;border-radius: 8px;vertical-align:middle;font-size:1.5em; "> '.$Tags[$i]['Tag'].' </span>
+			</div><!-- @end .crsl-items -->';
+	  }
+	?>
+  
        </div><!-- @end .crsl-wrap -->
     </div><!-- @end .crsl-items -->
 	</div><!-- @end #w -->
@@ -395,116 +462,12 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
 
 </body>
-
-<!-- TAE  -->
-<script>
-
-
-
-	/*
-	
-	SELECT  a.Post_ID, COUNT(a.Post_ID) count, b.DATE
-FROM ForumResponsive.TBPost as a ,ForumResponsive.TBmeta as b 
-WHERE a.Post_ID = b.Post_ID  
-GROUP BY a.Post_ID
-ORDER BY b.DATE DESC LIMIT 3;
-	
-
- <!-- post #1 -->
+ 
  
 
 
-	*/
-	 // Add a message to the messages element.
-	 function appendPost(PostID,imageURL,Title,Nickname,content) {
-		 imageURL = "";
-		  Title="title";Nickname="nickname";content="content";
-	   //GET WHERE to append post
-	   const cardElement = document.querySelector('#crsl');
-
-		//create element 
-
-		const crslItem = document.createElement('div');
-		
-		const cardDivElement = document.createElement('div');
-
-		const rateElement = document.createElement('div');
-
-		const titleElement = document.createElement('div');
-
-		const title_text = document.createElement('h2');
-
-		const contentElement = document.createElement('div');
-
-		const buttonBox = document.createElement('div');
-
-		const buttonElement =document.createElement('div');
-   
-
-	   // add class 
-	   crslItem.className = "crsl-item  crsl-active " ;
-	   cardDivElement.className = " demo-card-square mdl-card mdl-shadow--2dp floatLeft";
-	   rateElement.className = "rateStar"; // add ID 
-
-		 titleElement.className = "mdl-card__title mdl-card--expand";
-		 title_text.className = "mdl-card__title-text";
-		 contentElement.className = "mdl-card__supporting-text";
-		 buttonBox.className = "mdl-card__actions mdl-card--border";
-		 buttonElement.className = "mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect";
-
-		// Add ID and Attrbute
-
- 
-		buttonElement.setAttribute("href", "/post.php?PostID="+PostID);
-
-	   //int metadata 
-
-	   crslItem.style =" position: relative; float: left; overflow: hidden; width: 351px; margin-right: 10px; height: 340px;";
-		 title_text.textContent = Title+" "+Nickname+" ";
-		 title_text.style.background = "url('"+imageURL+"') center / cover";
-
-		 contentElement.textContent = content;
-		 buttonElement.innerHTML= "GO TO POST";
-  
-	   //append Messgage
-	   crslItem.appendChild(cardDivElement);
-	   cardDivElement.appendChild(titleElement);
-	   titleElement.appendChild(title_text);
-	   cardDivElement.appendChild(contentElement);
-	
-	   
-	   buttonBox.appendChild(buttonElement);
- 
-
-	   cardDivElement.appendChild(rateElement);
-		 cardDivElement.appendChild(buttonBox);
-
-	   cardElement.appendChild(crslItem);
-	 }
-</script>
 
 
-
-<style>
-.floatLeft{
-	float: left;
-
-}
-
-
-.hide{
-	visibility: hidden;
-    display: none;
-} 
-.show{
-	visibility: visible;
-    display: block;
-}
-.unfocus{
-
-}
-
-</style>
 
 <script type="text/javascript">
 $(function(){
@@ -547,20 +510,28 @@ $(function(){
 });
 
 
-function createPostPop(){
+function PopcreatePost(){  // โชว Create Post
 	 
 	$('#CreatePostBox').removeClass( " hide " ).addClass( " show " );
 	$('#backdrop').removeClass( " hide " ).addClass( " show " );
 	
 }
-function hideAll(){
+function hideAll(){ // โชว Create Post
 	$('#CreatePostBox').removeClass( " show " ).addClass( " hide " );
+	$('#RegisterBox').removeClass( " show " ).addClass( " hide " );
 	$('#backdrop').removeClass( " show " ).addClass( " hide " );
+}
+
+function PopRegisterPost(){  // โชว R Post
+	 
+	$('#RegisterBox').removeClass( " hide " ).addClass( " show " );
+	$('#backdrop').removeClass( " hide " ).addClass( " show " );
+	
 }
 </script>
 
 <?php
-
+// PHP ============================
 function htmlStar($rate){
 	$html = "";
 	  $star = ceil($rate/2);
