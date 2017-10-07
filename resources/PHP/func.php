@@ -91,27 +91,30 @@ function login($UserName, $Password) // PW ตอนเรียกต้อง�
 // XU
 function searchPost($searchTerms){
     $conn = initDB();
-  mysqli_select_db($conn,"ForumResponsive");
-  
-  $searchTStore = implode("`, `", $searchTerms);
+	mysqli_select_db($conn, "ForumResponsive");
+	
+	$searchTStore[] = array();
+	foreach ($searchTerms[0] as $thing){
+		array_push($searchTStore[0], "\"" . $thing . "\"");
+	}
+	$searchTStore2 = implode(", ", $searchTStore[0]);
 
-   echo $sql ="SELECT TBPost.Post_ID, COUNT(TBPost.Post_ID) count, (SUM(TBrate.Rating) /count(TBPost.Post_ID)) as popular
-  FROM ((TBPost INNER JOIN TBTag ON TBPost.Post_ID = TBTag.Post_ID)
-    INNER JOIN TBmeta ON TBPost.Post_ID = TBmeta.Post_ID) 
-  WHERE TBTag.Tag IN (`" . $searchTStore . "`)
-  GROUP BY TBPost.Post_ID 
-  HAVING Count(DISTINCT TBTag.Tag) = ". count($searchTerms) ."
-  ORDER BY popular, count, TBmeta.DATE DESC;";
-  $hPost = array();
-  if ($result = mysqli_query($sql)) {
-  /* fetch associative array */
-  while ($row = mysqli_fetch_assoc($result)) {
-      $hPost[] = $row["TBPost.Post_ID"];
-  }
-  /* free result set */
-  mysqli_free_result($result);
-return $hPost;
-}
+    $sql ="SELECT Post_ID
+	FROM TBTag
+	WHERE Tag IN (" . $searchTStore2 . ")
+	GROUP BY Post_ID 
+	HAVING Count(DISTINCT Tag) = ". count($searchTerms[0]) .";";
+	//echo $searchTStore2;
+	//echo count($searchTerms[0]);
+	$hPost = array();
+	//echo $sql;
+    if ($result = mysqli_query($conn, $sql)) {
+		/* fetch associative array */
+		while ($row = mysqli_fetch_assoc($result)) {
+        $hPost[0] = $row["Post_ID"];
+		}
+	return $hPost;
+	}
 }// XU
 
 
