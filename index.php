@@ -40,8 +40,8 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 </head>
 
 <body>
-<div id="wrapper">
-	<div align="center" class="Logo"><a href="#" class="button"><img src="resources/images/logo.png"  width="112" height="112"></a></div> 
+
+<div align="center" class="Logo"><a href="#" class="button"><img src="resources/images/logo.png"  width="112" height="112"></a></div> 
 		<header>
 		
 		<input type="checkbox" id="btn-menu">
@@ -60,7 +60,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
 
 <!-- CreatePostBox -->
-<div id='backdrop' class="modal hide" onClick="hideAll();"></div>
+<div id='backdrop' class="modal  hide" onClick="hideAll();"></div>
 <div id="CreatePostBox"class="modal hide">
 
 
@@ -274,6 +274,10 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 <!--END Login RegisterBox -->
 
 
+
+<div id="wrapper">
+
+
 <main id="main">
 
 
@@ -455,7 +459,7 @@ $(function(){
 
 
 function PopcreatePost(){  // โชว Create Post
- 
+    
 	if(<?php echo islogged();?>){ // Check islog in in php
 	$('#CreatePostBox').removeClass( " hide " ).addClass( " show " );
 	$('#backdrop').removeClass( " hide " ).addClass( " show " );
@@ -465,17 +469,27 @@ function hideAll(){ // โชว Create Post
 	$('#CreatePostBox').removeClass( " show " ).addClass( " hide " );
 	$('#RegisterBox').removeClass( " show " ).addClass( " hide " );
 	$('#backdrop').removeClass( " show " ).addClass( " hide " );
-	$('#SearchBox').removeClass( " show " ).addClass( " hide " );
+    $('#SearchBox').removeClass( " show " ).addClass( " hide " );
+    removeBlurAll();
 }
-
+function blurAll(){
+    
+    $('#main').addClass('blurTransition');
+    $('#wrapper').addClass('blurTransition');
+}
+function removeBlurAll(){
+    $('#main').removeClass('blurTransition');
+    $('#wrapper').removeClass('blurTransition');
+    
+}
 function PopRegisterPost(){  // โชว Resgist  Post
-	 
+    blurAll();
 	$('#RegisterBox').removeClass( " hide " ).addClass( " show " );
 	$('#backdrop').removeClass( " hide " ).addClass( " show " );
 	
 }
 function PopSearch(){  // โชว Resgist  Post
-	 
+    blurAll();	 
 	$('#SearchBox').removeClass( " hide " ).addClass( " show " );
 	$('#backdrop').removeClass( " hide " ).addClass( " show " );
 	
