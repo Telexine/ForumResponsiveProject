@@ -18,7 +18,7 @@ if (!isset($_SESSION)) {
 
 $Allpostnum = getAllPostNum();  // count all post in the system
 $Hotpost = getHotPost(5); // 5 is select top 5
- 
+  
 ?><head>
 <link rel="stylesheet" type="text/css" href="resources/css/Header+FooterCss_index.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -325,8 +325,8 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 				<div class="rateStar"id="rate?'.$Hotpost[$i]['Post_ID'].'">
 				'.		  htmlStar(getPostRate($Hotpost[$i]['Post_ID'])).
 				'</div> 
-				<div class="mdl-card__title mdl-card--expand">
-				<h2 class="mdl-card__title-text">'.$Hotpost[$i]['title'].'</h2> 
+				<div class="mdl-card__title mdl-card--expand postedImage "  style="object-fit: contain;background: url('.getImageFromContent($Hotpost[$i]['content']).')  center">
+				<h2 class="mdl-card__title-text" style="text-shadow: 2px 2px 4px #000000">'.$Hotpost[$i]['title'].'</h2> 
 				</div>
 				
 				<div class="mdl-card__supporting-text"> by :  
@@ -341,7 +341,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 	  			</div>
 				';
 		  }
-  
+//b.content] 
 		 
 		 ?>
 	
