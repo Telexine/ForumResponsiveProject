@@ -85,28 +85,33 @@ function login($UserName, $Password) // PW ตอนเรียกต้อง�
         return false;
     } //  not login
 }
-
-
+ 
+//searchPost(array('alpha','ddd'));
 
 // XU
 function searchPost($searchTerms){
     $conn = initDB();
-  mysqli_select_db("ForumResponsive");
+  mysqli_select_db($conn,"ForumResponsive");
   
-  $searchTStore = implode(", ", $searchTerms);
+  $searchTStore = implode("`, `", $searchTerms);
 
-    $sql ="SELECT TBPost.Post_ID 
+   echo $sql ="SELECT TBPost.Post_ID, COUNT(TBPost.Post_ID) count, (SUM(TBrate.Rating) /count(TBPost.Post_ID)) as popular
   FROM ((TBPost INNER JOIN TBTag ON TBPost.Post_ID = TBTag.Post_ID)
     INNER JOIN TBmeta ON TBPost.Post_ID = TBmeta.Post_ID) 
-  WHERE TBTag.Tag IN (" . $searchTStore . ")
+  WHERE TBTag.Tag IN (`" . $searchTStore . "`)
   GROUP BY TBPost.Post_ID 
-  HAVING Count(DISTINCT TBTag.Tag) = ". $searchTerms.count() ."
+  HAVING Count(DISTINCT TBTag.Tag) = ". count($searchTerms) ."
   ORDER BY popular, count, TBmeta.DATE DESC;";
-    // query 
-    $fetch = $conn->query($sql); 
-    // fetch all to arr 
-    while(($hPost[] = mysqli_fetch_assoc($fetch)) || array_pop($hPost)); 
-    return $hPost;
+  $hPost = array();
+  if ($result = mysqli_query($sql)) {
+  /* fetch associative array */
+  while ($row = mysqli_fetch_assoc($result)) {
+      $hPost[] = $row["TBPost.Post_ID"];
+  }
+  /* free result set */
+  mysqli_free_result($result);
+return $hPost;
+}
 }// XU
 
 
@@ -236,6 +241,37 @@ function getHotPost($lim/*limit default 3*/){
 
 
 
+function UpdateRate($star/* 0-10 */,$User_ID,$Post_ID){
+
+    $conn = initDB();
+    
+    $sql   = "SELECT Post_ID  FROM ForumResponsive.TBrate WHERE Post_ID = '$Post_ID' AND User_ID = '$User_ID'";
+    $fetch = $conn->query($sql); 
+ 
+    if (mysqli_num_rows($fetch) > 0) {  // กรณี่เคย rateแล้ว
+        
+
+     // update
+        $sql = "UPDATE  TBrate SET  Rating = '$star' WHERE  Post_ID = '$Post_ID' AND User_ID = '$User_ID'";
+
+       $conn->query($sql);
+ 
+
+
+
+
+
+    } // มีแล้ว
+    else { // ไม่เคย
+        
+       $sql = "INSERT INTO `TBrate` (`Post_ID`, `User_ID`, `Rating`) VALUES ('$Post_ID', '$User_ID', '$star');";
+        // query insert
+        $conn->query($sql);
+ 
+    } //  ยัง 
+
+
+}
 
 
 

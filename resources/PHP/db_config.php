@@ -16,6 +16,7 @@ function initDB() {
             }
             else {
               mysqli_set_charset($conn,"utf8");
+              mysqli_select_db($conn,"ForumResponsive");
               return $conn;
             }
 
