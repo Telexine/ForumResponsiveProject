@@ -92,7 +92,7 @@ border-radius: 10px;
 padding: 2px;
 }
 .Modal{
-
+    margin-top: 5%;
 box-sizing:border-box;position: fixed; z-index: 999;width:100%;margin:10px auto 10px auto;
 transition: opacity 0.3s, visibility 0.3s;
 }
@@ -217,19 +217,19 @@ opacity: 0;
 {
 color:red;
 }
-
 .blurTransition{
-    position: fixed;
+    position: relative;
     left: 0;
     right: 0;
     z-index: -1;
-    width: 100%;
-    height: 100%;
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+    -o-filter: blur(10px);
+    -ms-filter: blur(10px);
+    filter: blur(10px);
+    -webkit-transition:   2s;
+    -moz-transition: 2s;
+    transition: 2s;
 }
  
 /*

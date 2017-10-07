@@ -86,33 +86,33 @@ function login($UserName, $Password) // PW ตอนเรียกต้อง�
     } //  not login
 }
  
-//searchPost(array('alpha','ddd'));
 
-// XU
+
+// XU 
+
 function searchPost($searchTerms){
     $conn = initDB();
-  mysqli_select_db($conn,"ForumResponsive");
+  mysqli_select_db($conn, "ForumResponsive");
   
-  $searchTStore = implode("`, `", $searchTerms);
-
-   echo $sql ="SELECT TBPost.Post_ID, COUNT(TBPost.Post_ID) count, (SUM(TBrate.Rating) /count(TBPost.Post_ID)) as popular
-  FROM ((TBPost INNER JOIN TBTag ON TBPost.Post_ID = TBTag.Post_ID)
-    INNER JOIN TBmeta ON TBPost.Post_ID = TBmeta.Post_ID) 
-  WHERE TBTag.Tag IN (`" . $searchTStore . "`)
-  GROUP BY TBPost.Post_ID 
-  HAVING Count(DISTINCT TBTag.Tag) = ". count($searchTerms) ."
-  ORDER BY popular, count, TBmeta.DATE DESC;";
-  $hPost = array();
-  if ($result = mysqli_query($sql)) {
-  /* fetch associative array */
-  while ($row = mysqli_fetch_assoc($result)) {
-      $hPost[] = $row["TBPost.Post_ID"];
+  $searchTStore = "";
+  foreach ($searchTerms as $thing){
+ 
+    $searchTStore .= "'".$thing."',";
   }
-  /* free result set */
-  mysqli_free_result($result);
-return $hPost;
+  $searchTStore= rtrim($searchTStore,",");
+   $sql = "SELECT DISTINCT Post_ID FROM TBTag WHERE Tag IN (". $searchTStore . ") GROUP BY Post_ID";
+ 
+  $hPost = array();
+    if ($result = mysqli_query($conn, $sql)) {
+    /* fetch associative array */
+    while ($row = mysqli_fetch_assoc($result)) {
+        $hPost[] = $row["Post_ID"];
+    }
+  return $hPost;
+  }
 }
-}// XU
+
+// XU
 
 
 function logout(){
@@ -145,7 +145,14 @@ function createPost($Title,$Content,$UserID,$imageURL,$IsOP,$Tags)
      return $PostID;
 }
 
- 
+ function comment($PostID,$Content,$UserID){
+
+    $conn = initDB();
+    $sql = "INSERT INTO ForumResponsive.TBmeta (`Post_ID`,`content`,`User_ID`,`imageURL`,`isOP`) VALUES ('$PostID','$Content','$UserID',0)";
+    $conn->query($sql);
+    return true;
+
+ }
 
 
 function getPostRate($PostID){
@@ -204,10 +211,7 @@ function getPostComment($PostID){
    while(($Post_Comment[] = mysqli_fetch_assoc($fetch)) || array_pop($Post_Comment)); 
    return $Post_Comment;
 }
-
-function showPost()
-{
-}
+ 
 
 function getAllPostNum(){
 

@@ -110,4 +110,67 @@ array(2) { [0]=> array(7) { ["Post_ID"]=> string(14) "OP1503326319?9" ["Date"]=>
 </div> <!-- wrapper -->
 
 </body>
+
+<script>
+
+function submitRate(xRate){
+//check validate here 
+ 
+let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
+ if(xUser_ID=""){
+//  pop login
+	return;
+ }
+
+$.post("resources/PHP/ratePost.php",
+{ 
+	Rate: xRate,
+	User_ID  : xUser_ID,
+	Post_ID :  <?php echo $PostID ?>
+},
+function(data,status){
+					if(status!='success'){  // response == 406
+                        alert("ERROR"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
+                       }
+                    else{
+                        alert("success: click ok to go to page"); //จะขึ้น Modal, Breadcrumb
+						$(location).attr('href', 'post.php?PostID='+data);
+                    }
+});
+
+}
+
+
+function submitcomment(){
+//check validate here 
+ 
+let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
+ if(xUser_ID=""){
+//  pop login
+	return;
+ }
+
+let Content  = document.getElementById('comment').value; // !@#$%^
+ 
+$.post("resources/PHP/ratePost.php",
+{ 
+	PostContent: Content,
+	User_ID  : xUser_ID,
+	Post_ID :  <?php echo $PostID ?>
+},
+function(data,status){
+					if(status!='success'){  // response == 406
+                        alert("ERROR"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
+                       }
+                    else{
+                        alert("success: click ok to go to page"); //จะขึ้น Modal, Breadcrumb
+						$(location).attr('href', 'post.php?PostID='+<?php echo $PostID ?>);
+                    }
+});
+
+}
+
+</script>
 </html>

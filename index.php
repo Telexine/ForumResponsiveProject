@@ -41,19 +41,19 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
 <body>
 
-<div align="center" class="Logo"><a href="#" class="button"><img src="resources/images/logo.png"  width="112" height="112"></a></div> 
+<div  align="center" class="Logo"><a href="#" class="button"><img src="resources/images/logo.png"  width="112" height="112"></a></div> 
 		<header>
 		
 		<input type="checkbox" id="btn-menu">
 		<label for="btn-menu"><img src="resources/images/list.png" width="55" height="55" alt=""/></label>
 		<nav class="Menu" style=" z-index:14">
 			<ul>
-				<li><a href="#" class="o"><span class="fa fa-home" style="font-size: 30px;padding-top: 12px;"><p class="Font">  HomePage</p></a></li>
+				<li><a href="#" onClick="goToLink('index.php');"class="o"><span class="fa fa-home" style="font-size: 30px;padding-top: 12px;"><p class="Font">  HomePage</p></a></li>
 				<li><a href="#" class="o"><span  onClick="PopSearch();"class="fa fa-search" style="font-size: 30px;padding-top: 12px;"><p class="Font">  Search</p></a></li>
 				<li><div align="center" class="Logo2 col-s-hidden col-m-12 col-l-12">
 				<a href="#" class="button"><img src="resources/images/logo.png" style="padding-top: 10px;" width="112" height="112"></a></div></li>
 				<li><a href="#" onClick="PopcreatePost();" class="o"><span class="fa fa-magic" style="font-size: 30px;padding-top: 12px;"><p class="Font">  CreatePost</p></a></li>
-				<li><a href="#" class="o"><span class="fa fa-smile-o" style="font-size: 30px;padding-top: 12px;"><p class="Font">  About</p></a></li>
+				<li><a href="#" onClick="goToLink('member.php');"class="o"><span class="fa fa-smile-o" style="font-size: 30px;padding-top: 12px;"><p class="Font">  About</p></a></li>
 			</ul>
 		</nav>	
 		</header>
@@ -226,20 +226,20 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
  	 <!--    Xureality Tag-->
 			
-<ul class="demo-list-three mdl-list">
+<ul id="SearchList" class="demo-list-three mdl-list">
+
   <li class="mdl-list__item mdl-list__item--three-line">
     <span class="mdl-list__item-primary-content">
       <i class="material-icons mdl-list__item-avatar">person</i>
       <span>Bryan Cranston</span>
-      <span class="mdl-list__item-text-body">
+      <span class="mdl-list__item-text-body"style="text-align:left">
         Bryan Cranston played the role of Walter in Breaking Bad. He is also known
         for playing Hal in Malcom in the Middle.
       </span>
     </span>
-    <span class="mdl-list__item-secondary-content">
-      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-    </span>
+                    
   </li>
+
   <li class="mdl-list__item mdl-list__item--three-line">
     <span class="mdl-list__item-primary-content">
       <i class="material-icons  mdl-list__item-avatar">person</i>
@@ -274,11 +274,9 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 <!--END Login RegisterBox -->
 
 
+ 
 
-<div id="wrapper">
-
-
-<main id="main">
+<main  id="main">
 
 
     <!-- Your content goes here -->
@@ -307,12 +305,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
     <div class="hot crsl-items" data-navigation="navbtns">
       <div class="crsl-wrap" id ="crsl">
-
-
-  
-    
-
-             
+ 
  <!--  Generate Hot posts   -->
  
 		 <?php 
@@ -343,7 +336,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 	  			</div>
 				';
 		  }
-//b.content] 
+ 
 		 
 		 ?>
 	
@@ -710,7 +703,8 @@ function(data,status){
 //END FUNCTION REGISTER / LOGIN 
 
 
-	 // XU
+     // XU
+     
 	 var tagged = [];
             function showHint(str) 
 			{
@@ -758,7 +752,8 @@ function(data,status){
                                     document.getElementById("tagDisplay").appendChild(frag); 
 									document.getElementById("textin").value = "";
 									e.target.parentElement.removeChild(e.target);
-									makecloseable();
+                                    makecloseable();
+                                    tagToList();//Refreseh tag list
                                 }
 								, false);
                                 link.innerHTML = data + " ";
@@ -798,7 +793,64 @@ function(data,status){
 					}, false);
 				}	
 			};
-	 // XU
+     // XU
+
+     function removeList(){
+        $('#SearchList').empty();
+     }
+     function tagToList(){
+        removeList();
+        for(i=1;i<tagged.length;i++){
+
+            
+        }
+     }
+     function appendList(){
+      
+		  
+		  Title="title";content="nickname";href="content";
+	   //GET WHERE to append post
+       const listelement = document.querySelector('#SearchList');
+        
+		//create element 
+	   const sli = document.createElement('li');
+	   const sSpan = document.createElement('span');
+		 const si = document.createElement('i');
+	   const sTitle = document.createElement('span');
+	   const scontent = document.createElement('span');
+		  
+	   // add class 
+
+	   sli.className = " mdl-list__item mdl-list__item--three-line";
+       sSpan.className = "mdl-list__item-primary-content";
+       si.className = "material-icons mdl-list__item-avatar";
+       sTitle.className = "";
+       scontent.className = "mdl-list__item-text-body ";
+		 
+	   //int metadata 
+       sTitle.textContent = Title;
+       scontent.textContent = content;
+  
+	   //append Messgage
+
+	   sli.appendChild(sSpan);
+	   sSpan.appendChild(si);
+       sSpan.appendChild(sTitle);
+       sSpan.appendChild(scontent);
+	    
+         listelement.appendChild(sli);
+	  
+
+     }
+     function goToLink(URL) {
+                    // div Transition need to add css /*     -webkit-filter: blur(5px) filter: blur(5px);
+                    
+                    blurAll();
+                    $('#main').addClass('blurTransition');
+                     
+                    setTimeout(function () { location.href= URL ; }, 1000);
+            };
+
 </script>
 
 <?php

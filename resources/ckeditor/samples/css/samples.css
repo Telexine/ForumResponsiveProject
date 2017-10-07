@@ -961,6 +961,7 @@ body input.navigation-b ul li a:hover:hover {
   background-position: bottom left;
 }
 .modal {
+  margin-top:20%;
   padding: 20px;
   border-radius: 3px;
   background-color: white;
