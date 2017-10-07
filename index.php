@@ -325,7 +325,9 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 				<div class="rateStar"id="rate?'.$Hotpost[$i]['Post_ID'].'">
 				'.		  htmlStar(getPostRate($Hotpost[$i]['Post_ID'])).
 				'</div> 
-				<div class="mdl-card__title mdl-card--expand postedImage "  style="object-fit: contain;background: url('.getImageFromContent($Hotpost[$i]['content']).')  center">
+				<div class="mdl-card__title mdl-card--expand postedImage "  style="object-fit: contain;background: url('.getImageFromContent($Hotpost[$i]['content']).');    background-size:     cover;                      /* <------ */
+                background-repeat:   no-repeat;
+                background-position: center center; ">
 				<h2 class="mdl-card__title-text" style="text-shadow: 2px 2px 4px #000000">'.$Hotpost[$i]['title'].'</h2> 
 				</div>
 				
@@ -386,11 +388,15 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
 		echo '<div class="crsl-item">        
 					<span class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
-					style="background-color:'.$TagsColor[$j++].';padding-top:0px;border-radius: 8px;vertical-align:middle;font-size:1.5em; "> '.$Tags[$i]['Tag'].' </span>
+                    style="background-color:'.$TagsColor[$j++].';padding-top:0px;border-radius: 8px;vertical-align:middle;font-size:1.5em; ">
+                     <span style="margin: 0;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);">'.$Tags[$i]['Tag'].' </span>
 			</div><!-- @end .crsl-items -->';
 	  }
-	?>
-  
+	?> 
        </div><!-- @end .crsl-wrap -->
     </div><!-- @end .crsl-items -->
 	</div><!-- @end #w -->

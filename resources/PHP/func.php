@@ -239,8 +239,8 @@ function getHotPost($lim/*limit default 3*/){
  
 function getImageFromContent($content){ // this function will disect contect to get the first <img> tag to show as image preview
         if (stripos($content,'<img')=== false){
-            return false;// no image in any conntent
-        }
+            //return false;// no image in any conntent
+        };
          $imgTag = substr($content,stripos($content,'<img'),stripos($content,'/>',stripos($content,'<img')));  //substring to get first <img tag
          $imgTag =  substr($imgTag,stripos($imgTag,'src="')+5);
          return $src = substr($imgTag,0, stripos($imgTag,'" '));  // output http:/... .jpeg
