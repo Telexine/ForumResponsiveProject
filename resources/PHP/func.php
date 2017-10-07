@@ -93,11 +93,8 @@ function searchPost($searchTerms){
     $conn = initDB();
   mysqli_select_db("ForumResponsive");
   
-  $searchTStore = "";
-  
-  foreach ($searchTerms as $tag)
-    $searchTStore += $tag;
-  
+  $searchTStore = implode(", ", $searchTerms);
+
     $sql ="SELECT TBPost.Post_ID 
   FROM ((TBPost INNER JOIN TBTag ON TBPost.Post_ID = TBTag.Post_ID)
     INNER JOIN TBmeta ON TBPost.Post_ID = TBmeta.Post_ID) 
