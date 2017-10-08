@@ -87,7 +87,6 @@ function login($UserName, $Password) // PW ตอนเรียกต้อง�
 }
  
 
-
 // XU
 function searchPost($searchTerms){
     $conn = initDB();
@@ -104,10 +103,10 @@ function searchPost($searchTerms){
 	WHERE Tag IN (" . $searchTStore2 . ")
 	GROUP BY Post_ID 
 	HAVING Count(DISTINCT Tag) = ". count($searchTerms) .";";
-	echo $searchTStore2;
-	echo count($searchTerms);
+	//echo $searchTStore2;
+	//echo count($searchTerms);
 	$hPost = array();
-	echo $sql;
+	//echo $sql;
     if ($result = mysqli_query($conn, $sql)) {
 		/* fetch associative array */
 		while ($row = mysqli_fetch_assoc($result)) {
