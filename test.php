@@ -32,11 +32,9 @@ require_once('resources/PHP/func.php');
  
  
  */
-
- print_r(getPost('OP1503326319?9'));
- 
- $array[] = array("Alpha" , "Alpaca");
- $test[] = searchPost($array);
+//print_r(getPost('OP1503326319?9'));
+ $array = array("Alpha" , "Alpaca");
+ $test = searchPost($array);
  echo(implode(" ", $test));
 ?>
 </body>
