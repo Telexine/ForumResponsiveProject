@@ -132,7 +132,7 @@ function searchPost($searchTerms){
 function getTagPost($postid){
     $conn = initDB();
 	mysqli_select_db($conn, "ForumResponsive");
-    $sql ="SELECT TBPost.Post_ID pid, TBPost.Title title, TBUser.UserName uname 
+     $sql ="SELECT TBPost.Post_ID pid, TBPost.Title title, TBUser.UserName uname 
 	FROM ((TBPost INNER JOIN TBMeta ON TBPost.Post_ID = TBMeta.Post_ID)INNER JOIN TBUser ON TBMeta.User_ID = TBUser.User_ID)
 	WHERE TBPost.Post_ID = \"".$postid."\"
 	GROUP BY TBPost.Post_ID ;";
