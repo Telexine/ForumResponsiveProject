@@ -173,6 +173,12 @@ function createPost($Title,$Content,$UserID,$imageURL,$IsOP,$Tags)
      // query insert
     $conn->query($sql);
     
+	$listoftags = explode(" ", $Tags);
+	if (empty($listoftags)){return;}
+	foreach ($listoftags as $singleTag){
+		$sql = "INSERT INTO ForumResponsive.TBTags (`Post_ID`,`Tag`) VALUES ('$PostID','$singleTag')";
+		$conn->query($sql);
+	}
 
     // sucess จะreturn POST ID 
      return $PostID;
