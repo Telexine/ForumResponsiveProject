@@ -86,9 +86,10 @@ function login($UserName, $Password) // PW ตอนเรียกต้อง�
     } //  not login
 }
  
-//searchPost(array('alpha','ddd'));
 
-// XU
+
+// XU 
+
 function searchPost($searchTerms){
     $conn = initDB();
   mysqli_select_db($conn, "ForumResponsive");
@@ -110,7 +111,8 @@ function searchPost($searchTerms){
   return $hPost;
   }
 }
-}// XU
+
+// XU
 
 
 function logout(){
@@ -143,7 +145,14 @@ function createPost($Title,$Content,$UserID,$imageURL,$IsOP,$Tags)
      return $PostID;
 }
 
- 
+ function comment($PostID,$Content,$UserID){
+
+    $conn = initDB();
+    $sql = "INSERT INTO ForumResponsive.TBmeta (`Post_ID`,`content`,`User_ID`,`imageURL`,`isOP`) VALUES ('$PostID','$Content','$UserID',0)";
+    $conn->query($sql);
+    return true;
+
+ }
 
 
 function getPostRate($PostID){
@@ -202,10 +211,7 @@ function getPostComment($PostID){
    while(($Post_Comment[] = mysqli_fetch_assoc($fetch)) || array_pop($Post_Comment)); 
    return $Post_Comment;
 }
-
-function showPost()
-{
-}
+ 
 
 function getAllPostNum(){
 
@@ -226,7 +232,7 @@ function getHotPost($lim/*limit default 3*/){
 
 
     $conn = initDB();
-    $sql ="SELECT a.Post_ID, a.title,COUNT(a.Post_ID) count, b.DATE ,(SUM(c.Rating) /count(a.Post_ID)) as popular , b.imageURL,b.content,u.name FROM ForumResponsive.TBPost as a , ForumResponsive.TBUser as u , ForumResponsive.TBmeta as b LEFT JOIN ForumResponsive.TBrate c ON b.Post_ID = c.Post_ID WHERE a.Post_ID = b.Post_ID and b.user_id = u.user_id GROUP BY a.Post_ID ORDER BY `popular` DESC LIMIT $lim";
+    $sql ="SELECT a.Post_ID, a.title,COUNT(a.Post_ID) count, b.DATE ,(SUM(c.Rating) /count(a.Post_ID)) as popular , b.imageURL,b.content as content,u.name FROM ForumResponsive.TBPost as a , ForumResponsive.TBUser as u , ForumResponsive.TBmeta as b LEFT JOIN ForumResponsive.TBrate c ON b.Post_ID = c.Post_ID WHERE a.Post_ID = b.Post_ID and b.user_id = u.user_id GROUP BY a.Post_ID ORDER BY `popular` DESC LIMIT $lim";
  
     // query 
     $fetch = $conn->query($sql); 
@@ -234,7 +240,15 @@ function getHotPost($lim/*limit default 3*/){
     while(($hPost[] = mysqli_fetch_assoc($fetch)) || array_pop($hPost)); 
     return $hPost;
 }
-
+ 
+function getImageFromContent($content){ // this function will disect contect to get the first <img> tag to show as image preview
+        if (stripos($content,'<img')=== false){
+            //return false;// no image in any conntent
+        };
+         $imgTag = substr($content,stripos($content,'<img'),stripos($content,'/>',stripos($content,'<img')));  //substring to get first <img tag
+         $imgTag =  substr($imgTag,stripos($imgTag,'src="')+5);
+         return $src = substr($imgTag,0, stripos($imgTag,'" '));  // output http:/... .jpeg
+}
  
 
 
@@ -251,14 +265,7 @@ function UpdateRate($star/* 0-10 */,$User_ID,$Post_ID){
 
      // update
         $sql = "UPDATE  TBrate SET  Rating = '$star' WHERE  Post_ID = '$Post_ID' AND User_ID = '$User_ID'";
-
        $conn->query($sql);
- 
-
-
-
-
-
     } // มีแล้ว
     else { // ไม่เคย
         
