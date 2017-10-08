@@ -32,7 +32,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
   <link rel="stylesheet" type="text/css" media="all" href="resources/css/TAGstyles.css">
   <link rel="stylesheet" type="text/css" media="all" href="resources/css/main.css">
   <script type="text/javascript" src="resources/JS/jquery-1.11.0.min.js"></script>
-  <script type="text/javascript" src="resources/JS/responsiveCarousel.min.js"></script>
+  
   <script type="text/javascript" src="resources/JS/MD5.js"></script>
   <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
 
@@ -373,45 +373,7 @@ character, Bob stars in his own show now, called "Better Call Saul".
 
 
 <script type="text/javascript">
-$(function(){
-  $('.hot').carousel({
-	speed: 800,
-	autoRotate: 4000,
-    visible: 4,
-    itemMinWidth: 270,
-    itemEqualHeight: 370,
-    itemMargin: 10,
-  });
-  $('.res').carousel({
-    visible: 9,
-    itemMinWidth: 120,
-    itemEqualHeight: 370,
-    itemMargin: 10,
-  });
-	
-  	$('.hot').on("initCarousel", function(event, defaults, obj){
-		// Hide controls
-		$('#'+defaults.navigation).find('.previous, .next').css({ opacity: 0 });
-		// Show controls on gallery hover
-		// #gallery-07 wraps .crsl-items and .crls-nav
-		// .stop() prevent queue
-		$('#w').hover( function(){
-			$(this).find('.previous').css({ left: '-5px' }).stop(true, true).animate({ left: '0px', opacity: 1 })
-			$(this).find('.next').css({ right: '-10px' }).stop(true, true).animate({ right: '-5px', opacity: 1 });
-		}, function(){
-			$(this).find('.previous').animate({ left: '-5px', opacity: 0 });
-			$(this).find('.next').animate({ right: '-10px', opacity: 0 });
-		});
-		$('#ww').hover( function(){
-			$(this).find('.previous').css({ left: '-5px' }).stop(true, true).animate({ left: '0px', opacity: 1 })
-			$(this).find('.next').css({ right: '-10px' }).stop(true, true).animate({ right: '-5px', opacity: 1 });
-		}, function(){
-			$(this).find('.previous').animate({ left: '-5px', opacity: 0 });
-			$(this).find('.next').animate({ right: '-10px', opacity: 0 });
-		});
-	});
-});
-
+ 
 
 function PopcreatePost(){  // โชว Create Post
     
@@ -419,36 +381,7 @@ function PopcreatePost(){  // โชว Create Post
 	$('#CreatePostBox').removeClass( " hide " ).addClass( " show " );
 	$('#backdrop').removeClass( " hide " ).addClass( " show " );
 	}else{PopRegisterPost();}// go to login instead
-}
-function hideAll(){ // โชว Create Post
-	$('#CreatePostBox').removeClass( " show " ).addClass( " hide " );
-	$('#RegisterBox').removeClass( " show " ).addClass( " hide " );
-	$('#backdrop').removeClass( " show " ).addClass( " hide " );
-    $('#SearchBox').removeClass( " show " ).addClass( " hide " );
-    removeBlurAll();
-}
-function blurAll(){
-    
-    $('#main').addClass('blurTransition');
-    $('#wrapper').addClass('blurTransition');
-}
-function removeBlurAll(){
-    $('#main').removeClass('blurTransition');
-    $('#wrapper').removeClass('blurTransition');
-    
-}
-function PopRegisterPost(){  // โชว Resgist  Post
-    blurAll();
-	$('#RegisterBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	
-}
-function PopSearch(){  // โชว Resgist  Post
-    blurAll();	 
-	$('#SearchBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	
-}
+} 
 timer = setInterval(updateDiv,100);
 function updateDiv(){
     var editorText = CKEDITOR.instances.PostContent.getData();
@@ -530,60 +463,7 @@ function validate(classNa){
     
     return valid;
 
-}
-// REGISTER
-
-
-   
-  function register(){
-    // validate
-    if(!validate('require')){return;}
-    // password check 
-    pw1 = document.getElementById('Password2').value;
-    pw2 = document.getElementById('Password').value;
-    if(pw1!=pw2){
-        //pass word is not the same / alert something
-        alert('Password is not match');
-        return;
-    }
-
-    // All clear  เขียนลง DB
-    
-        let name = document.getElementById('Name').value;
-        let avatarURL = document.getElementById('avatarPath').value; // เดี๋ยวทำ
-        let Username = document.getElementById('username').value;
-        let password = md5(document.getElementById('Password').value);
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else {
-                // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    let response =parseInt(this.responseText);
-                    if(response==200){
-                        alert("success"); //จะขึ้น Modal, Breadcrumb
-					 
-                        //fade out
-                        $('#regisOption').removeClass(" fadepopIN"); 
-                        $('#regisOption').addClass(" fadepopOut"); 
-						location.reload(); // reload
-                    }else if(response==406){
-                        alert("Response : This Username "+ Username +" Already taken please try again"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
-                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
-                       }
-                }
-            };
-             
-            xmlhttp.open("GET","resources/PHP/register.php?name="+name+"&avatarURL="+avatarURL+"&Username="+Username+"&password="+password,true);
-            xmlhttp.send();
-  }
-
-
-//REGISTER BUTTON 
+} 
 
 
 // Login 
@@ -637,25 +517,9 @@ function Loginpage(){
 
 }
 console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?> ");
+ 
 
-function logout(){
-
-
-
-$.post("resources/PHP/logout.php",
-{ },
-function(data,status){
-					if(status!='success'){  
-                        alert("ERROR");  
-                       }
-                    else{
-                        alert("Logingout"); //จะขึ้น Modal, Breadcrumb
-						location.reload(); 
-                    }
-});
-
-
-}
+ 
 //END FUNCTION REGISTER / LOGIN 
 
 
@@ -746,41 +610,28 @@ function(data,status){
 						return false;
 					}, false);
 				}	
-			};
+			};  
      // XU
      
      function goToLink(URL) {
                     // div Transition need to add css /*     -webkit-filter: blur(5px) filter: blur(5px);
-                    
+ 
                     blurAll();
                     $('#main').addClass('blurTransition');
                      
                     setTimeout(function () { location.href= URL ; }, 1000);
-            };
-
+            }
+         
 </script>
-
+ <script type="text/javascript" src="resources/JS/main.js"></script>
 <?php
 // PHP ============================
-function htmlStar($rate){
-	$html = "";
-	  $star = ceil($rate/2);
-
-	for($i=1;$i<$star;$i++){
-		$html .='<div class="Star"></div>';
-		
-	}
-
-	return $html ;
-}
+ 
 
 // PHP pass data to js
 function islogged(){
    if(isset($_SESSION['user_info']['User_ID'])){return  'true';}else return 'false';
 }
-function getUserID(){ if(isset( $_SESSION['user_info']['User_ID'])){return $_SESSION['user_info']['User_ID']; }else return 'false'; }
-function getcname(){ if(isset( $_SESSION['user_info']['name'])){return $_SESSION['user_info']['name']; }else return 'false'; }
-function getAvatarURL(){ if(isset( $_SESSION['user_info']['AvatarURL'])){return $_SESSION['user_info']['AvatarURL']; }else return 'false'; }
  
 ?>
  

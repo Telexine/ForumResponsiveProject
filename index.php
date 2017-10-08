@@ -11,7 +11,7 @@
 
 
 */
-require_once('resources/PHP/func.php');
+include('resources/PHP/func.php');
 if (!isset($_SESSION)) {
     session_start();
 }
@@ -35,6 +35,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
   <script type="text/javascript" src="resources/JS/responsiveCarousel.min.js"></script>
   <script type="text/javascript" src="resources/JS/MD5.js"></script>
   <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
+
 
  
 </head>
@@ -72,7 +73,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 	<table align="center" class="Font2 fa-2x" style="padding:30px; ">
     	<tr><td colspan="1">Title: </td>
         <td><input type="text" name="title" class="fa" id="PostTitle" style="width:100%; border-radius:5px;"></td></tr>
-        <tr><td>Subtitle: </td><td><input type="text" id="PostSubtitle"name="subtitle" style="width:100%;border-radius:5px;" class="fa"></td></tr>
+        
         <tr><td>Content: </td><td><textarea name="Postaddress" id="PostContent" ></textarea>
            	<script type="text/javascript">
 			//<![CDATA[
@@ -328,7 +329,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 				'.$Hotpost[$i]['name'].'
 					</div>
 				<div class="mdl-card__actions mdl-card--border">
-				<a href="post.php?PostID='.$Hotpost[$i]['Post_ID'].'" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+				<a onClick="goToLink('."'".'post.php?PostID='.$Hotpost[$i]['Post_ID']."')".'" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
 				Go to Post
 				</a>
 				</div>
@@ -394,10 +395,21 @@ $Hotpost = getHotPost(5); // 5 is select top 5
     </div><!-- @end .crsl-items -->
 	</div><!-- @end #w -->
 
-		</div><!-- hotpost -->
+		</div><!-- end hotpost -->
 
 
 </main>
+
+<!-- snack bar -->
+
+<div class="mdl-js-snackbar mdl-snackbar" id="demo-toast-example">
+<div class="mdl-snackbar__text">
+</div>
+<button class="mdl-snackbar__action" type="button"></button>
+</div>
+ 
+  
+<!-- snack bar -->
 
 <footer>
 	<div class="footer" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong>.</div>	
@@ -417,44 +429,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
 
 <script type="text/javascript">
-$(function(){
-  $('.hot').carousel({
-	speed: 800,
-	autoRotate: 4000,
-    visible: 4,
-    itemMinWidth: 270,
-    itemEqualHeight: 370,
-    itemMargin: 10,
-  });
-  $('.res').carousel({
-    visible: 9,
-    itemMinWidth: 120,
-    itemEqualHeight: 370,
-    itemMargin: 10,
-  });
-	
-  	$('.hot').on("initCarousel", function(event, defaults, obj){
-		// Hide controls
-		$('#'+defaults.navigation).find('.previous, .next').css({ opacity: 0 });
-		// Show controls on gallery hover
-		// #gallery-07 wraps .crsl-items and .crls-nav
-		// .stop() prevent queue
-		$('#w').hover( function(){
-			$(this).find('.previous').css({ left: '-5px' }).stop(true, true).animate({ left: '0px', opacity: 1 })
-			$(this).find('.next').css({ right: '-10px' }).stop(true, true).animate({ right: '-5px', opacity: 1 });
-		}, function(){
-			$(this).find('.previous').animate({ left: '-5px', opacity: 0 });
-			$(this).find('.next').animate({ right: '-10px', opacity: 0 });
-		});
-		$('#ww').hover( function(){
-			$(this).find('.previous').css({ left: '-5px' }).stop(true, true).animate({ left: '0px', opacity: 1 })
-			$(this).find('.next').css({ right: '-10px' }).stop(true, true).animate({ right: '-5px', opacity: 1 });
-		}, function(){
-			$(this).find('.previous').animate({ left: '-5px', opacity: 0 });
-			$(this).find('.next').animate({ right: '-10px', opacity: 0 });
-		});
-	});
-});
+
 
 
 function PopcreatePost(){  // โชว Create Post
@@ -464,50 +439,19 @@ function PopcreatePost(){  // โชว Create Post
 	$('#backdrop').removeClass( " hide " ).addClass( " show " );
 	}else{PopRegisterPost();}// go to login instead
 }
-function hideAll(){ // โชว Create Post
-	$('#CreatePostBox').removeClass( " show " ).addClass( " hide " );
-	$('#RegisterBox').removeClass( " show " ).addClass( " hide " );
-	$('#backdrop').removeClass( " show " ).addClass( " hide " );
-    $('#SearchBox').removeClass( " show " ).addClass( " hide " );
-    removeBlurAll();
-}
-function blurAll(){
-    
-    $('#main').addClass('blurTransition');
-    $('#wrapper').addClass('blurTransition');
-}
-function removeBlurAll(){
-    $('#main').removeClass('blurTransition');
-    $('#wrapper').removeClass('blurTransition');
-    
-}
-function PopRegisterPost(){  // โชว Resgist  Post
-    blurAll();
-	$('#RegisterBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	
-}
-function PopSearch(){  // โชว Resgist  Post
-    blurAll();	 
-	$('#SearchBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	
-}
+
 timer = setInterval(updateDiv,100);
 function updateDiv(){
     var editorText = CKEDITOR.instances.PostContent.getData();
     $('#PostContent').html(editorText);
 }
-
-
+ 
 // FUNCTION POSTforumn
 function submitPost(){
 //check validate here 
-
-
-
+ 
 let xPostTitle = document.getElementById('PostTitle').value;
-let xPostSubtitle = document.getElementById('PostSubtitle').value; //!@#$%^ คืออะไร
+ 
 let xPostContent = document.getElementById('PostContent').value;
 let xPostTag = document.getElementById('PostTag').value;
 let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
@@ -516,14 +460,14 @@ let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
 $.post("resources/PHP/createPost.php",
 { 
 	PostTitle: xPostTitle,
-	PostSubtitle  : xPostSubtitle,
+ 
  	PostContent :xPostContent,
 	 PostTag  : xPostTag,
 	 User_ID  : xUser_ID
 },
 function(data,status){
 					if(status!='success'){  // response == 406
-                        alert("ERROR"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                        notification("ERROR"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
                        }
                     else{
@@ -559,7 +503,7 @@ function validate(classNa){
             valid= false;
             
           //alert('required Field '+check[i].name); //เดวเราทำ js เพิ่ม เราไม่ควรใช้  alert
-
+          notification('required Field '+check[i].name);
            
        }
        else{
@@ -575,61 +519,7 @@ function validate(classNa){
     return valid;
 
 }
-// REGISTER
-
-
-   
-  function register(){
-    // validate
-    if(!validate('require')){return;}
-    // password check 
-    pw1 = document.getElementById('Password2').value;
-    pw2 = document.getElementById('Password').value;
-    if(pw1!=pw2){
-        //pass word is not the same / alert something
-        alert('Password is not match');
-        return;
-    }
-
-    // All clear  เขียนลง DB
-    
-        let name = document.getElementById('Name').value;
-        let avatarURL = document.getElementById('avatarPath').value; // เดี๋ยวทำ
-        let Username = document.getElementById('username').value;
-        let password = md5(document.getElementById('Password').value);
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else {
-                // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    let response =parseInt(this.responseText);
-                    if(response==200){
-                        alert("success"); //จะขึ้น Modal, Breadcrumb
-					 
-                        //fade out
-                        $('#regisOption').removeClass(" fadepopIN"); 
-                        $('#regisOption').addClass(" fadepopOut"); 
-						location.reload(); // reload
-                    }else if(response==406){
-                        alert("Response : This Username "+ Username +" Already taken please try again"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
-                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
-                       }
-                }
-            };
-             
-            xmlhttp.open("GET","resources/PHP/register.php?name="+name+"&avatarURL="+avatarURL+"&Username="+Username+"&password="+password,true);
-            xmlhttp.send();
-  }
-
-
-//REGISTER BUTTON 
-
-
+ 
 // Login 
 
 function Loginpage(){
@@ -662,14 +552,14 @@ function Loginpage(){
                         <?php echo 'G_AvatarURL = '.json_encode($_SESSION['user_info']['AvatarURL']).';';?>
                         <?php  } ?> 
                         
-                        alert("Login success : "+G_name); //จะขึ้น Modal, Breadcrumb
-
+                        notification("Login success : "+G_name); //จะขึ้น Modal, Breadcrumb
+                            
                             //fade out
                         $('#regisOption').removeClass(" fadepopIN"); 
 						$('#regisOption').addClass(" fadepopOut");
 						location.reload(); 
                     }else if(response==406){
-                        alert("Response : Username or password are incorrect"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                        notification("Username or password are incorrect"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
                        }
                 }
@@ -682,24 +572,7 @@ function Loginpage(){
 }
 console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?> ");
 
-function logout(){
 
-
-
-$.post("resources/PHP/logout.php",
-{ },
-function(data,status){
-					if(status!='success'){  
-                        alert("ERROR");  
-                       }
-                    else{
-                        alert("Logingout"); //จะขึ้น Modal, Breadcrumb
-						location.reload(); 
-                    }
-});
-
-
-}
 //END FUNCTION REGISTER / LOGIN 
 
 
@@ -795,53 +668,8 @@ function(data,status){
 			};
      // XU
 
-     function removeList(){
-        $('#SearchList').empty();
-     }
-     function tagToList(){
-        removeList();
-        for(i=1;i<tagged.length;i++){
 
-            
-        }
-     }
-     function appendList(){
-      
-		  
-		  Title="title";content="nickname";href="content";
-	   //GET WHERE to append post
-       const listelement = document.querySelector('#SearchList');
-        
-		//create element 
-	   const sli = document.createElement('li');
-	   const sSpan = document.createElement('span');
-		 const si = document.createElement('i');
-	   const sTitle = document.createElement('span');
-	   const scontent = document.createElement('span');
-		  
-	   // add class 
 
-	   sli.className = " mdl-list__item mdl-list__item--three-line";
-       sSpan.className = "mdl-list__item-primary-content";
-       si.className = "material-icons mdl-list__item-avatar";
-       sTitle.className = "";
-       scontent.className = "mdl-list__item-text-body ";
-		 
-	   //int metadata 
-       sTitle.textContent = Title;
-       scontent.textContent = content;
-  
-	   //append Messgage
-
-	   sli.appendChild(sSpan);
-	   sSpan.appendChild(si);
-       sSpan.appendChild(sTitle);
-       sSpan.appendChild(scontent);
-	    
-         listelement.appendChild(sli);
-	  
-
-     }
      function goToLink(URL) {
                     // div Transition need to add css /*     -webkit-filter: blur(5px) filter: blur(5px);
                     
@@ -851,31 +679,19 @@ function(data,status){
                     setTimeout(function () { location.href= URL ; }, 1000);
             };
 
-</script>
 
+
+
+</script>
+  <script type="text/javascript" src="resources/JS/main.js"></script>
 <?php
 // PHP ============================
-function htmlStar($rate){
-    $html = "";
-      $star = ceil($rate/2);
-
-    for($i=1;$i<$star;$i++){
-        $html .='<span class="fa fa-star"></span>';  // full star
-    }
-    for($i;$i<=5;$i++){
-        $html .='<span class="fa fa-star-o"></span>';  // empty star
-    }
-    return $html ;
-}
 
 
 // PHP pass data to js
 function islogged(){
    if(isset($_SESSION['user_info']['User_ID'])){return  'true';}else return 'false';
 }
-function getUserID(){ if(isset( $_SESSION['user_info']['User_ID'])){return $_SESSION['user_info']['User_ID']; }else return 'false'; }
-function getcname(){ if(isset( $_SESSION['user_info']['name'])){return $_SESSION['user_info']['name']; }else return 'false'; }
-function getAvatarURL(){ if(isset( $_SESSION['user_info']['AvatarURL'])){return $_SESSION['user_info']['AvatarURL']; }else return 'false'; }
- 
+
 ?>
  
