@@ -127,7 +127,25 @@ function searchPost($searchTerms){
 		}
 	return $hPost;
 	}
-}// XU
+}
+
+function getTagPost($postid){
+    $conn = initDB();
+	mysqli_select_db($conn, "ForumResponsive");
+    $sql ="SELECT TBPost.Post_ID pid, TBPost.Title title, TBUser.UserName uname 
+	FROM ((TBPost INNER JOIN TBMeta ON TBPost.Post_ID = TBMeta.Post_ID)INNER JOIN TBUser ON TBMeta.User_ID = TBUser.User_ID)
+	WHERE TBPost.Post_ID = \"".$postid."\"
+	GROUP BY TBPost.Post_ID ;";
+	$hPost = array();
+	if ($result = mysqli_query($conn, $sql)) {
+		/* fetch associative array */
+		while ($row = mysqli_fetch_assoc($result)) {
+        $hPost[] = $row;
+		}
+	return $hPost;
+	}
+}
+// XU
 
 
 function logout(){
@@ -207,7 +225,8 @@ function getPost($PostID)
 
 function getAllTag(){
     $conn = initDB();
-    $sql ="SELECT DISTINCT Tag FROM ForumResponsive.TBTag";
+	// limit to 15 because it's going to clutter the front page with hundreds of tags
+    $sql ="SELECT Tag, COUNT(*) FROM ForumResponsive.TBTag GROUP BY Tag ORDER BY COUNT(*) DESC LIMIT 15";
     $fetch = $conn->query($sql); 
     while(($Tags[] = mysqli_fetch_assoc($fetch)) || array_pop($Tags)); 
     return $Tags;
