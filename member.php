@@ -385,13 +385,14 @@ character, Bob stars in his own show now, called "Better Call Saul".
 <script type="text/javascript">
  
 
-function PopcreatePost(){  // โชว Create Post
+ function PopcreatePost(){  // โชว Create Post
     
 	if(<?php echo islogged();?>){ // Check islog in in php
 	$('#CreatePostBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	}else{PopRegisterPost();}// go to login instead
-} 
+    $('#backdrop').removeClass( " hide " ).addClass( " show " );
+    blurAll();
+	}else{PopRegisterPost();blurAll();}// go to login instead
+}
 timer = setInterval(updateDiv,100);
 function updateDiv(){
     var editorText = CKEDITOR.instances.PostContent.getData();
@@ -594,8 +595,7 @@ console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?>
                     // div Transition need to add css /*     -webkit-filter: blur(5px) filter: blur(5px);
  
                     blurAll();
-                    $('#main').addClass('blurTransition');
-                     
+                    $('#main').addClass('blurTransition');   
                     setTimeout(function () { location.href= URL ; }, 1000);
             }
          

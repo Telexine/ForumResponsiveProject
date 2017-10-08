@@ -574,14 +574,14 @@ function(data,status){
 
 
 
-
 function PopcreatePost(){  // โชว Create Post
     
 	if(<?php echo islogged();?>){ // Check islog in in php
 	$('#CreatePostBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	}else{PopRegisterPost();}// go to login instead
-} 
+    $('#backdrop').removeClass( " hide " ).addClass( " show " );
+    blurAll();
+	}else{PopRegisterPost();blurAll();}// go to login instead
+}
 timer = setInterval(updateDiv,100);
 function updateDiv(){
     var editorText = CKEDITOR.instances.PostContent.getData();

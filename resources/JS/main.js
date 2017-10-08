@@ -121,7 +121,7 @@
         
         }
 
-      function hideAll(){ // โชว Create Post
+function hideAll(){ // โชว Create Post
 	$('#CreatePostBox').removeClass( " show " ).addClass( " hide " );
 	$('#RegisterBox').removeClass( " show " ).addClass( " hide " );
 	$('#backdrop').removeClass( " show " ).addClass( " hide " );
