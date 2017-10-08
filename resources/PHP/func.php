@@ -91,7 +91,6 @@ function login($UserName, $Password) // PW ตอนเรียกต้อง�
 // XU
 function searchPost($searchTerms){
     $conn = initDB();
-    mysqli_select_db($conn, "ForumResponsive");
   
   $searchTStore = "";
   foreach ($searchTerms as $thing){
