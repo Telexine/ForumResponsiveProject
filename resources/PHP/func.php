@@ -88,14 +88,13 @@ function login($UserName, $Password) // PW ตอนเรียกต้อง�
  
 
 
-// XU 
-
+// XU
 function searchPost($searchTerms){
     $conn = initDB();
-    mysqli_select_db($conn, "ForumResponsive");
+	mysqli_select_db($conn, "ForumResponsive");
 	
 	$searchTStore[] = array();
-	foreach ($searchTerms[0] as $thing){
+	foreach ($searchTerms as $thing){
 		array_push($searchTStore[0], "\"" . $thing . "\"");
 	}
 	$searchTStore2 = implode(", ", $searchTStore[0]);
@@ -104,11 +103,11 @@ function searchPost($searchTerms){
 	FROM TBTag
 	WHERE Tag IN (" . $searchTStore2 . ")
 	GROUP BY Post_ID 
-	HAVING Count(DISTINCT Tag) = ". count($searchTerms[0]) .";";
-	//echo $searchTStore2;
-	//echo count($searchTerms[0]);
+	HAVING Count(DISTINCT Tag) = ". count($searchTerms) .";";
+	echo $searchTStore2;
+	echo count($searchTerms);
 	$hPost = array();
-	//echo $sql;
+	echo $sql;
     if ($result = mysqli_query($conn, $sql)) {
 		/* fetch associative array */
 		while ($row = mysqli_fetch_assoc($result)) {
@@ -116,9 +115,7 @@ function searchPost($searchTerms){
 		}
 	return $hPost;
 	}
-}
-
-// XU
+}// XU
 
 
 function logout(){
