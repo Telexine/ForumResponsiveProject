@@ -91,6 +91,25 @@ function login($UserName, $Password) // PW ตอนเรียกต้อง�
 // XU
 function searchPost($searchTerms){
     $conn = initDB();
+    mysqli_select_db($conn, "ForumResponsive");
+  
+  $searchTStore = "";
+  foreach ($searchTerms as $thing){
+ 
+    $searchTStore .= "'".$thing."',";
+  }
+  $searchTStore= rtrim($searchTStore,",");
+   $sql = "SELECT DISTINCT Post_ID FROM TBTag WHERE Tag IN (". $searchTStore . ") GROUP BY Post_ID";
+ 
+  $hPost = array();
+    if ($result = mysqli_query($conn, $sql)) {
+    /* fetch associative array */
+    while ($row = mysqli_fetch_assoc($result)) {
+        $hPost[] = $row["Post_ID"];
+    }
+  return $hPost;
+  }
+}
 }// XU
 
 
