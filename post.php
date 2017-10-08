@@ -54,7 +54,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 		font-family:Orator Std;
 		color: #263c4b;
 	}
-
+ 
 </style>
 <body>
 
@@ -320,7 +320,7 @@ character, Bob stars in his own show now, called "Better Call Saul".
 
 			<div class="col-l-10 col-m-9 col-s-12" style="box-sizing:border-box; padding-left:25px;">
 				
-				<div class="col-m-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%; ">
+				<div class="col-m-12"  style="box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%; ">
 							<?PHP echo $op[0]["content"]; ?>   <!---  Post content -->
 				</div>
 

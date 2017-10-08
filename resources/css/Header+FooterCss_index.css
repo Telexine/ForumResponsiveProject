@@ -39,11 +39,17 @@ header label:hover{
 	margin-left: -100%;
 	transition: all 0.5s;
 	animation: f 0.5s; 
+	animation-direction: alternate;
 }
 /*transition = วัตถุทั้งหมด(all)เคลื่อนที่จากตำแหน่งเดิม(left -70%)ไปสู่ตำแหน่งแรกในเวลา 0.5วิ*/
 
 @keyframes f{
-	100%{margin-left:-100%;}   /* TAE */
+	0%{
+		margin-left:-100%;
+	}   
+	100%{
+		margin-left:0;
+	}   /* TAE */
 }
 
 .Menu ul{

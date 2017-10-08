@@ -1,16 +1,6 @@
 
 <?php
-/*
-
- $usr_info   = array(
-            "User_ID" => $row["User_ID"],
-            "name" => $row['Name'],
-            "AvatarURL" => $row['AvatarURL']
-        );
-
-
-
-*/
+ 
 include('resources/PHP/func.php');
 if (!isset($_SESSION)) {
     session_start();
@@ -63,7 +53,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 <!-- CreatePostBox -->
 <div id='backdrop' class="modal  hide" onClick="hideAll();"></div>
 <div id="CreatePostBox"class="modal hide">
-    
+
 <!-- snack bar -->
 
 <div class="mdl-js-snackbar mdl-snackbar" id="demo-toast-example">
