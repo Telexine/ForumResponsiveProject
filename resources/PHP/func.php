@@ -110,7 +110,7 @@ function searchPost($searchTerms){
     if ($result = mysqli_query($conn, $sql)) {
 		/* fetch associative array */
 		while ($row = mysqli_fetch_assoc($result)) {
-        $hPost[0] = $row["Post_ID"];
+        $hPost[] = $row["Post_ID"];
 		}
 	return $hPost;
 	}
