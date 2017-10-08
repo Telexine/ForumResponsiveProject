@@ -287,9 +287,9 @@ character, Bob stars in his own show now, called "Better Call Saul".
                             	                         <table align="center" class="mem">
                                                          		<tr><td rowspan="4"><img src="resources/about/pan/18835597_700968896757966_3229098966599354363_n.jpg" style=" width:200px; height:200px">
                                                                 </td><td width="50"></td><td>Name:</td><td>Sasikorn Parngamvichit</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="resources/about/pan/bstr.htm" style="text-decoration:none" >
+                                                                <td rowspan="4"><a href="#"onClick="goToLink('resources/about/pan/bstr.htm');" style="text-decoration:none" >
                                                                 <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
-                                                                
+                                                        
                                                          		<tr><td width="50"></td><td>Student Code:</td><td>58122044-9</td></tr> 
                                                                 <tr><td width="50"></td><td>Major:</td><td>Multimedia</td></tr></table> 
                                                                	<hr>
@@ -301,7 +301,7 @@ character, Bob stars in his own show now, called "Better Call Saul".
                             	                         <table align="center" class="mem">
                                                          		<tr><td rowspan="4"><img src="resources/about/eui/pattara (1).jpg" style=" width:200px; height:200px">
                                                                 </td><td width="50"></td><td>Name:</td><td>Pattara Nongnatoom</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="resources/about/eui/index.html" style="text-decoration:none" >
+                                                                <td rowspan="4"><a href="#"onClick="goToLink('resources/about/eui/index.html');" style="text-decoration:none" >
                                                                 <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
                                                                 
                                                          		<tr><td width="50"></td><td>Student Code:</td><td>58122086-3</td></tr> 
@@ -315,7 +315,7 @@ character, Bob stars in his own show now, called "Better Call Saul".
                             	                         <table align="center" class="mem">
                                                          		<tr><td rowspan="4"><img src="resources/about/tae/21950108_1514472708646969_3739404714510289042_o.jpg" style=" width:200px; height:200px">
                                                                 </td><td width="50"></td><td>Name:</td><td>Tachid Boonpipat</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="https://portfolio-c3e09.firebaseapp.com/" style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ -->
+                                                                <td rowspan="4"><a href="#"onClick="goToLink('https://portfolio-c3e09.firebaseapp.com/');"style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ -->
                                                                 <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
                                                                 
                                                          		<tr><td width="50"></td><td>Student Code:</td><td>58121090-3</td></tr> 
@@ -327,13 +327,13 @@ character, Bob stars in his own show now, called "Better Call Saul".
                       <div class="member" style=" margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
                             <div class="contentmem" align="center" >
                             	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4">ใส่ีรูปจ้า
-                                                                </td><td width="50"></td><td>Name:</td><td>ใส่ชื่อด้วยนะ นามสกุลด้วย</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="member pic and web/eui/index.html" style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ- -->
+                                                         		<tr><td rowspan="4"><img src="resources/about/jam/jam.jpg" style=" width:200px; height:200px">
+                                                                </td><td width="50"></td><td>Name:</td><td>Tanyapa Rattanakanahutanon </td><td rowspan="4" width="50"></td>
+                                                                <td rowspan="4"><a href="#"onClick="goToLink('resources/about/jam/home.html');" style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ- -->
                                                                 <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
                                                                 
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>รหัสนักศึกษาจ้า</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>ใส่สาขาด้วย</td></tr></table> 
+                                                         		<tr><td width="50"></td><td>Student Code:</td><td>58122031-6</td></tr> 
+                                                                <tr><td width="50"></td><td>Major:</td><td>Multimedia</td></tr></table> 
                                                                	<hr>
                             </div> 
                         </div><!--- first member end -->
@@ -341,13 +341,13 @@ character, Bob stars in his own show now, called "Better Call Saul".
                       <div class="member" style=" margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
                             <div class="contentmem" align="center" >
                             	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4">ใส่ีรูปจ้า
-                                                                </td><td width="50"></td><td>Name:</td><td>ใส่ชื่อด้วยนะ นามสกุลด้วย</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="member pic and web/eui/index.html" style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ- -->
+                                                         		<tr><td rowspan="4"><img src="resources/about/bean/img/1.jpg" style=" width:200px; height:200px">
+                                                                </td><td width="50"></td><td>Name:</td><td>Benja Arkachaisri</td><td rowspan="4" width="50"></td>
+                                                                <td rowspan="4"><a href="#"onClick="goToLink('resources/about/bean/page1.html');"  style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ- -->
                                                                 <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
                                                                 
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>รหัสนักศึกษาจ้า</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>ใส่สาขาด้วย</td></tr></table> 
+                                                         		<tr><td width="50"></td><td>Student Code:</td><td>58121102-6</td></tr> 
+                                                                <tr><td width="50"></td><td>Major:</td><td>Information Technology</td></tr></table> 
                                                                	<hr>
                             </div> 
                         </div><!--- first member  end -->

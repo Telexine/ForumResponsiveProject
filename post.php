@@ -340,15 +340,124 @@ character, Bob stars in his own show now, called "Better Call Saul".
 
 
 		</div>
+		
+		<!-- Comment -->
+
 		<div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:5px; background-color:#dbe4ea;padding-top:5px;padding-left:5px;">
-			<p class="Font2" style="margin:0px;"><b>Related Post</b></p></div>
+			<p class="Font2" style="margin:0px;"><h1 style="color:#263c4b;text-align:left"> Comment</h1></p>
+			
+			<div id='CommentSection'>
+ 
+		 
+		<div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:10px; background-color:#dbe4ea; padding-bottom:40px; padding-top:25px; padding-left:25px; padding-right:25px;margin-bottom:20px;">
+			<!-- Title --> 
+			<h5 style="color:#263c4b;text-align:left" >Title : </h5> <h1 style="color:#263c4b;text-align:left"><?php echo $op[0]["Title"];?></h1>
+			<!-- END title -->
+		
+		<div class="col-l-2 col-m-3 col-s-12" style="box-sizing:border-box; padding-right:25px;">
+<!-- avartar --> 
+				<div class="" aling="center" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url('<?php echo $op[0]["AvatarURL"] ?>');    background-size:     cover;                   
+	background-repeat:   no-repeat;
+	background-position: center center; ">
+		 
+		
+
+				
+				</div>
+<!--avartar -->
+		
+				<div class="col-l-12 col-m-12 col-s-12"><p class="Font2"><?php echo getName( $op[0]["User_ID"]);?></p></div>
+
+			</div>
+
+			<div class="col-l-10 col-m-9 col-s-12" style="box-sizing:border-box; padding-left:25px;">
+				
+				<div class="col-m-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%; ">
+							<?PHP echo $op[0]["content"]; ?>   <!---  Post content -->
+				</div>
+
+				<div class="col-l-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:400px; width:auto; ">
+
+				</div>
+				 
+
+			</div>
+
+
+ 
+			</div>
+
+
 		</div>
+
+		<!-- end Comment -->
+
+
+ <hr  size=30>
+
+		<!--Postiing comment  -->
+<div style="width:100%:margin-top:20px;">
+<h2 class="fa">Wanna Post ? </h2>
+
+
+<!-- Post comment  Avatar       -->
+	<div class="col-l-2 col-m-3 col-s-12"style="float:left">
+	<div class="" aling="center" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url('<?php echo getAvatarURL();?> ');    background-size:     cover;                   
+	background-repeat:   no-repeat;
+	background-position: center center; ">
+	
+			
+				<div class="col-l-12 col-m-12 col-s-12"><p class="Font2"><?php echo getcname();?></p></div>
+		</div>
+	</div>
+
+		<!--Post comment content   -->
+
+		<div style="col-l-8 col-m-7 col-s-12" style="float:left">
+			<table align="center" class="Font2 fa-2x" style="padding:30px;    width: 100%; ">
+    	<tr><td colspan="1">Title: </td>
+        <td><input type="text" name="CommentTITLE" class="fa" id="CommentTITLE" style=" border-radius:5px;"></td></tr>
+      
+        <tr><td>Content: </td><td><textarea name="Postaddress" id="Comment" ></textarea>
+           	<script type="text/javascript">
+			//<![CDATA[
+				CKEDITOR.replace( 'Comment',{
+					skin : 'office2013',				
+
+				filebrowserBrowseUrl : './resources/ckfinder/ckfinder.html',
+				filebrowserImageBrowseUrl : './resources/ckfinder/ckfinder.html?Type=Images',
+				filebrowserFlashBrowseUrl : './resources/ckfinder/ckfinder.html?Type=Flash',
+				filebrowserUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+				filebrowserImageUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+				filebrowserFlashUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+				
+					} );
+			//]]>
+			</script>
+    </td></tr>
+        <tr><td colspan="2" align="right"><input type="submit" onClick="subccmitPost();" value="Submit" class="Font2 fa" style="border-radius:5px; 
+        background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td></tr>
+	</table>
+	</div>
+</div></div>
+
 
 		</main>
 		
+
+
+
+
 		
 		<footer class=" col-m-12 col-s-hidden col-l-12" style=" position:relative; margin-top:60px;">
-				<div class="footer  col-m-12 col-s-hidden col-l-12" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong>(ฝากแก้ไขข้อความด้วย ไม่รู้จะพิมพ์อะไร)</div>	
+
+
+				<div class="footer  col-m-12 col-s-hidden col-l-12" style="padding-top: 25px;">
+					
+				
+				
+				
+				เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong> </div>	
 		</footer>
 
 		</nav>
