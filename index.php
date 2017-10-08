@@ -7,7 +7,7 @@ if (!isset($_SESSION)) {
 }
 
 $Allpostnum = getAllPostNum();  // count all post in the system
-$Hotpost = getHotPost(5); // 5 is select top 5
+$Hotpost = getHotPost(10); // 5 is select top 5
   
 ?><head>
 <link rel="stylesheet" type="text/css" href="resources/css/Header+FooterCss_index.css">

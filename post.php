@@ -582,7 +582,6 @@ if(xPostContent==""||xPostTitle==""){
 $.post("resources/PHP/createPost.php",
 { 
 	PostTitle: xPostTitle,
-	PostSubtitle  : xPostSubtitle,
  	PostContent :xPostContent,
 	 PostTag  : xPostTag,
 	 User_ID  : xUser_ID
