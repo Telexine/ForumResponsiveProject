@@ -273,7 +273,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 </div>
 <!--END Login RegisterBox -->
 
-
+<div id="wrapper">
  
 
 <main  id="main">
@@ -318,7 +318,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 				<div class="rateStar"id="rate?'.$Hotpost[$i]['Post_ID'].'">
 				'.		  htmlStar(getPostRate($Hotpost[$i]['Post_ID'])).
 				'</div> 
-				<div class="mdl-card__title mdl-card--expand postedImage "  style="object-fit: contain;background: url('.getImageFromContent($Hotpost[$i]['content']).');    background-size:     cover;                      /* <------ */
+				<div class="mdl-card__title mdl-card--expand postedImage "  alt="alternative text"   style="object-fit: contain;background: url('.getImageFromContent($Hotpost[$i]['content']).');    background-size:     cover;                   
                 background-repeat:   no-repeat;
                 background-position: center center; ">
 				<h2 class="mdl-card__title-text" style="text-shadow: 2px 2px 4px #000000">'.$Hotpost[$i]['title'].'</h2> 
@@ -680,7 +680,7 @@ function Loginpage(){
 
 
 }
-console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getname();?> ");
+console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?> ");
 
 function logout(){
 
@@ -856,23 +856,25 @@ function(data,status){
 <?php
 // PHP ============================
 function htmlStar($rate){
-	$html = "";
-	  $star = ceil($rate/2);
+    $html = "";
+      $star = ceil($rate/2);
 
-	for($i=1;$i<$star;$i++){
-		$html .='<div class="Star"></div>';
-		
-	}
-
-	return $html ;
+    for($i=1;$i<$star;$i++){
+        $html .='<span class="fa fa-star"></span>';  // full star
+    }
+    for($i;$i<=5;$i++){
+        $html .='<span class="fa fa-star-o"></span>';  // empty star
+    }
+    return $html ;
 }
+
 
 // PHP pass data to js
 function islogged(){
    if(isset($_SESSION['user_info']['User_ID'])){return  'true';}else return 'false';
 }
 function getUserID(){ if(isset( $_SESSION['user_info']['User_ID'])){return $_SESSION['user_info']['User_ID']; }else return 'false'; }
-function getname(){ if(isset( $_SESSION['user_info']['name'])){return $_SESSION['user_info']['name']; }else return 'false'; }
+function getcname(){ if(isset( $_SESSION['user_info']['name'])){return $_SESSION['user_info']['name']; }else return 'false'; }
 function getAvatarURL(){ if(isset( $_SESSION['user_info']['AvatarURL'])){return $_SESSION['user_info']['AvatarURL']; }else return 'false'; }
  
 ?>

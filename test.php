@@ -33,7 +33,7 @@ require_once('resources/PHP/func.php');
  
  */
 //print_r(getPost('OP1503326319?9'));
- $array = array("Alpha" , "Alpaca");
+ $array = array("cake" );
  $test = searchPost($array);
  echo(implode(" ", $test));
 ?>

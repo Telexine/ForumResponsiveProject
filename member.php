@@ -636,7 +636,7 @@ function Loginpage(){
 
 
 }
-console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getname();?> ");
+console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?> ");
 
 function logout(){
 
@@ -779,7 +779,7 @@ function islogged(){
    if(isset($_SESSION['user_info']['User_ID'])){return  'true';}else return 'false';
 }
 function getUserID(){ if(isset( $_SESSION['user_info']['User_ID'])){return $_SESSION['user_info']['User_ID']; }else return 'false'; }
-function getname(){ if(isset( $_SESSION['user_info']['name'])){return $_SESSION['user_info']['name']; }else return 'false'; }
+function getcname(){ if(isset( $_SESSION['user_info']['name'])){return $_SESSION['user_info']['name']; }else return 'false'; }
 function getAvatarURL(){ if(isset( $_SESSION['user_info']['AvatarURL'])){return $_SESSION['user_info']['AvatarURL']; }else return 'false'; }
  
 ?>
