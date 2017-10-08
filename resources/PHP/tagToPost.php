@@ -9,7 +9,7 @@ if (!isset($_SESSION)) {
 }
  
        //$tag = ($_POST['tag']);
-       $tag = array('data','cake');
+       $tag = array('cake');
  /*
  return => array(3) { [0]=> string(14) "OP1503326319?9" [1]=> string(15) "OP1507304608?22" [2]=> string(15) "OP1507381677?23" }
   */
@@ -32,9 +32,9 @@ array(2) { [0]=> array(7) { ["Post_ID"]=> string(14) "OP1503326319?9" ["Date"]=>
             $r  =  getPost($list);
          
             $postResult[$i++]= $r;
-           // print_r($postResult);echo "<br>";
+           print_r($postResult);echo "<br>";
          }
-      echo implode(" ", $postResult[0][0]);
+      //var_dump(implode(" ", $postResult[0][0]));
 
         
        

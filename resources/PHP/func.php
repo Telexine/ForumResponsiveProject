@@ -33,6 +33,19 @@ function isUserIDexist($User_ID) //username  นี้มีในฐานข�
         return false;
     } //  ยัง 
 }
+
+
+function getName($User_ID) //username  นี้มีในฐานข้อมูลยัง  (True: มีแล้ว False: ยัง)
+{
+    $conn  = initDB();
+    $sql   = "SELECT NAME  FROM ForumResponsive.TBUser WHERE User_ID = '$User_ID'";
+    $fetch = $conn->query($sql); 
+    $row = $fetch->fetch_assoc();
+
+    return $row['NAME'];
+ 
+    
+}
 function CreateUser( $NAME, $UserName,$PW, $avatar) // PW ตอนเรียกต้องใส่ MD5 
 {
     $conn = initDB();
@@ -40,7 +53,7 @@ function CreateUser( $NAME, $UserName,$PW, $avatar) // PW ตอนเรีย�
         return;
     } //ถ้ามีIDนี้ จะยกเลิก
     if ($avatar == "") {
-        $avatar = "/resources/images/avatar/default_Avatar.jpg";
+        $avatar = "resources/images/avatar/default_Avatar.jpg";
     } //ใส่ default image ถ้าไม่มี
     
     $sql = "INSERT INTO ForumResponsive.TBUser (`User_ID`, `Name`, `UserName`, `PW`, `Created_date`, `avatarURL`)" . "VALUES (NULL,'$NAME','$UserName','$PW',CURRENT_TIMESTAMP, '$avatar')";
@@ -150,7 +163,7 @@ function createPost($Title,$Content,$UserID,$imageURL,$IsOP,$Tags)
  function comment($PostID,$Content,$UserID){
 
     $conn = initDB();
-    $sql = "INSERT INTO ForumResponsive.TBmeta (`Post_ID`,`content`,`User_ID`,`imageURL`,`isOP`) VALUES ('$PostID','$Content','$UserID',0)";
+    $sql = "INSERT INTO ForumResponsive.TBmeta (`Post_ID`,`content`,`User_ID`,`imageURL`,`isOP`) VALUES ('$PostID','$Content','$UserID','',0)";
     $conn->query($sql);
     return true;
 
@@ -206,11 +219,11 @@ function getPostComment($PostID){
 
     $conn = initDB();
     
-    $sql = "SELECT a.*,b.AvatarURL FROM ForumResponsive.TBmeta  as a , ForumResponsive.TBUser as b WHERE a.User_ID=b.User_ID AND a.Post_ID =  '$PostID' AND a.isOP = '0' ";
+  $sql = "SELECT a.*,b.AvatarURL FROM ForumResponsive.TBmeta  as a , ForumResponsive.TBUser as b WHERE a.User_ID=b.User_ID AND a.Post_ID =  '$PostID' AND a.isOP = '0' ";
     // query 
     $fetch = $conn->query($sql); 
     // fetch all to arr 
-   while(($Post_Comment[] = mysqli_fetch_assoc($fetch)) || array_pop($Post_Comment)); 
+   while(($Post_Comment[] = mysqli_fetch_assoc($fetch)) || array_pop($Post_Comment));  
    return $Post_Comment;
 }
  
@@ -258,26 +271,27 @@ function getImageFromContent($content){ // this function will disect contect to 
 function UpdateRate($star/* 0-10 */,$User_ID,$Post_ID){
 
     $conn = initDB();
-    
-    $sql   = "SELECT Post_ID  FROM ForumResponsive.TBrate WHERE Post_ID = '$Post_ID' AND User_ID = '$User_ID'";
+    mysqli_select_db($conn, "ForumResponsive");
+
+      $sql   = "SELECT Post_ID  FROM ForumResponsive.TBrate WHERE Post_ID = '$Post_ID' AND User_ID = '$User_ID'";
     $fetch = $conn->query($sql); 
  
     if (mysqli_num_rows($fetch) > 0) {  // กรณี่เคย rateแล้ว
         
 
      // update
-        $sql = "UPDATE  TBrate SET  Rating = '$star' WHERE  Post_ID = '$Post_ID' AND User_ID = '$User_ID'";
+         $sql = "UPDATE  TBrate SET  Rating = '$star' WHERE  Post_ID = '$Post_ID' AND User_ID = '$User_ID'";
        $conn->query($sql);
     } // มีแล้ว
     else { // ไม่เคย
         
-       $sql = "INSERT INTO `TBrate` (`Post_ID`, `User_ID`, `Rating`) VALUES ('$Post_ID', '$User_ID', '$star');";
+         $sql = "INSERT INTO `TBrate` (`Post_ID`, `User_ID`, `Rating`) VALUES ('$Post_ID', '$User_ID', '$star');";
         // query insert
         $conn->query($sql);
  
     } //  ยัง 
 
-
+    return true;
 }
 
 

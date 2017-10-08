@@ -1,10 +1,29 @@
-<?php 
-
+<?php
 require_once('resources/PHP/func.php');
+
+// ตัวอย่างLink ตอนเข้าหน้านี้ http://localhost/forumresponsiveProject/post.php?PostID=OP1503326319?9
+$PostID=$_GET['PostID'];
+
+// ดึงข้อมูลหัวกระทู้
+$op=getPost($PostID);
+// ดึง  comment  ทั้งหมด ลง array เก้บ ใน comment
+$Comment=getPostComment($PostID);
+
+
 if (!isset($_SESSION)) {
     session_start();
 }
-?><!doctype html>
+ 
+// Expect output
+/*
+
+array(1) { [0]=> array(7) { ["Post_ID"]=> string(14) "OP1503326319?9" ["Title"]=> string(4) "TEST" ["content"]=> string(7) "Content" ["User_ID"]=> string(1) "9" ["imageURL"]=> string(2) "dd" ["isOP"]=> string(1) "1" ["AvatarURL"]=> string(11) "AVARTar URL" } } 
+
+array(2) { [0]=> array(7) { ["Post_ID"]=> string(14) "OP1503326319?9" ["Date"]=> string(19) "2017-09-12 00:00:00" ["content"]=> string(6) "sdsdsd" ["User_ID"]=> string(1) "9" ["imageURL"]=> string(13) "dddddsfsfsfaf" ["isOP"]=> string(1) "0" ["AvatarURL"]=> string(11) "AVARTar URL" } [1]=> array(7) { ["Post_ID"]=> string(14) "OP1503326319?9" ["Date"]=> string(19) "2017-09-12 23:29:44" ["content"]=> string(11) "Contentdddd" ["User_ID"]=> string(1) "9" ["imageURL"]=> string(5) "ddddd" ["isOP"]=> string(1) "0" ["AvatarURL"]=> string(11) "AVARTar URL" } }
+
+*/
+?>
+ 
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="resources/css/Header+FooterCss.css">
@@ -13,9 +32,7 @@ if (!isset($_SESSION)) {
 <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 
 
-
 <link rel="stylesheet" href="resources/css/font-awesome.css">
-
 <link rel="stylesheet" type="text/css" media="all" href="resources/css/HOTstyles.css">
 <link rel="stylesheet" type="text/css" media="all" href="resources/css/TAGstyles.css">
 <link rel="stylesheet" type="text/css" media="all" href="resources/css/main.css">
@@ -23,7 +40,6 @@ if (!isset($_SESSION)) {
 <script type="text/javascript" src="resources/JS/responsiveCarousel.min.js"></script>
 <script type="text/javascript" src="resources/JS/MD5.js"></script>
 <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
-
 
 <style>
 
@@ -45,24 +61,26 @@ if (!isset($_SESSION)) {
 
 </style>
 </head>
-<>
 
-<div id="main" align="center" class="Logo"><a href="#" class="button"><img src="resources/images/logo.png"  width="112" height="112"></a></div> 
-<header>
 
-<input type="checkbox" id="btn-menu">
-<label for="btn-menu"><img src="resources/images/list.png" width="55" height="55" alt=""/></label>
-<nav class="Menu" style=" z-index:14">
-    <ul>
-        <li><a href="#" onClick="goToLink('index.php');"class="o"><span class="fa fa-home" style="font-size: 30px;padding-top: 12px;"><p class="Font">  HomePage</p></a></li>
-        <li><a href="#" class="o"><span  onClick="PopSearch();"class="fa fa-search" style="font-size: 30px;padding-top: 12px;"><p class="Font">  Search</p></a></li>
-        <li><div align="center" class="Logo2 col-s-hidden col-m-12 col-l-12">
-        <a href="#" class="button"><img src="resources/images/logo.png" style="padding-top: 10px;" width="112" height="112"></a></div></li>
-        <li><a href="#" onClick="PopcreatePost();" class="o"><span class="fa fa-magic" style="font-size: 30px;padding-top: 12px;"><p class="Font">  CreatePost</p></a></li>
-        <li><a href="#" onClick="goToLink('member.php');"class="o"><span class="fa fa-smile-o" style="font-size: 30px;padding-top: 12px;"><p class="Font">  About</p></a></li>
-    </ul>
-</nav>	
-</header>
+<body>
+
+<div  align="center" class="Logo"><a href="#" class="button"><img src="resources/images/logo.png"  width="112" height="112"></a></div> 
+		<header>
+		
+		<input type="checkbox" id="btn-menu">
+		<label for="btn-menu"><img src="resources/images/list.png" width="55" height="55" alt=""/></label>
+		<nav class="Menu" style=" z-index:14">
+			<ul>
+				<li><a href="#" onClick="goToLink('index.php');"class="o"><span class="fa fa-home" style="font-size: 30px;padding-top: 12px;"><p class="Font">  HomePage</p></a></li>
+				<li><a href="#" class="o"><span  onClick="PopSearch();"class="fa fa-search" style="font-size: 30px;padding-top: 12px;"><p class="Font">  Search</p></a></li>
+				<li><div align="center" class="Logo2 col-s-hidden col-m-12 col-l-12">
+				<a href="#" class="button"><img src="resources/images/logo.png" style="padding-top: 10px;" width="112" height="112"></a></div></li>
+				<li><a href="#" onClick="PopcreatePost();" class="o"><span class="fa fa-magic" style="font-size: 30px;padding-top: 12px;"><p class="Font">  CreatePost</p></a></li>
+				<li><a href="#" onClick="goToLink('member.php');"class="o"><span class="fa fa-smile-o" style="font-size: 30px;padding-top: 12px;"><p class="Font">  About</p></a></li>
+			</ul>
+		</nav>	
+		</header>
 
 
 <!-- CreatePostBox -->
@@ -71,38 +89,38 @@ if (!isset($_SESSION)) {
 
 
 <div style="margin-bottom: 50px; color: aliceblue; text-align: center;" class="col-l-12">
-            <div align="center"  class=" col-l-12 col-m-12" style="border-radius:10px;background-color:#dbe4ea;">
-             
-            <button type="button" class="closebtnModal"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
-
-<table align="center" class="Font2 fa-2x" style="padding:30px; ">
-<tr><td colspan="1">Title: </td>
-<td><input type="text" name="title" class="fa" id="PostTitle" style="width:100%; border-radius:5px;"></td></tr>
-<tr><td>Subtitle: </td><td><input type="text" id="PostSubtitle"name="subtitle" style="width:100%;border-radius:5px;" class="fa"></td></tr>
-<tr><td>Content: </td><td><textarea name="Postaddress" id="PostContent" ></textarea>
-       <script type="text/javascript">
-    //<![CDATA[
-        CKEDITOR.replace( 'PostContent',{
-            skin : 'office2013',				
-            
-            
-        filebrowserBrowseUrl : './resources/ckfinder/ckfinder.html',
-        filebrowserImageBrowseUrl : './resources/ckfinder/ckfinder.html?Type=Images',
-        filebrowserFlashBrowseUrl : './resources/ckfinder/ckfinder.html?Type=Flash',
-        filebrowserUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-        filebrowserImageUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-        filebrowserFlashUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-        
-            } );
-    //]]>
-    </script>
-</td></tr>
-<tr><td>TAG: </td><td><input id="PostTag" type="text" name="tag" class="fa" style="width:100%; border-radius:5px;"></td></tr>
-<tr><td colspan="2" align="right"><input type="submit" onClick="submitPost();" value="Submit" class="Font2 fa" style="border-radius:5px; 
-background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td></tr>
-</table>
-            </div>
-        </div>
+                    <div align="center"  class=" col-l-12 col-m-12" style="border-radius:10px;background-color:#dbe4ea;">
+        			 
+					<button type="button" class="closebtnModal"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
+	
+	<table align="center" class="Font2 fa-2x" style="padding:30px; ">
+    	<tr><td colspan="1">Title: </td>
+        <td><input type="text" name="title" class="fa" id="PostTitle" style="width:100%; border-radius:5px;"></td></tr>
+        <tr><td>Subtitle: </td><td><input type="text" id="PostSubtitle"name="subtitle" style="width:100%;border-radius:5px;" class="fa"></td></tr>
+        <tr><td>Content: </td><td><textarea name="Postaddress" id="PostContent" ></textarea>
+           	<script type="text/javascript">
+			//<![CDATA[
+				CKEDITOR.replace( 'PostContent',{
+					skin : 'office2013',				
+					
+					
+				filebrowserBrowseUrl : './resources/ckfinder/ckfinder.html',
+				filebrowserImageBrowseUrl : './resources/ckfinder/ckfinder.html?Type=Images',
+				filebrowserFlashBrowseUrl : './resources/ckfinder/ckfinder.html?Type=Flash',
+				filebrowserUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+				filebrowserImageUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+				filebrowserFlashUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+				
+					} );
+			//]]>
+			</script>
+    </td></tr>
+        <tr><td>TAG: </td><td><input id="PostTag" type="text" name="tag" class="fa" style="width:100%; border-radius:5px;"></td></tr>
+        <tr><td colspan="2" align="right"><input type="submit" onClick="submitPost();" value="Submit" class="Font2 fa" style="border-radius:5px; 
+        background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td></tr>
+    </table>
+                    </div>
+                </div>
 
 
 
@@ -111,101 +129,101 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 
 <!-- Login RegisterBox -->
 <div id="RegisterBox"class="modal hide fadepopIN">
-
+	
 <div style="background-color:#dbe4ea; border-radius:15px; height:300px;width: 80%;margin: auto;" align="center"> 
-<div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
+	<div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
 <div class=" " id="regisOption" style="margin:auto;width:80%;padding-top:30px">
 
 <div id="signup" style="float:left;width:50%;height: -webkit-fill-available;">
+	
+        <table style="margin:auto">
+         <form>
+            <tr>
+            	<td width="102" class="Font">NickName
+                </td>
+                <td width="144" > 
+                 <input class="require Regisinput"  ID="Name" name="Nick Name" type="text">  <!--  TAE   -->
+                 <div id="Name_error" class="hideErrorMessage errmsg Font" >Require</div><!--  TAE   -->
+                </td>
 
-<table style="margin:auto">
- <form>
-    <tr>
-        <td width="102" class="Font">NickName
-        </td>
-        <td width="144" > 
-         <input class="require Regisinput"  ID="Name" name="Nick Name" type="text">  <!--  TAE   -->
-         <div id="Name_error" class="hideErrorMessage errmsg Font" >Require</div><!--  TAE   -->
-        </td>
 
+            </tr>
 
-    </tr>
+            <tr>
+                 <td width="102" class="Font">Avatar
+                </td>
+                <td width="144"> 
+                 <input   id="avatarPath"  class="Regisinput" name = "avatar" type="file" value="Upload" accept="image/*"/>   <!--  TAE   -->
+                 <div id="avatar_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+                </td>
 
-    <tr>
-         <td width="102" class="Font">Avatar
-        </td>
-        <td width="144"> 
-         <input   id="avatarPath"  class="Regisinput" name = "avatar" type="file" value="Upload" accept="image/*"/>   <!--  TAE   -->
-         <div id="avatar_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-        </td>
-
-        
-    </tr>
-    
-         <tr>
-        <td class="Font">Username
-        </td>
-        <td> 
-         <input class="require Regisinput" ID="username" name="username" type="text"> <!--  TAE   -->
-         <div id="username_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-        </td>
-    </tr>
-     <tr>
-        <td class="Font">Password
-        </td>
-        <td> 
-         <input class="require Regisinput" id ='Password' name="password" type="password"> <!--  TAE   -->
-        
-        </td>
-    </tr>
-     <tr>
-        <td class="Font">Confirm Password
-        </td>
-        <td> 
-         <input class="require Regisinput" id ='Password2'name="passwordconfirm" type="password"> <!--  TAE   -->
-         <div id="Password_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-        </td>
-    </tr>
-         <tr>
-        <td>
-        </td>
-        <td> 
-         <input onclick ="register();" id="Register"type="button" value="Sign up" class="Font"/>  <!--  TAE   -->
-        </td>
-    </tr>
+                
+            </tr>
+            
+            	 <tr>
+            	<td class="Font">Username
+                </td>
+                <td> 
+                 <input class="require Regisinput" ID="username" name="username" type="text"> <!--  TAE   -->
+                 <div id="username_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+                </td>
+            </tr>
+             <tr>
+            	<td class="Font">Password
+                </td>
+                <td> 
+                 <input class="require Regisinput" id ='Password' name="password" type="password"> <!--  TAE   -->
+                
+                </td>
+            </tr>
+             <tr>
+            	<td class="Font">Confirm Password
+                </td>
+                <td> 
+                 <input class="require Regisinput" id ='Password2'name="passwordconfirm" type="password"> <!--  TAE   -->
+                 <div id="Password_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+                </td>
+            </tr>
+            	 <tr>
+                <td>
+                </td>
+                <td> 
+                 <input onclick ="register();" id="Register"type="button" value="Sign up" class="Font"/>  <!--  TAE   -->
+                </td>
+            </tr>
+           
+             </form>
+        </table>
    
-     </form>
-</table>
-
 </div>
 <div id="login" style="float:left;width:50%;height: -webkit-fill-available;">
-<table style="margin:auto">
- <form>
-     <tr>
-        <td class="Font">Username
-        </td>
-        <td> 
-         <input id="Login_ID" name="username" class="reqLog Regisinput" type="text">  <!-- TAE  -->
-         <div id="Login_ID_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-        </td>
-    </tr>
-     <tr>
-        <td class="Font">Password
-        </td>
-        <td> 
-         <input id="Login_Pass" name="password" class="reqLog Regisinput" type="text"> <!-- TAE  -->
-         <div id="Login_Pass_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-        </td>
-    </tr>
-    <tr>
-    <td> 
-        </td>
-     <td align="right"> 
-         <input type="button" onclick = 'Loginpage();' value="Log in" class="Font"/>
-        </td>
-    </tr>
-</form>
-</table>
+ <table style="margin:auto">
+         <form>
+			 <tr>
+            	<td class="Font">Username
+                </td>
+                <td> 
+                 <input id="Login_ID" name="username" class="reqLog Regisinput" type="text">  <!-- TAE  -->
+                 <div id="Login_ID_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+                </td>
+            </tr>
+             <tr>
+            	<td class="Font">Password
+                </td>
+                <td> 
+                 <input id="Login_Pass" name="password" class="reqLog Regisinput" type="text"> <!-- TAE  -->
+                 <div id="Login_Pass_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+                </td>
+            </tr>
+            <tr>
+            <td> 
+                </td>
+             <td align="right"> 
+                 <input type="button" onclick = 'Loginpage();' value="Log in" class="Font"/>
+                </td>
+            </tr>
+		</form>
+ </table>
 </div>
 </div></div>
 </div>
@@ -215,224 +233,186 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 
 <!-- SEARCH Box -->
 <div id="SearchBox"class="modal hide fadepopIN">
-
+	
 <div style="background-color:#dbe4ea; border-radius:15px;width: 80%;margin: auto;" align="center"> 
-<div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
+	<div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
 <div class=" " style="margin:auto;width:80%;padding-top:30px">
 
-      <!-- Xureality Tag -->
-<div>
-<form>
-   <div id="tagbox"><span id="tagDisplay" style="top: 5px;position: absolute;"></span><input   id="textin" class="taginput fa" type="text" onkeyup="showHint(this.value)"></div>
-</form>
+ 			 <!-- Xureality Tag -->
+		<div>
+		<form>
+           <div id="tagbox"><span id="tagDisplay" style="top: 5px;position: absolute;"></span><input   id="textin" class="taginput fa" type="text" onkeyup="showHint(this.value)"></div>
+        </form>
+        
+        <p>
+           <span id="tagHint" ></span>
+        </p></div>
 
-<p>
-   <span id="tagHint" ></span>
-</p></div>
+ 	 <!--    Xureality Tag-->
+			
+<ul id="SearchList" class="demo-list-three mdl-list">
 
-<!--    Xureality Tag-->
-    
-<ul class="demo-list-three mdl-list">
-<li class="mdl-list__item mdl-list__item--three-line">
-<span class="mdl-list__item-primary-content">
-<i class="material-icons mdl-list__item-avatar">person</i>
-<span>Bryan Cranston</span>
-<span class="mdl-list__item-text-body">
-Bryan Cranston played the role of Walter in Breaking Bad. He is also known
-for playing Hal in Malcom in the Middle.
-</span>
-</span>
-<span class="mdl-list__item-secondary-content">
-<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-</span>
-</li>
-<li class="mdl-list__item mdl-list__item--three-line">
-<span class="mdl-list__item-primary-content">
-<i class="material-icons  mdl-list__item-avatar">person</i>
-<span>Aaron Paul</span>
-<span class="mdl-list__item-text-body">
-Aaron Paul played the role of Jesse in Breaking Bad. He also featured in
-the "Need For Speed" Movie.
-</span>
-</span>
-<span class="mdl-list__item-secondary-content">
-<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-</span>
-</li>
-<li class="mdl-list__item mdl-list__item--three-line">
-<span class="mdl-list__item-primary-content">
-<i class="material-icons  mdl-list__item-avatar">person</i>
-<span>Bob Odenkirk</span>
-<span class="mdl-list__item-text-body">
-Bob Odinkrik played the role of Saul in Breaking Bad. Due to public fondness for the
-character, Bob stars in his own show now, called "Better Call Saul".
-</span>
-</span>
-<span class="mdl-list__item-secondary-content">
-<a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
-</span>
-</li>
+  <li class="mdl-list__item mdl-list__item--three-line">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons mdl-list__item-avatar">person</i>
+      <span>Bryan Cranston</span>
+      <span class="mdl-list__item-text-body"style="text-align:left">
+        Bryan Cranston played the role of Walter in Breaking Bad. He is also known
+        for playing Hal in Malcom in the Middle.
+      </span>
+    </span>
+                    
+  </li>
+
+  <li class="mdl-list__item mdl-list__item--three-line">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">person</i>
+      <span>Aaron Paul</span>
+      <span class="mdl-list__item-text-body">
+        Aaron Paul played the role of Jesse in Breaking Bad. He also featured in
+        the "Need For Speed" Movie.
+      </span>
+    </span>
+    <span class="mdl-list__item-secondary-content">
+      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+    </span>
+  </li>
+  <li class="mdl-list__item mdl-list__item--three-line">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">person</i>
+      <span>Bob Odenkirk</span>
+      <span class="mdl-list__item-text-body">
+        Bob Odinkrik played the role of Saul in Breaking Bad. Due to public fondness for the
+        character, Bob stars in his own show now, called "Better Call Saul".
+      </span>
+    </span>
+    <span class="mdl-list__item-secondary-content">
+      <a class="mdl-list__item-secondary-action" href="#"><i class="material-icons">star</i></a>
+    </span>
+  </li>
 </ul>
 </div>
 </div>
 </div>
 </div>
+
 <!--END Login RegisterBox -->
+
+<div id="wrapper">
+		<main id="main">
+			
+				<div style="margin-bottom: 50px; color: aliceblue; text-align: center;">
+					
+				<div style="margin-bottom: 50px; color: aliceblue;">
+					<div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:10px; background-color:#dbe4ea; padding-bottom:40px; padding-top:25px; padding-left:25px; padding-right:25px;margin-bottom:20px;">
+						<!-- Title --> 
+						<h1 style="color:#263c4b;text-align:left"><?php echo $op[0]["Title"];?></h1>
+						<!-- END title -->
+					
+					<div class="col-l-2 col-m-3 col-s-12" style="box-sizing:border-box; padding-right:25px;">
+		<!-- avartar --> 
+							<div class="" aling="center" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url('<?php echo $op[0]["AvatarURL"] ?>');    background-size:     cover;                   
+                background-repeat:   no-repeat;
+                background-position: center center; ">
+					 
+					
+
+							
+							</div>
+	<!--avartar -->
+					
+							<div class="col-l-12 col-m-12 col-s-12"><p class="Font2"><?php echo getName( $op[0]["User_ID"]);?></p></div>
+
+						</div>
+
+						<div class="col-l-10 col-m-9 col-s-12" style="box-sizing:border-box; padding-left:25px;">
+							
+							<div class="col-m-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%; ">
+										<?PHP echo $op[0]["content"]; ?>   <!---  Post content -->
+							</div>
+
+							<div class="col-l-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:400px; width:auto; ">
+
+							</div>
+							
+							<div class="col-l-12 col-m-12 col-s-12" style="padding-top:10px;">
+								<h1 class="Font2" style="font-size:24px;float:left">Rating : 
+									<?php
+									echo htmlStar(getPostRate($op[0]['Post_ID']));
+									?>
+								</h1>
+								<select id="example" style="font-size:24px;float:left"> 
+  									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
+
+						</div>
+
+
+
+					</div>
+					<div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:5px; background-color:#dbe4ea;padding-top:5px;padding-left:5px;">
+						<p class="Font2" style="margin:0px;"><b>Related Post</b></p></div>
+					</div>
  
-		<main>
-				<div style="margin-bottom: 50px; color: aliceblue; text-align: center;" class="col-l-12">
-                    <div align="center"  class=" col-l-12 col-m-12 fa Font2" style="border-radius:10px; font-size:30px; 
-								background-color:#dbe4ea;  padding-top:30px;"><b><u><h2>MEMBER</h2></u></b>
-                                
-                                
-                                
-                                
-                                
-                    	<div class="member" style=" margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
-                            <div class="contentmem" align="center" >
-                            	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4"><img src="resources/about/pan/18835597_700968896757966_3229098966599354363_n.jpg" style=" width:200px; height:200px">
-                                                                </td><td width="50"></td><td>Name:</td><td>Sasikorn Parngamvichit</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="resources/about/pan/bstr.htm" style="text-decoration:none" >
-                                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
-                                                                
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>58122044-9</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>Multimedia</td></tr></table> 
-                                                               	<hr>
-                            </div> 
-                        </div><!-- firstmember end -->
-                      
-                      <div class="member" style=" margin:50px; padding-bottom:10px;"><!-- firstmember start -->
-                            <div class="contentmem" align="center" >
-                            	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4"><img src="resources/about/eui/pattara (1).jpg" style=" width:200px; height:200px">
-                                                                </td><td width="50"></td><td>Name:</td><td>Pattara Nongnatoom</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="resources/about/eui/index.html" style="text-decoration:none" >
-                                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
-                                                                
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>58122086-3</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>Multimedia</td></tr></table> 
-                                                               	<hr>
-                            </div> 
-                        </div><!-- firstmember end -->
-                      
-                      <div class="member" style=" margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
-                            <div class="contentmem" align="center" >
-                            	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4"><img src="resources/about/tae/21950108_1514472708646969_3739404714510289042_o.jpg" style=" width:200px; height:200px">
-                                                                </td><td width="50"></td><td>Name:</td><td>Tachid Boonpipat</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="https://portfolio-c3e09.firebaseapp.com/" style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ -->
-                                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
-                                                                
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>58121090-3</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>Information Technology</td></tr></table> 
-                                                               	<hr>
-                            </div> 
-                        </div><!--- first member end -->
-                      
-                      <div class="member" style=" margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
-                            <div class="contentmem" align="center" >
-                            	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4">ใส่ีรูปจ้า
-                                                                </td><td width="50"></td><td>Name:</td><td>ใส่ชื่อด้วยนะ นามสกุลด้วย</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="member pic and web/eui/index.html" style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ- -->
-                                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
-                                                                
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>รหัสนักศึกษาจ้า</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>ใส่สาขาด้วย</td></tr></table> 
-                                                               	<hr>
-                            </div> 
-                        </div><!--- first member end -->
-                      
-                      <div class="member" style=" margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
-                            <div class="contentmem" align="center" >
-                            	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4">ใส่ีรูปจ้า
-                                                                </td><td width="50"></td><td>Name:</td><td>ใส่ชื่อด้วยนะ นามสกุลด้วย</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="member pic and web/eui/index.html" style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ- -->
-                                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
-                                                                
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>รหัสนักศึกษาจ้า</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>ใส่สาขาด้วย</td></tr></table> 
-                                                               	<hr>
-                            </div> 
-                        </div><!--- first member  end -->
-                        
-                    </div>
+<?php 
+
+
+var_dump($op);
+ 
+
+var_dump($Comment);
+
+// Expect output
+/*
+
+array(1) { [0]=> array(7) { ["Post_ID"]=> string(14) "OP1503326319?9" ["Title"]=> string(4) "TEST" ["content"]=> string(7) "Content" ["User_ID"]=> string(1) "9" ["imageURL"]=> string(2) "dd" ["isOP"]=> string(1) "1" ["AvatarURL"]=> string(11) "AVARTar URL" } } 
+
+array(2) { [0]=> array(7) { ["Post_ID"]=> string(14) "OP1503326319?9" ["Date"]=> string(19) "2017-09-12 00:00:00" ["content"]=> string(6) "sdsdsd" ["User_ID"]=> string(1) "9" ["imageURL"]=> string(13) "dddddsfsfsfaf" ["isOP"]=> string(1) "0" ["AvatarURL"]=> string(11) "AVARTar URL" } [1]=> array(7) { ["Post_ID"]=> string(14) "OP1503326319?9" ["Date"]=> string(19) "2017-09-12 23:29:44" ["content"]=> string(11) "Contentdddd" ["User_ID"]=> string(1) "9" ["imageURL"]=> string(5) "ddddd" ["isOP"]=> string(1) "0" ["AvatarURL"]=> string(11) "AVARTar URL" } }
+
+*/
+?>
+
+
+
                 </div>
 		</main>
 		
 		
-		<footer class=" col-m-12 col-s-hidden col-l-12" style=" position:relative; margin-top:60px;">
-				<div class="footer  col-m-12 col-s-hidden col-l-12" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong>(ฝากแก้ไขข้อความด้วย ไม่รู้จะพิมพ์อะไร)</div>	
+		<footer>
+				<div class="footer" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong></div>	
 		</footer>
 
 		</nav>
 </div> <!-- wrapper -->
 
 </body>
-</html>
 
+<script>
+
+
+
+// star click 
  
-<!--
-//  TEMP FIX 
-        -->
-
-        <script>
-          
-function PopcreatePost(){  // โชว Create Post
  
-	if(<?php echo islogged();?>){ // Check islog in in php
-	$('#CreatePostBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	}else{PopRegisterPost();}// go to login instead
-}
-function hideAll(){ // โชว Create Post
-	$('#CreatePostBox').removeClass( " show " ).addClass( " hide " );
-	$('#RegisterBox').removeClass( " show " ).addClass( " hide " );
-	$('#backdrop').removeClass( " show " ).addClass( " hide " );
-	$('#SearchBox').removeClass( " show " ).addClass( " hide " );
-}
-
-function PopRegisterPost(){  // โชว Resgist  Post
-	 
-	$('#RegisterBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	
-}
-function PopSearch(){  // โชว Resgist  Post
-	 
-	$('#SearchBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	
-}
-timer = setInterval(updateDiv,100);
-function updateDiv(){
-    var editorText = CKEDITOR.instances.PostContent.getData();
-    $('#PostContent').html(editorText);
-}
-          
-
-// FUNCTION POSTforumn
-function submitPost(){
+function submitRate(xRate){
 //check validate here 
-
-
-
-let xPostTitle = document.getElementById('PostTitle').value;
-let xPostSubtitle = document.getElementById('PostSubtitle').value; //!@#$%^ คืออะไร
-let xPostContent = document.getElementById('PostContent').value;
-let xPostTag = document.getElementById('PostTag').value;
-let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
  
+let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
+ if(xUser_ID=""){
+//  pop login
+	return;
+ }
 
-$.post("resources/PHP/createPost.php",
+$.post("resources/PHP/ratePost.php",
 { 
-	PostTitle: xPostTitle,
-	PostSubtitle  : xPostSubtitle,
- 	PostContent :xPostContent,
-	 PostTag  : xPostTag,
-	 User_ID  : xUser_ID
+	Rate: xRate,
+	User_ID  : xUser_ID,
+	Post_ID :  '<?php echo $PostID; ?>'
 },
 function(data,status){
 					if(status!='success'){  // response == 406
@@ -446,10 +426,79 @@ function(data,status){
 });
 
 }
-// END  FUNCTION POSTforumn
 
 
-// FUNCTION REGISTER / LOGIN 
+function submitcomment(){
+//check validate here 
+ 
+let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
+ if(xUser_ID=""){
+//  pop login
+	return;
+ }
+
+let Content  = document.getElementById('comment').value; // !@#$%^
+ 
+$.post("resources/PHP/ratePost.php",
+{ 
+	PostContent: Content,
+	User_ID  : xUser_ID,
+	Post_ID :  '<?php echo $PostID; ?>'
+},
+function(data,status){
+					if(status!='success'){  // response == 406
+                        alert("ERROR"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
+                       }
+                    else{
+                        alert("success: click ok to go to page"); //จะขึ้น Modal, Breadcrumb
+						$(location).attr('href', 'post.php?PostID='+'<?php echo $PostID; ?>');
+                    }
+});
+
+}
+
+function PopcreatePost(){  // โชว Create Post
+    
+	if(<?php echo islogged();?>){ // Check islog in in php
+	$('#CreatePostBox').removeClass( " hide " ).addClass( " show " );
+	$('#backdrop').removeClass( " hide " ).addClass( " show " );
+	}else{PopRegisterPost();}// go to login instead
+}
+function hideAll(){ // โชว Create Post
+	$('#CreatePostBox').removeClass( " show " ).addClass( " hide " );
+	$('#RegisterBox').removeClass( " show " ).addClass( " hide " );
+	$('#backdrop').removeClass( " show " ).addClass( " hide " );
+    $('#SearchBox').removeClass( " show " ).addClass( " hide " );
+    removeBlurAll();
+}
+function blurAll(){
+    
+    $('#main').addClass('blurTransition');
+    $('#wrapper').addClass('blurTransition');
+}
+function removeBlurAll(){
+    $('#main').removeClass('blurTransition');
+    $('#wrapper').removeClass('blurTransition');
+    
+}
+function PopRegisterPost(){  // โชว Resgist  Post
+    blurAll();
+	$('#RegisterBox').removeClass( " hide " ).addClass( " show " );
+	$('#backdrop').removeClass( " hide " ).addClass( " show " );
+	
+}
+function PopSearch(){  // โชว Resgist  Post
+    blurAll();	 
+	$('#SearchBox').removeClass( " hide " ).addClass( " show " );
+	$('#backdrop').removeClass( " hide " ).addClass( " show " );
+	
+}
+timer = setInterval(updateDiv,100);
+function updateDiv(){
+    var editorText = CKEDITOR.instances.PostContent.getData();
+    $('#PostContent').html(editorText);
+}
 
 let G_User_ID, G_name,  G_AvatarURL;
 //Validate 
@@ -593,7 +642,7 @@ function Loginpage(){
 
 
 }
-console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getname();?> ");
+console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?> ");
 
 function logout(){
 
@@ -616,7 +665,8 @@ function(data,status){
 //END FUNCTION REGISTER / LOGIN 
 
 
-	 // XU
+     // XU
+     
 	 var tagged = [];
             function showHint(str) 
 			{
@@ -664,7 +714,8 @@ function(data,status){
                                     document.getElementById("tagDisplay").appendChild(frag); 
 									document.getElementById("textin").value = "";
 									e.target.parentElement.removeChild(e.target);
-									makecloseable();
+                                    makecloseable();
+                                    tagToList();//Refreseh tag list
                                 }
 								, false);
                                 link.innerHTML = data + " ";
@@ -705,7 +756,54 @@ function(data,status){
 				}	
 			};
      // XU
-     
+
+     function removeList(){
+        $('#SearchList').empty();
+     }
+     function tagToList(){
+        removeList();
+        for(i=1;i<tagged.length;i++){
+
+            
+        }
+     }
+     function appendList(){
+      
+		  
+		  Title="title";content="nickname";href="content";
+	   //GET WHERE to append post
+       const listelement = document.querySelector('#SearchList');
+        
+		//create element 
+	   const sli = document.createElement('li');
+	   const sSpan = document.createElement('span');
+		 const si = document.createElement('i');
+	   const sTitle = document.createElement('span');
+	   const scontent = document.createElement('span');
+		  
+	   // add class 
+
+	   sli.className = " mdl-list__item mdl-list__item--three-line";
+       sSpan.className = "mdl-list__item-primary-content";
+       si.className = "material-icons mdl-list__item-avatar";
+       sTitle.className = "";
+       scontent.className = "mdl-list__item-text-body ";
+		 
+	   //int metadata 
+       sTitle.textContent = Title;
+       scontent.textContent = content;
+  
+	   //append Messgage
+
+	   sli.appendChild(sSpan);
+	   sSpan.appendChild(si);
+       sSpan.appendChild(sTitle);
+       sSpan.appendChild(scontent);
+	    
+         listelement.appendChild(sli);
+	  
+
+     }
      function goToLink(URL) {
                     // div Transition need to add css /*     -webkit-filter: blur(5px) filter: blur(5px);
                     
@@ -714,19 +812,39 @@ function(data,status){
                      
                     setTimeout(function () { location.href= URL ; }, 1000);
             };
-function blurAll(){
-    
-    $('#main').addClass('blurTransition');
-    $('#wrapper').addClass('blurTransition');
-}
-</script>
-<?
 
+</script>
+</html>
+
+
+<?php
+
+// PHP ============================
+function htmlStar($rate){
+    $html = "";
+      $star = ceil($rate/2);
+
+    for($i=1;$i<$star;$i++){
+        $html .='<span class="fa fa-star"></span>';  // full star
+    }
+    for($i;$i<=5;$i++){
+        $html .='<span class="fa fa-star-o"></span>';  // empty star
+    }
+    return $html ;
+}
+
+
+// PHP pass data to js
 function islogged(){
-  if(isset($_SESSION['user_info']['User_ID'])){return  'true';}else return 'false';
+   if(isset($_SESSION['user_info']['User_ID'])){return  'true';}else return 'false';
 }
 function getUserID(){ if(isset( $_SESSION['user_info']['User_ID'])){return $_SESSION['user_info']['User_ID']; }else return 'false'; }
-function getname(){ if(isset( $_SESSION['user_info']['name'])){return $_SESSION['user_info']['name']; }else return 'false'; }
+function getcname(){ if(isset( $_SESSION['user_info']['name'])){return $_SESSION['user_info']['name']; }else return 'false'; }
 function getAvatarURL(){ if(isset( $_SESSION['user_info']['AvatarURL'])){return $_SESSION['user_info']['AvatarURL']; }else return 'false'; }
+ 
+?>
+ 
+
+
 
 ?>

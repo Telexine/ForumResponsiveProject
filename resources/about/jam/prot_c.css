@@ -1,0 +1,146 @@
+/* CSS Document */
+body{
+	margin:5px 0px 0px 0px;
+	font-family:Tahoma;
+	font-size:14px;
+	color:#EEBC60;
+}
+.clearFloat{
+	clear:both;
+	}
+#mainBar01{
+	/*background-color:#30CFD2;*/
+	width:1500px;
+	height:180px;
+	margin:10px auto 0px auto;
+}
+#mainBar01 #Topbar{
+	margin-top:30px;
+	height:180px;
+	width:1200px;
+	/*background-color:#B34D4E;*/
+	border-radius:6px;
+	}
+#picTOP01{
+	float:left;
+	}
+#picTOP02{
+	float:right;
+	margin-right:50px;
+	}
+#mainBar01 #Keyquotes{
+	margin-left:32px;
+	height:220px;
+	width:475px;
+	/*background-color:#B87A35;*/
+	border-radius:6px;
+	}
+#mainBar01_1{
+	/*background-color:#30CFD2;*/
+	height:50px;
+	margin:10px auto 0px auto;
+	}
+#mainBar01_1 #TexTBarsilde{
+	height:40px;
+	width:1200px;
+	background-color:rgba(0,0,0,0.58);
+	border-radius:6px;
+	}
+#nameMe {
+	text-align:left;
+	color:#000000;
+	margin-left:250px;
+	width:300px;
+	}
+#music{
+	float:left;
+	width:0px;
+	}
+#TexTBarsilde #iconCall{
+	margin-left:30px;}
+	
+	
+/*------ key หดได้ ------*/
+header{
+	/*margin-right:-750px;*/
+	/*margin-left:945.50px;*/
+	/*width:1200px;
+	/*height:230px;
+	/*background-color: red;*/
+}
+
+div.contenedor{
+	margin-top:25px;
+	margin-right:10px;
+	width: 100px;
+	height: 145px;
+	float:left;
+	-webkit-transition: height .2s, margin-top .4s;
+	-webkit-transition-property: margin-top;
+	-webkit-transition-duration: -2s;
+	transition-property: width, height;
+    transition-duration: -1s, -1s;
+    transition-timing-function: ease, ease;
+    transition-delay: 0s, 0s;
+	border-radius:5px 5px 0px 0px
+}
+div#home{
+	background-color: rgba(93,143,243,1.00);
+}
+div#ME{
+	background-color: rgba(166,101,247,1.00);
+}
+div#work{
+	background-color: rgba(236,60,104,1.00);
+}
+div#working{
+	background-color: rgba(237,160,15,1.00);
+}
+img.icon{
+	display: block;
+	margin:10px auto;
+	background-color: rgba(255,255,255,.15);
+	width:40px;
+	padding:10px;
+	-webkit-border-radius: 50%;
+	-webkit-box-shadow: 0px 0px 0px 30px rgba(255,255,255,0);
+	-webkit-transition:box-shadow .4s;
+}
+p.KeyText{
+	font-size: 12.5px;
+	color:white;
+	text-align: center;
+	padding-top:10px;
+	opacity: .6;
+	-webkit-transition: padding-top .4s;
+}
+div.contenedor:hover{
+	margin-top:-25px;
+	height:239.5px;
+}
+
+div.contenedor:hover p.KeyText{
+	margin:22px auto;
+	padding-top: 25px;
+	opacity: 1;
+}
+
+div.contenedor:hover img.icon{
+	-webkit-box-shadow:0px 0px 0px 0px rgba(255,255,255,.6);
+}
+/*---------------------------------------*/
+
+#mainBar02{	
+	/*background-color:#30CFD2;*/
+	height:-800px;
+	margin:10px auto 0px auto;
+}
+#mainBar02 #TableS{
+	height:1350px;
+	width:1000px;
+	background-color:rgba(0,0,0,0.58);
+	border-radius:6px;
+	}
+#picProt01{
+
+	}
