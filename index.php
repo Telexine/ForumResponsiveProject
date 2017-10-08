@@ -379,7 +379,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
 		if($j==14){$j=0;}//reset color pallet
 
-		echo '<div class="crsl-item">        
+		echo '<div class="crsl-item" onclick="showPost([\''.$Tags[$i]['Tag'].'\'])">        
 					<span class="TAGbot mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect floatLeft" 
                     style="background-color:'.$TagsColor[$j++].';padding-top:0px;border-radius: 8px;vertical-align:middle;font-size:1.5em; ">
                      <span style="margin: 0;
@@ -391,6 +391,11 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 	  }
 	?> 
        </div><!-- @end .crsl-wrap -->
+    </div><!-- @end .crsl-items -->
+	<div class="crsl-items" data-navigation="navbtns">
+      <div class="crsl-wrap" id ="crsl">
+		<div id="recommendedTagPostView"></div>
+	</div><!-- @end .crsl-wrap -->
     </div><!-- @end .crsl-items -->
 	</div><!-- @end #w -->
 
@@ -706,8 +711,8 @@ function(data,status){
      // XU
      
 	 var tagged = [];
-            function showHint(str) 
-			{
+			//showPost takes a string and sdoes tons of stuff and i can't be bothered to write the manual for this
+            function showHint(str) {
 				console.log(tagged);
                 if (str.length == 0) 
 				{
@@ -767,6 +772,21 @@ function(data,status){
                     xmlhttp.open("GET", "resources/php/taglist.php?query=" + str, true);
                     xmlhttp.send();
                 }
+            }
+			//showPost takes an array of whatever tags and updates recommendedTagPostView with posts from postgetter.php
+			function showPost(arr) {
+				console.log(arr);
+                var xmlhttp = new XMLHttpRequest();
+					
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("recommendedTagPostView").innerHTML = this.responseText;
+					}	
+				};	
+                xmlhttp.open("POST", "resources/PHP/postgetter.php");
+				xmlhttp.setRequestHeader( "Content-Type", "application/json" );
+				console.log(JSON.stringify(arr));
+                xmlhttp.send(JSON.stringify(arr));
             }
 			function fragmentFromString(strHTML) {
 				var temp = document.createElement('template');
