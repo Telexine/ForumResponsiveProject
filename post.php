@@ -8,7 +8,7 @@ $PostID=$_GET['PostID'];
 // ดึงข้อมูลหัวกระทู้
 $op=getPost($PostID);
 // ดึง  comment  ทั้งหมด ลง array เก้บ ใน comment
-$Comment=getPostComment($PostID);
+ $getComment=getPostComment($PostID);
 
 
 if (!isset($_SESSION)) {
@@ -341,62 +341,76 @@ character, Bob stars in his own show now, called "Better Call Saul".
 
 		</div>
 		
-		<!-- Comment -->
+        <!-- Comment -->
+        
 
-		<div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:5px; background-color:#dbe4ea;padding-top:5px;padding-left:5px;">
+        <div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:5px; background-color:#dbe4ea;padding-top:5px;padding-left:5px;">
 			<p class="Font2" style="margin:0px;"><h1 style="color:#263c4b;text-align:left"> Comment</h1></p>
 			
 			<div id='CommentSection'>
+
+<?php 
+/*
+
+array(2) { [0]=> array(7) { ["Post_ID"]=> string(15) "OP1507304724?22" ["Date"]=> string(19) "2017-10-08 19:23:44" ["content"]=> string(29) "
+asdsafadgadshsjfydjht
+
+" ["User_ID"]=> string(2) "23" ["imageURL"]=> string(0) "" ["isOP"]=> string(1) "0" ["AvatarURL"]=> string(42) "resources/images/avatar/default_Avatar.jpg" } [1]=> array(7) { ["Post_ID"]=> string(15) "OP1507304724?22" ["Date"]=> string(19) "2017-10-08 19:26:37" ["content"]=> string(12) "
+Data
+
+" ["User_ID"]=> string(2) "23" ["imageURL"]=> string(0) "" ["isOP"]=> string(1) "0" ["AvatarURL"]=> string(42) "resources/images/avatar/default_Avatar.jpg" } }
  
-		 
-		<div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:10px; background-color:#dbe4ea; padding-bottom:40px; padding-top:25px; padding-left:25px; padding-right:25px;margin-bottom:20px;">
-			<!-- Title --> 
-			<h5 style="color:#263c4b;text-align:left" >Title : </h5> <h1 style="color:#263c4b;text-align:left"><?php echo $op[0]["Title"];?></h1>
-			<!-- END title -->
-		
-		<div class="col-l-2 col-m-3 col-s-12" style="box-sizing:border-box; padding-right:25px;">
+ */
+ 
+        foreach ($getComment as $rows){
+            
+           
+		echo ' <div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:10px; background-color:#dbe4ea; padding-bottom:40px; padding-top:25px; padding-left:25px; padding-right:25px;margin-bottom:20px;">
+        <!-- Title --> 
+        <h5 style="color:#263c4b;text-align:left" >Title : </h5> <h1 style="color:#263c4b;text-align:left"> Repiled to : '.$op[0]["Title"].' at '.$rows['Date'].'</h1>
+        <!-- END title -->
+    
+    <div class="col-l-2 col-m-3 col-s-12" style="box-sizing:border-box; padding-right:25px;">
 <!-- avartar --> 
-				<div class="" aling="center" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url('<?php echo $op[0]["AvatarURL"] ?>');    background-size:     cover;                   
-	background-repeat:   no-repeat;
-	background-position: center center; ">
-		 
-		
+            <div class="" aling="center" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url( '."'". trim($rows["AvatarURL"])."'".');    background-size:     cover;                   
+background-repeat:   no-repeat;
+background-position: center center; "> 
+     
+    
 
-				
-				</div>
-<!--avartar -->
-		
-				<div class="col-l-12 col-m-12 col-s-12"><p class="Font2"><?php echo getName( $op[0]["User_ID"]);?></p></div>
+            
+            </div>
+<!--end avartar -->
+    
+            <div class="col-l-12 col-m-12 col-s-12"><p class="Font2"> <p class="Font2">'.getName($rows["User_ID"]).'</p></div>
+            </div>
 
-			</div>
+        <div class="col-l-10 col-m-9 col-s-12" style="box-sizing:border-box; padding-left:25px;">
+            
+            <div class="col-m-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%;">
+                        '. $rows['content'].'   <!---  Post content -->
+            </div>
 
-			<div class="col-l-10 col-m-9 col-s-12" style="box-sizing:border-box; padding-left:25px;">
-				
-				<div class="col-m-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%; ">
-							<?PHP echo $op[0]["content"]; ?>   <!---  Post content -->
-				</div>
+            <div class="col-l-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:400px; width:auto; ">
+            </div>
+        </div>
+       
+    </div> ' ;
 
-				<div class="col-l-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:400px; width:auto; ">
 
-				</div>
-				 
-
-			</div>
-
+        }
+?>
 
  
-			</div>
+		
 
-
-		</div>
-
-		<!-- end Comment -->
-
-
+		<!-- end Commentxxxxxx -->
+        </div>
+        
  <hr  size=30>
-
+    
 		<!--Postiing comment  -->
-<div style="width:100%:margin-top:20px;">
+<div style="width:100%:margin-top:20px;margin-bottom: 50px; background-color: aliceblue;">
 <h2 class="fa">Wanna Post ? </h2>
 
 
@@ -405,9 +419,18 @@ character, Bob stars in his own show now, called "Better Call Saul".
 	<div class="" aling="center" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url('<?php echo getAvatarURL();?> ');    background-size:     cover;                   
 	background-repeat:   no-repeat;
 	background-position: center center; ">
-	
-			
-				<div class="col-l-12 col-m-12 col-s-12"><p class="Font2"><?php echo getcname();?></p></div>
+	<div class="col-l-12 col-m-12 col-s-12"><p class="Font2">
+    <?php 
+    if(getcname()!='false'){
+        echo getcname();
+         
+    }else {
+        echo 'Not Login';
+    }
+          
+                
+                ?>
+                </p></div>
 		</div>
 	</div>
 
@@ -415,10 +438,8 @@ character, Bob stars in his own show now, called "Better Call Saul".
 
 		<div style="col-l-8 col-m-7 col-s-12" style="float:left">
 			<table align="center" class="Font2 fa-2x" style="padding:30px;    width: 100%; ">
-    	<tr><td colspan="1">Title: </td>
-        <td><input type="text" name="CommentTITLE" class="fa" id="CommentTITLE" style=" border-radius:5px;"></td></tr>
-      
-        <tr><td>Content: </td><td><textarea name="Postaddress" id="Comment" ></textarea>
+    	 
+        <tr><td>Comment: </td><td><textarea name="Comment" id="Comment" ></textarea>
            	<script type="text/javascript">
 			//<![CDATA[
 				CKEDITOR.replace( 'Comment',{
@@ -435,7 +456,7 @@ character, Bob stars in his own show now, called "Better Call Saul".
 			//]]>
 			</script>
     </td></tr>
-        <tr><td colspan="2" align="right"><input type="submit" onClick="subccmitPost();" value="Submit" class="Font2 fa" style="border-radius:5px; 
+        <tr><td colspan="2" align="right"><input type="submit" onClick="submitcomment();" value="Submit" class="Font2 fa" style="border-radius:5px; 
         background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td></tr>
 	</table>
 	</div>
@@ -507,27 +528,29 @@ function submitcomment(){
 //check validate here 
  
 let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
- if(xUser_ID=""){
+ if(xUser_ID==false){
 //  pop login
+PopRegisterPost();
 	return;
  }
 
-let Content  = document.getElementById('comment').value; // !@#$%^
- 
-$.post("resources/PHP/ratePost.php",
+let Content  = document.getElementById('Comment').value;  
+ if(Content==""){alert("Please type the comment");return;}
+$.post("resources/PHP/comment.php",
 { 
 	PostContent: Content,
 	User_ID  : xUser_ID,
 	Post_ID :  '<?php echo $PostID; ?>'
 },
+
 function(data,status){
-					if(status!='success'){  // response == 406
+					if(data=='406'){  // response == 406
                         alert("ERROR"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
                        }
                     else{
                         alert("success: click ok to go to page"); //จะขึ้น Modal, Breadcrumb
-					//	$(location).attr('href', 'post.php?PostID='+'<?php echo $PostID; ?>');
+					 	$(location).attr('href', 'post.php?PostID='+'<?php echo $PostID; ?>');
                     }
 });
 
@@ -617,9 +640,10 @@ timer = setInterval(updateDiv,100);
 function updateDiv(){
     var editorText = CKEDITOR.instances.PostContent.getData();
     $('#PostContent').html(editorText);
+    var editorComment = CKEDITOR.instances.Comment.getData();
+    $('#Comment').html(editorComment);
 }
-
-
+ 
 // FUNCTION POSTforumn
 function submitPost(){
 //check validate here 

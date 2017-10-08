@@ -163,7 +163,7 @@ function createPost($Title,$Content,$UserID,$imageURL,$IsOP,$Tags)
  function comment($PostID,$Content,$UserID){
 
     $conn = initDB();
-    $sql = "INSERT INTO ForumResponsive.TBmeta (`Post_ID`,`content`,`User_ID`,`imageURL`,`isOP`) VALUES ('$PostID','$Content','$UserID',0)";
+    $sql = "INSERT INTO ForumResponsive.TBmeta (`Post_ID`,`content`,`User_ID`,`imageURL`,`isOP`) VALUES ('$PostID','$Content','$UserID','',0)";
     $conn->query($sql);
     return true;
 
@@ -219,11 +219,11 @@ function getPostComment($PostID){
 
     $conn = initDB();
     
-    $sql = "SELECT a.*,b.AvatarURL FROM ForumResponsive.TBmeta  as a , ForumResponsive.TBUser as b WHERE a.User_ID=b.User_ID AND a.Post_ID =  '$PostID' AND a.isOP = '0' ";
+  $sql = "SELECT a.*,b.AvatarURL FROM ForumResponsive.TBmeta  as a , ForumResponsive.TBUser as b WHERE a.User_ID=b.User_ID AND a.Post_ID =  '$PostID' AND a.isOP = '0' ";
     // query 
     $fetch = $conn->query($sql); 
     // fetch all to arr 
-   while(($Post_Comment[] = mysqli_fetch_assoc($fetch)) || array_pop($Post_Comment)); 
+   while(($Post_Comment[] = mysqli_fetch_assoc($fetch)) || array_pop($Post_Comment));  
    return $Post_Comment;
 }
  
