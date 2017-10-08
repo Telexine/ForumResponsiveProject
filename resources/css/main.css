@@ -238,7 +238,25 @@ color:red;
 .textcom p{
     font-size:3em;
 }
- 
+#pgload {
+    width:100%;
+height:100%;
+position:fixed;
+z-index:9999;
+    background: url(../../resources/images/load-dribbble.gif) no-repeat center center ;
+
+}
+
+#loadbg {
+width: 100%;
+height: 100%;
+position: fixed;
+z-index: 9998;
+left: 0px;
+top: 0px;
+background-color:white; 
+
+}
 /*
 
 END REGISTER , LOGIN CSS

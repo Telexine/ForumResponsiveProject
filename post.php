@@ -37,26 +37,37 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
  
 </head>
-<style>
+<script>
+document.onreadystatechange = function () {
+  var state = document.readyState;
+  if (state == 'interactive') {
+    blurAll();
+  } else if (state == 'complete') {
+      setTimeout(function(){
+         document.getElementById('interactive');
+         $("#loadbg").fadeOut();
+         $("#borderload").fadeOut();
+         $("#pgload").fadeOut();
 
-.button {
-    background-color:hsla(0,0%,100%,0.00);
-    border: none;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-}
-	.Font{
-		font-family:Orator Std;
-		font-size: 18px;
-	}
-	.Font2{
-		font-family:Orator Std;
-		color: #263c4b;
-	}
+         setTimeout(function(){
  
-</style>
+            removeBlurAll();
+      },1000);
+      },500);
+  }
+}
+
+	
+	</script>
+</head>
+
 <body>
+<!-- Load -->
+<div id="loadbg">
+			<div id="borderload" >
+			<div id="pgload"></div>
+            </div></div>
+   <!-- Load -->         
 
 <div   align="center" class="Logo"><a href="#" class="button"><img src="resources/images/logo.png"  width="112" height="112"></a></div> 
 <header>
@@ -75,6 +86,16 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 </nav>	
 </header>
 
+<!-- snack bar -->
+
+<div class="mdl-js-snackbar mdl-snackbar" id="demo-toast-example">
+<div class="mdl-snackbar__text">
+</div>
+<button class="mdl-snackbar__action" type="button"></button>
+</div>
+ 
+  
+<!-- snack bar -->
 
 <!-- CreatePostBox -->
 <div id='backdrop' class="modal  hide" onClick="hideAll();"></div>
@@ -264,7 +285,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 		
 		<div class="col-l-2 col-m-3 col-s-12" style="box-sizing:border-box; padding-right:25px;">
 <!-- avartar --> 
-				<div class="" aling="center" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url('<?php echo $op[0]["AvatarURL"] ?>');    background-size:     cover;                   
+				<div class="" aling="center" style="margin:auto;box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url('<?php echo $op[0]["AvatarURL"] ?>');    background-size:     cover;                   
 	background-repeat:   no-repeat;
 	background-position: center center; ">
 		 
@@ -280,8 +301,8 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 
 			<div class="col-l-10 col-m-9 col-s-12" style="box-sizing:border-box; padding-left:25px;">
 				
-				<div class="col-m-12"  style="box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%; ">
-							<?PHP echo $op[0]["content"]; ?>   <!---  Post content -->
+				<div class="col-m-12"  style="height: 100%;box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%; ">
+						<div class="col-m-12 textcom"style="text-align:left">	<?PHP echo $op[0]["content"]; ?>  </div> <!---  Post content -->
 				</div>
 
 				<div class="col-l-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:400px; width:auto; ">
@@ -307,7 +328,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
         
         </div> 
         <div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:5px; background-color:#dbe4ea;padding-top:5px;padding-left:5px;">
-			<p class="Font2" style="margin:0px;"><h1 style="color:#263c4b;text-align:left;padding-left:20px"> Comment</h1></p>
+			<p class="Font2" style="margin:0px;"><h1 style="color:#263c4b;text-align:left;padding-left:20px"> <?php echo count($getComment); ?> Comments</h1></p>
 			
 			<div id='CommentSection'>
      
@@ -332,7 +353,7 @@ Data
                 
                 <div class="col-l-2 col-m-3 col-s-12" style="box-sizing:border-box; padding-right:25px;">
             <!-- avartar --> 
-                 <div class="" aling="center" style="    margin: auto;box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url( '."'". trim($rows["AvatarURL"])."'".');    background-size:     cover;                   
+                 <div class="" aling="center" style="  margin: auto;box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url( '."'". trim($rows["AvatarURL"])."'".');    background-size:     cover;                   
                 background-repeat:   no-repeat;
                 background-position: center center; "> 
     
@@ -344,8 +365,8 @@ Data
 
         <div class="col-l-10 col-m-9 col-s-12" style="height: 100%;box-sizing:border-box; padding-left:25px;">
             
-            <div class="col-m-12 textcom" style="box-sizing:content-box; border-radius:10px;height: 100%;text-align:left; background-color:#263c4b;padding:25px; width:95%;">
-                        '. $rows['content'].'   <!---  Post content -->
+            <div class="col-m-12  " style="box-sizing:content-box; border-radius:10px;height: 100%;text-align:left; background-color:#263c4b; width:95%;">
+                     <div class="col-m-12 textcom " style="padding:20px">   '. $rows['content'].'    </div> <!---  Post content -->
             </div>
             <div style="width: 540px;
             height: 30px;
@@ -439,16 +460,6 @@ Data
 		
 
 
-<!-- snack bar -->
-
-<div class="mdl-js-snackbar mdl-snackbar" id="demo-toast-example">
-<div class="mdl-snackbar__text">
-</div>
-<button class="mdl-snackbar__action" type="button"></button>
-</div>
- 
-  
-<!-- snack bar -->
 
 
 		

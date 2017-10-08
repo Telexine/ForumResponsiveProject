@@ -27,11 +27,39 @@ $Hotpost = getHotPost(10); // 5 is select top 5
   <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
 
 
+  
+  
+    <script>
+document.onreadystatechange = function () {
+  var state = document.readyState;
+  if (state == 'interactive') {
+    blurAll();
+  } else if (state == 'complete') {
+      setTimeout(function(){
+         document.getElementById('interactive');
+         $("#loadbg").fadeOut();
+         $("#borderload").fadeOut();
+         $("#pgload").fadeOut();
+
+         setTimeout(function(){
  
+            removeBlurAll();
+      },1000);
+      },500);
+  }
+}
+
+	
+	</script>
 </head>
 
 <body>
-
+<!-- Load -->
+<div id="loadbg">
+			<div id="borderload" >
+			<div id="pgload"></div>
+            </div></div>
+   <!-- Load -->         
 <div  align="center" class="Logo"><a href="#" class="button"><img src="resources/images/logo.png"  width="112" height="112"></a></div> 
 		<header>
 		
@@ -46,7 +74,9 @@ $Hotpost = getHotPost(10); // 5 is select top 5
 				<li><a href="#" onClick="PopcreatePost();" class="o"><span class="fa fa-magic" style="font-size: 30px;padding-top: 12px;"><p class="Font">  CreatePost</p></a></li>
 				<li><a href="#" onClick="goToLink('member.php');"class="o"><span class="fa fa-smile-o" style="font-size: 30px;padding-top: 12px;"><p class="Font">  About</p></a></li>
 			</ul>
-		</nav>	
+        </nav>	
+        
+        
 		</header>
 
 
