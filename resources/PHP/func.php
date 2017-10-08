@@ -132,12 +132,11 @@ function searchPost($searchTerms){
 function getTagPost($postid){
     $conn = initDB();
 	mysqli_select_db($conn, "ForumResponsive");
-    $sql ="SELECT a.Post_ID, a.title,COUNT(a.Post_ID) count, b.DATE ,(SUM(c.Rating) /count(a.Post_ID)) as popular , b.imageURL,b.content as content,u.name 
-	FROM ForumResponsive.TBPost as a , ForumResponsive.TBUser as u , ForumResponsive.TBmeta as b LEFT JOIN ForumResponsive.TBrate c ON b.Post_ID = c.Post_ID 
-	WHERE a.Post_ID = ".$postid." and b.user_id = u.user_id 
-	GROUP BY a.Post_ID 
-	ORDER BY `popular` DESC";
- 
+    $sql ="SELECT TBPost.Post_ID pid, TBPost.Title title, TBUser.UserName uname 
+	FROM ((TBPost INNER JOIN TBMeta ON TBPost.Post_ID = TBMeta.Post_ID)INNER JOIN TBUser ON TBMeta.User_ID = TBUser.User_ID)
+	WHERE TBPost.Post_ID = \"".$postid."\"
+	GROUP BY TBPost.Post_ID ;";
+	$hPost = array();
 	if ($result = mysqli_query($conn, $sql)) {
 		/* fetch associative array */
 		while ($row = mysqli_fetch_assoc($result)) {

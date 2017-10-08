@@ -225,8 +225,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
         </p></div>
 
  	 <!--    Xureality Tag-->
-			
-<ul id="SearchList" class="demo-list-three mdl-list">
+<ul id="searchTagPostView" class="demo-list-three mdl-list">
 
   <li class="mdl-list__item mdl-list__item--three-line">
     <span class="mdl-list__item-primary-content">
@@ -392,11 +391,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 	?> 
        </div><!-- @end .crsl-wrap -->
     </div><!-- @end .crsl-items -->
-	<div class="crsl-items" data-navigation="navbtns">
-      <div class="crsl-wrap" id ="crsl">
-		<div id="recommendedTagPostView"></div>
-	</div><!-- @end .crsl-wrap -->
-    </div><!-- @end .crsl-items -->
+	<ul id="recommendedTagPostView" class="demo-list-three mdl-list"></ul>
 	</div><!-- @end #w -->
 
 		</div><!-- hotpost -->
@@ -711,7 +706,7 @@ function(data,status){
      // XU
      
 	 var tagged = [];
-			//showPost takes a string and sdoes tons of stuff and i can't be bothered to write the manual for this
+			//showHint takes a string and does tons of stuff and i can't be bothered to write the manual for this
             function showHint(str) {
 				console.log(tagged);
                 if (str.length == 0) 
@@ -752,13 +747,14 @@ function(data,status){
                                 link.href =  '#';
                                 link.addEventListener("click", function (e) 
 								{ 
-									frag = fragmentFromString("<span id='hint' class=''><span id='hinttext'>" + e.target.innerHTML + "</span><span><button type='button' class='mdl-chip__action'><i class='material-icons close '>cancel</i></button></span></span> ");
+									frag = fragmentFromString("<span id='hint' class=''><span id='hinttext'>" + e.target.innerHTML + "</span><span><button type='button' class='mdl-chip__action close'><i class='material-icons '>cancel</i></button></span></span> ");
 									tagged.push(e.target.innerHTML);
                                     document.getElementById("tagDisplay").appendChild(frag); 
 									document.getElementById("textin").value = "";
 									e.target.parentElement.removeChild(e.target);
                                     makecloseable();
                                     tagToList();//Refreseh tag list
+									showPostSearch(tagged);
                                 }
 								, false);
                                 link.innerHTML = data + " ";
@@ -788,6 +784,21 @@ function(data,status){
 				console.log(JSON.stringify(arr));
                 xmlhttp.send(JSON.stringify(arr));
             }
+			//same, but for search
+			function showPostSearch(arr) {
+				console.log(arr);
+                var xmlhttp = new XMLHttpRequest();
+					
+                xmlhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("searchTagPostView").innerHTML = this.responseText;
+					}	
+				};	
+                xmlhttp.open("POST", "resources/PHP/postgetter.php");
+				xmlhttp.setRequestHeader( "Content-Type", "application/json" );
+				console.log(JSON.stringify(arr));
+                xmlhttp.send(JSON.stringify(arr));
+            }
 			function fragmentFromString(strHTML) {
 				var temp = document.createElement('template');
 				temp.innerHTML = strHTML;
@@ -795,9 +806,12 @@ function(data,status){
 			}
 			function makecloseable() {
 				var elements = document.getElementsByClassName('close');
-				for (i = 0; i < elements.length; ++i){
-					elements[i].addEventListener("click", function (e){
+				console.log(elements.length);
+				for (var i = 0; i < elements.length; i++){
+					console.log(elements[i]);
+					elements[i].addEventListener("click", function(){
 						var frag = fragmentFromString(this.parentNode.parentNode.parentNode.innerHTML);
+						console.log(frag);
 						var list = frag.getElementById("hinttext").innerHTML;
 						console.log(list);
 						for (j = 0; j < tagged.length; ++j)
@@ -807,10 +821,10 @@ function(data,status){
 								tagged.splice(j, 1);
 							}
 						}
-						this.parentNode.parentNode.parentNode
-						.removeChild(this.parentNode.parentNode);
+						this.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode);
+						showPostSearch(tagged);
 						return false;
-					}, false);
+					});
 				}	
 			};
      // XU
