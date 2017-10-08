@@ -313,12 +313,27 @@ function UpdateRate($star/* 0-10 */,$User_ID,$Post_ID){
     return true;
 }
 
+function htmlStar($rate){
+    $html = "";
+      $star = ceil($rate/2);
+
+    for($i=1;$i<$star;$i++){
+        $html .='<span class="fa fa-star"></span>';  // full star
+    }
+    for($i;$i<=5;$i++){
+        $html .='<span class="fa fa-star-o"></span>';  // empty star
+    }
+    return $html ;
+}
 
 
 
 
 
-
+function getUserID(){ if(isset( $_SESSION['user_info']['User_ID'])){return $_SESSION['user_info']['User_ID']; }else return 'false'; }
+function getcname(){ if(isset( $_SESSION['user_info']['name'])){return $_SESSION['user_info']['name']; }else return 'false'; }
+function getAvatarURL(){ if(isset( $_SESSION['user_info']['AvatarURL'])){return $_SESSION['user_info']['AvatarURL']; }else return 'false'; }
+ 
 
 
 //----------    PRIVATE FUNCTION (Backend)   ---------------//

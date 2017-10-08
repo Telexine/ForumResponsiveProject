@@ -54,7 +54,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 		font-family:Orator Std;
 		color: #263c4b;
 	}
-
+ 
 </style>
 <body>
 
@@ -79,6 +79,8 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 <!-- CreatePostBox -->
 <div id='backdrop' class="modal  hide" onClick="hideAll();"></div>
 <div id="CreatePostBox"class="modal hide">
+
+ 
 
 
 <div style="margin-bottom: 50px; color: aliceblue; text-align: center;" class="col-l-12">
@@ -318,7 +320,7 @@ character, Bob stars in his own show now, called "Better Call Saul".
 
 			<div class="col-l-10 col-m-9 col-s-12" style="box-sizing:border-box; padding-left:25px;">
 				
-				<div class="col-m-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%; ">
+				<div class="col-m-12"  style="box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%; ">
 							<?PHP echo $op[0]["content"]; ?>   <!---  Post content -->
 				</div>
 
@@ -329,7 +331,7 @@ character, Bob stars in his own show now, called "Better Call Saul".
 				<div class="col-l-12 col-m-12 col-s-12" style="padding-top:10px;">
 					<h1 class="Font2" style="font-size:24px;float:left">Rating : 
 						<?php
-						echo htmlStar(getPostRate($op[0]['Post_ID']));
+						echo htmlStarsubmit(getPostRate($op[0]['Post_ID']));
 						?>
 					</h1>
 	 
@@ -467,6 +469,16 @@ background-position: center center; ">
 		
 
 
+<!-- snack bar -->
+
+<div class="mdl-js-snackbar mdl-snackbar" id="demo-toast-example">
+<div class="mdl-snackbar__text">
+</div>
+<button class="mdl-snackbar__action" type="button"></button>
+</div>
+ 
+  
+<!-- snack bar -->
 
 
 		
@@ -478,7 +490,10 @@ background-position: center center; ">
 				
 				
 				
-				เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong> </div>	
+                เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong> 
+                <?php if(getUserID()!='false'){
+        echo "<button onClick='logout();'> Logout</button>";
+    }?>  </div>	
 		</footer>
 
 		</nav>
@@ -512,12 +527,13 @@ $.post("resources/PHP/ratePost.php",
 },
 function(data,status){
 					if(status!='success'){  // response == 406
-                        alert("ERROR"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                        notification("Can't rate this post"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
                        }
                     else{
-                        alert("success"); //จะขึ้น Modal, Breadcrumb
-						$(location).attr('href', 'post.php?PostID='+'<?php echo $PostID; ?>');
+                        notification("Success"); //จะขึ้น Modal, Breadcrumb
+                        goToLink('post.php?PostID='+'<?php echo $PostID; ?>');
+				      	//	$(location).attr('href', 'post.php?PostID='+'<?php echo $PostID; ?>');
                     }
 });
 
@@ -535,7 +551,7 @@ PopRegisterPost();
  }
 
 let Content  = document.getElementById('Comment').value;  
- if(Content==""){alert("Please type the comment");return;}
+ if(Content==""){notification("Please type the comment");return;}
 $.post("resources/PHP/comment.php",
 { 
 	PostContent: Content,
@@ -545,12 +561,12 @@ $.post("resources/PHP/comment.php",
 
 function(data,status){
 					if(data=='406'){  // response == 406
-                        alert("ERROR"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                        notification("Can't comment"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
                        }
                     else{
-                        alert("success: click ok to go to page"); //จะขึ้น Modal, Breadcrumb
-					 	$(location).attr('href', 'post.php?PostID='+'<?php echo $PostID; ?>');
+                        notification("success!"); //จะขึ้น Modal, Breadcrumb
+                        goToLink('post.php?PostID='+'<?php echo $PostID; ?>');
                     }
 });
 
@@ -560,81 +576,14 @@ function(data,status){
 
 
 
-$(function(){
-  $('.hot').carousel({
-	speed: 800,
-	autoRotate: 4000,
-    visible: 4,
-    itemMinWidth: 270,
-    itemEqualHeight: 370,
-    itemMargin: 10,
-  });
-  $('.res').carousel({
-    visible: 9,
-    itemMinWidth: 120,
-    itemEqualHeight: 370,
-    itemMargin: 10,
-  });
-	
-  	$('.hot').on("initCarousel", function(event, defaults, obj){
-		// Hide controls
-		$('#'+defaults.navigation).find('.previous, .next').css({ opacity: 0 });
-		// Show controls on gallery hover
-		// #gallery-07 wraps .crsl-items and .crls-nav
-		// .stop() prevent queue
-		$('#w').hover( function(){
-			$(this).find('.previous').css({ left: '-5px' }).stop(true, true).animate({ left: '0px', opacity: 1 })
-			$(this).find('.next').css({ right: '-10px' }).stop(true, true).animate({ right: '-5px', opacity: 1 });
-		}, function(){
-			$(this).find('.previous').animate({ left: '-5px', opacity: 0 });
-			$(this).find('.next').animate({ right: '-10px', opacity: 0 });
-		});
-		$('#ww').hover( function(){
-			$(this).find('.previous').css({ left: '-5px' }).stop(true, true).animate({ left: '0px', opacity: 1 })
-			$(this).find('.next').css({ right: '-10px' }).stop(true, true).animate({ right: '-5px', opacity: 1 });
-		}, function(){
-			$(this).find('.previous').animate({ left: '-5px', opacity: 0 });
-			$(this).find('.next').animate({ right: '-10px', opacity: 0 });
-		});
-	});
-});
-
 
 function PopcreatePost(){  // โชว Create Post
     
 	if(<?php echo islogged();?>){ // Check islog in in php
 	$('#CreatePostBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	}else{PopRegisterPost();}// go to login instead
-}
-function hideAll(){ // โชว Create Post
-	$('#CreatePostBox').removeClass( " show " ).addClass( " hide " );
-	$('#RegisterBox').removeClass( " show " ).addClass( " hide " );
-	$('#backdrop').removeClass( " show " ).addClass( " hide " );
-    $('#SearchBox').removeClass( " show " ).addClass( " hide " );
-    removeBlurAll();
-}
-function blurAll(){
-    
-    $('#main').addClass('blurTransition');
-    $('#wrapper').addClass('blurTransition');
-}
-function removeBlurAll(){
-    $('#main').removeClass('blurTransition');
-    $('#wrapper').removeClass('blurTransition');
-    
-}
-function PopRegisterPost(){  // โชว Resgist  Post
+    $('#backdrop').removeClass( " hide " ).addClass( " show " );
     blurAll();
-	$('#RegisterBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	
-}
-function PopSearch(){  // โชว Resgist  Post
-    blurAll();	 
-	$('#SearchBox').removeClass( " hide " ).addClass( " show " );
-	$('#backdrop').removeClass( " hide " ).addClass( " show " );
-	
+	}else{PopRegisterPost();blurAll();}// go to login instead
 }
 timer = setInterval(updateDiv,100);
 function updateDiv(){
@@ -651,11 +600,14 @@ function submitPost(){
 
 
 let xPostTitle = document.getElementById('PostTitle').value;
-let xPostSubtitle = document.getElementById('PostSubtitle').value; //!@#$%^ คืออะไร
 let xPostContent = document.getElementById('PostContent').value;
 let xPostTag = document.getElementById('PostTag').value;
 let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
  
+if(xPostContent==""||xPostTitle==""){
+    notification('Please Fill the Post');
+    return false;
+}
 
 $.post("resources/PHP/createPost.php",
 { 
@@ -683,95 +635,7 @@ function(data,status){
 // FUNCTION REGISTER / LOGIN 
 
 let G_User_ID, G_name,  G_AvatarURL;
-//Validate 
-function validate(classNa){
-    let check = document.getElementsByClassName(classNa);
-     let len = check.length;
-     let valid = true;
-     for(var i=0;i<len;i++) {
-       if (check[i].value.trim() ==='')
-       {    
-
-           let obj = check[i].id;
- 
-           $("#"+obj).addClass(" required");  // กล่องแดง
-            $("#"+obj).addClass(" error");    // สั่น
-            $("#"+obj+"_error").removeClass("hideErrorMessage");
-              setTimeout(function() {
-              $("#"+obj).removeClass("error");
-            }, 300);
-            valid= false;
-            
-          //alert('required Field '+check[i].name); //เดวเราทำ js เพิ่ม เราไม่ควรใช้  alert
-
-           
-       }
-       else{
-        let obj = check[i].id;
-        $("#"+obj).removeClass(" required");  // กล่องแดง
-        $("#"+obj+"_error").addClass(" hideErrorMessage");
-
-       }
- ;
-      
-     }
-    
-    return valid;
-
-}
-// REGISTER
-
-
-   
-  function register(){
-    // validate
-    if(!validate('require')){return;}
-    // password check 
-    pw1 = document.getElementById('Password2').value;
-    pw2 = document.getElementById('Password').value;
-    if(pw1!=pw2){
-        //pass word is not the same / alert something
-        alert('Password is not match');
-        return;
-    }
-
-    // All clear  เขียนลง DB
-    
-        let name = document.getElementById('Name').value;
-        let avatarURL = document.getElementById('avatarPath').value; // เดี๋ยวทำ
-        let Username = document.getElementById('username').value;
-        let password = md5(document.getElementById('Password').value);
-            if (window.XMLHttpRequest) {
-                // code for IE7+, Firefox, Chrome, Opera, Safari
-                xmlhttp = new XMLHttpRequest();
-            } else {
-                // code for IE6, IE5
-                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-            }
-
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    let response =parseInt(this.responseText);
-                    if(response==200){
-                        alert("success"); //จะขึ้น Modal, Breadcrumb
-					 
-                        //fade out
-                        $('#regisOption').removeClass(" fadepopIN"); 
-                        $('#regisOption').addClass(" fadepopOut"); 
-						location.reload(); // reload
-                    }else if(response==406){
-                        alert("Response : This Username "+ Username +" Already taken please try again"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
-                                                        //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
-                       }
-                }
-            };
-             
-            xmlhttp.open("GET","resources/PHP/register.php?name="+name+"&avatarURL="+avatarURL+"&Username="+Username+"&password="+password,true);
-            xmlhttp.send();
-  }
-
-
-//REGISTER BUTTON 
+//Validate  
 
 
 // Login 
@@ -806,14 +670,14 @@ function Loginpage(){
                         <?php echo 'G_AvatarURL = '.json_encode($_SESSION['user_info']['AvatarURL']).';';?>
                         <?php  } ?> 
                         
-                        alert("Login success : "+G_name); //จะขึ้น Modal, Breadcrumb
+                        notification("Login success  for : "+G_name); //จะขึ้น Modal, Breadcrumb
 
                             //fade out
                         $('#regisOption').removeClass(" fadepopIN"); 
 						$('#regisOption').addClass(" fadepopOut");
 						location.reload(); 
                     }else if(response==406){
-                        alert("Response : Username or password are incorrect"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                        notification("Username or password are incorrect");// ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
                        }
                 }
@@ -825,25 +689,7 @@ function Loginpage(){
 
 }
 console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?> ");
-
-function logout(){
-
-
-
-$.post("resources/PHP/logout.php",
-{ },
-function(data,status){
-					if(status!='success'){  
-                        alert("ERROR");  
-                       }
-                    else{
-                        alert("Logingout"); //จะขึ้น Modal, Breadcrumb
-						location.reload(); 
-                    }
-});
-
-
-}
+ 
 //END FUNCTION REGISTER / LOGIN 
 
 
@@ -945,14 +791,15 @@ function(data,status){
                      
                     setTimeout(function () { location.href= URL ; }, 1000);
             };
-
+     
 </script>
-
+<script type="text/javascript" src="resources/JS/main.js"></script>
 
 <?php
 
 // PHP ============================
-function htmlStar($rate){
+ 
+function htmlStarsubmit($rate){
     $html = "";
       $star = ceil($rate/2);
 // เดี๋ยว ทำ  : Hover
@@ -970,9 +817,6 @@ function htmlStar($rate){
 function islogged(){
    if(isset($_SESSION['user_info']['User_ID'])){return  'true';}else return 'false';
 }
-function getUserID(){ if(isset( $_SESSION['user_info']['User_ID'])){return $_SESSION['user_info']['User_ID']; }else return 'false'; }
-function getcname(){ if(isset( $_SESSION['user_info']['name'])){return $_SESSION['user_info']['name']; }else return 'false'; }
-function getAvatarURL(){ if(isset( $_SESSION['user_info']['AvatarURL'])){return $_SESSION['user_info']['AvatarURL']; }else return 'false'; }
  
 ?>
  

@@ -139,6 +139,9 @@ REGISTER , LOGIN CSS
 
 */
 
+#main img{ max-width:100% !important ;  /* แก้รูปใหญ่เกิน*/
+    height:auto !important;
+    width: 41.66% !important;}
 
 .error {
 position: relative;
