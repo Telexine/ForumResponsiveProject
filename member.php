@@ -428,42 +428,7 @@ function(data,status){
 // FUNCTION REGISTER / LOGIN 
 
 let G_User_ID, G_name,  G_AvatarURL;
-//Validate 
-function validate(classNa){
-    let check = document.getElementsByClassName(classNa);
-     let len = check.length;
-     let valid = true;
-     for(var i=0;i<len;i++) {
-       if (check[i].value.trim() ==='')
-       {    
-
-           let obj = check[i].id;
- 
-           $("#"+obj).addClass(" required");  // กล่องแดง
-            $("#"+obj).addClass(" error");    // สั่น
-            $("#"+obj+"_error").removeClass("hideErrorMessage");
-              setTimeout(function() {
-              $("#"+obj).removeClass("error");
-            }, 300);
-            valid= false;
-            
-          //alert('required Field '+check[i].name); //เดวเราทำ js เพิ่ม เราไม่ควรใช้  alert
-
-           
-       }
-       else{
-        let obj = check[i].id;
-        $("#"+obj).removeClass(" required");  // กล่องแดง
-        $("#"+obj+"_error").addClass(" hideErrorMessage");
-
-       }
- ;
-      
-     }
-    
-    return valid;
-
-} 
+//Validate  
 
 
 // Login 
@@ -498,14 +463,14 @@ function Loginpage(){
                         <?php echo 'G_AvatarURL = '.json_encode($_SESSION['user_info']['AvatarURL']).';';?>
                         <?php  } ?> 
                         
-                        alert("Login success : "+G_name); //จะขึ้น Modal, Breadcrumb
+                        notification("Login success for : "+G_name); //จะขึ้น Modal, Breadcrumb
 
                             //fade out
                         $('#regisOption').removeClass(" fadepopIN"); 
 						$('#regisOption').addClass(" fadepopOut");
 						location.reload(); 
                     }else if(response==406){
-                        alert("Response : Username or password are incorrect"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
+                        notification("Username or password are incorrect"); // ถ้า  Fail จะขึ้น Modal, Breadcrumb
                                                         //  ได้ จะ ขึ้นเหมือนกัน และก็ redirect
                        }
                 }

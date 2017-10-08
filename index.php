@@ -484,41 +484,7 @@ function(data,status){
 
 let G_User_ID, G_name,  G_AvatarURL;
 //Validate 
-function validate(classNa){
-    let check = document.getElementsByClassName(classNa);
-     let len = check.length;
-     let valid = true;
-     for(var i=0;i<len;i++) {
-       if (check[i].value.trim() ==='')
-       {    
 
-           let obj = check[i].id;
- 
-           $("#"+obj).addClass(" required");  // กล่องแดง
-            $("#"+obj).addClass(" error");    // สั่น
-            $("#"+obj+"_error").removeClass("hideErrorMessage");
-              setTimeout(function() {
-              $("#"+obj).removeClass("error");
-            }, 300);
-            valid= false;
-            
-          //alert('required Field '+check[i].name); //เดวเราทำ js เพิ่ม เราไม่ควรใช้  alert
-          notification('required Field '+check[i].name);
-           
-       }
-       else{
-        let obj = check[i].id;
-        $("#"+obj).removeClass(" required");  // กล่องแดง
-        $("#"+obj+"_error").addClass(" hideErrorMessage");
-
-       }
- ;
-      
-     }
-    
-    return valid;
-
-}
  
 // Login 
 
