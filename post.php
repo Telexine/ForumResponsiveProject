@@ -91,7 +91,6 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 <table align="center" class="Font2 fa-2x" style="padding:30px; ">
 <tr><td colspan="1">Title: </td>
 <td><input type="text" name="title" class="fa" id="PostTitle" style="width:100%; border-radius:5px;"></td></tr>
-<tr><td>Subtitle: </td><td><input type="text" id="PostSubtitle"name="subtitle" style="width:100%;border-radius:5px;" class="fa"></td></tr>
 <tr><td>Content: </td><td><textarea name="Postaddress" id="PostContent" ></textarea>
        <script type="text/javascript">
     //<![CDATA[
@@ -144,16 +143,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 
     </tr>
 
-    <tr>
-         <td width="102" class="Font">Avatar
-        </td>
-        <td width="144"> 
-         <input   id="avatarPath"  class="Regisinput" name = "avatar" type="file" value="Upload" accept="image/*"/>   <!--  TAE   -->
-         <div id="avatar_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-        </td>
-
-        
-    </tr>
+  
     
          <tr>
         <td class="Font">Username
@@ -315,12 +305,12 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 		
         <!-- Comment -->
         
-
+        </div> 
         <div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:5px; background-color:#dbe4ea;padding-top:5px;padding-left:5px;">
-			<p class="Font2" style="margin:0px;"><h1 style="color:#263c4b;text-align:left"> Comment</h1></p>
+			<p class="Font2" style="margin:0px;"><h1 style="color:#263c4b;text-align:left;padding-left:20px"> Comment</h1></p>
 			
 			<div id='CommentSection'>
-
+     
 <?php 
 /*
 
@@ -337,37 +327,45 @@ Data
         foreach ($getComment as $rows){
             
            
-		echo ' <div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:10px; background-color:#dbe4ea; padding-bottom:40px; padding-top:25px; padding-left:25px; padding-right:25px;margin-bottom:20px;">
-        <!-- Title --> 
-        <h5 style="color:#263c4b;text-align:left" >Title : </h5> <h1 style="color:#263c4b;text-align:left"> Repiled to : '.$op[0]["Title"].' at '.$rows['Date'].'</h1>
-        <!-- END title -->
+		echo ' <div class=" col-l-12 col-m-12 col-s-12" style="box-sizing:border-box; border-radius:10px;   padding-bottom:40px; padding-top:25px; padding-left:25px; padding-right:25px;margin-bottom:20px;">
+   
+                
+                <div class="col-l-2 col-m-3 col-s-12" style="box-sizing:border-box; padding-right:25px;">
+            <!-- avartar --> 
+                 <div class="" aling="center" style="    margin: auto;box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url( '."'". trim($rows["AvatarURL"])."'".');    background-size:     cover;                   
+                background-repeat:   no-repeat;
+                background-position: center center; "> 
     
-    <div class="col-l-2 col-m-3 col-s-12" style="box-sizing:border-box; padding-right:25px;">
-<!-- avartar --> 
-            <div class="" aling="center" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url( '."'". trim($rows["AvatarURL"])."'".');    background-size:     cover;                   
-background-repeat:   no-repeat;
-background-position: center center; "> 
-     
+                </div>
+            <!--end avartar -->
     
-
-            
-            </div>
-<!--end avartar -->
-    
-            <div class="col-l-12 col-m-12 col-s-12"><p class="Font2"> <p class="Font2">'.getName($rows["User_ID"]).'</p></div>
+            <div class="col-l-12 col-m-12 col-s-12"><p class="Font2"> <p class="Font2"style="text-align:center;font-size:2em"> User :'.getName($rows["User_ID"]).'</p></div>
             </div>
 
-        <div class="col-l-10 col-m-9 col-s-12" style="box-sizing:border-box; padding-left:25px;">
+        <div class="col-l-10 col-m-9 col-s-12" style="height: 100%;box-sizing:border-box; padding-left:25px;">
             
-            <div class="col-m-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%;">
+            <div class="col-m-12 textcom" style="box-sizing:content-box; border-radius:10px;height: 100%;text-align:left; background-color:#263c4b;padding:25px; width:95%;">
                         '. $rows['content'].'   <!---  Post content -->
             </div>
-
-            <div class="col-l-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:400px; width:auto; ">
+            <div style="width: 540px;
+            height: 30px;
+            background-color: pink;
+            border-radius: 20px;
+            position: absolute;
+            margin-left: 55%;
+            margin-top: 20px;"
+            >
+            <!-- Title --> 
+            <span style="color:#263c4b;text-align:left;float: left;padding-left:30px;" >Repiled to : '.$op[0]["Title"].' at '.$rows['Date'].'</span>
+            <!-- END title -->
+            
             </div>
+            
         </div>
-       
-    </div> ' ;
+            
+
+
+    </div>' ;
 
 
         }
@@ -378,20 +376,22 @@ background-position: center center; ">
 
 		<!-- end Commentxxxxxx -->
         </div>
-        
+    </div>
  <hr  size=30>
     
-		<!--Postiing comment  -->
+        <!--Postiing comment  -->
+        
+        
 <div style="width:100%:margin-top:20px;margin-bottom: 50px; background-color: aliceblue;">
 <h2 class="fa">Wanna Post ? </h2>
 
 
 <!-- Post comment  Avatar       -->
-	<div class="col-l-2 col-m-3 col-s-12"style="float:left">
-	<div class="" aling="center" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url('<?php echo getAvatarURL();?> ');    background-size:     cover;                   
+	<div class="col-l-2 col-m-3 col-s-12"style="float:left;padding-top: 30px;">
+	<div class="" aling="center" style="box-sizing:content-box;    margin: auto; border-radius:10px; background-color:#263c4b; height:120px; width:120px;object-fit: contain;background: url('<?php echo getAvatarURL();?> ');    background-size:     cover;                   
 	background-repeat:   no-repeat;
-	background-position: center center; ">
-	<div class="col-l-12 col-m-12 col-s-12"><p class="Font2">
+	background-position: center center; "></div>
+	<div  style="padding-top:30px;"><p class="Font2"style="text-align:center;font-size:2em"> User :
     <?php 
     if(getcname()!='false'){
         echo getcname();
@@ -402,7 +402,7 @@ background-position: center center; ">
           
                 
                 ?>
-                </p></div>
+                </p>
 		</div>
 	</div>
 
@@ -461,9 +461,12 @@ background-position: center center; ">
 				
 				
                 เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong> 
-                <?php if(getUserID()!='false'){
-        echo "<button onClick='logout();'> Logout</button>";
-    }?>  </div>	
+              
+    <?php if(getUserID()!='false'){
+        echo "Hello! ".getcname(). "  <button onClick='logout();'> Logout</button>";
+    }?> 
+    
+</div>	
 		</footer>
 
 		</nav>

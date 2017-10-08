@@ -135,16 +135,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 
     </tr>
 
-    <tr>
-         <td width="102" class="Font">Avatar
-        </td>
-        <td width="144"> 
-         <input   id="avatarPath"  class="Regisinput" name = "avatar" type="file" value="Upload" accept="image/*"/>   <!--  TAE   -->
-         <div id="avatar_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-        </td>
-
-        
-    </tr>
+ 
     
          <tr>
         <td class="Font">Username
@@ -339,9 +330,12 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 		
 		<footer class=" col-m-12 col-s-hidden col-l-12" style=" position:relative; margin-top:60px;">
                 <div class="footer  col-m-12 col-s-hidden col-l-12" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong>
-                <?php if(getUserID()!='false'){
-        echo "<button onClick='logout();'> Logout</button>";
-    }?> </div>	
+               
+    <?php if(getUserID()!='false'){
+        echo "Hello! ".getcname(). "  <button onClick='logout();'> Logout</button>";
+    }?> 
+    
+</div>	
 		</footer>
 
 		</nav>

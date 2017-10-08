@@ -9,7 +9,7 @@ if (!isset($_SESSION)) {
 }
 
        $name = ($_GET['name']);
-       $avatarURL = ($_GET['avatarURL']);
+   
        $Username = ($_GET['Username']);
        $password = ($_GET['password']);
  
@@ -19,7 +19,7 @@ if (!isset($_SESSION)) {
        if(isUserCreated($Username)){
             echo "406";
        }else{
-            CreateUser($name,$Username,$password,$avatarURL);
+            CreateUser($name,$Username,$password,'');
             echo "200";
              
        }

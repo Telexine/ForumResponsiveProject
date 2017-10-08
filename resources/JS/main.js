@@ -68,7 +68,7 @@
         // All clear  เขียนลง DB
         
             let name = document.getElementById('Name').value;
-            let avatarURL = document.getElementById('avatarPath').value; // เดี๋ยวทำ
+ 
             let Username = document.getElementById('username').value;
             let password = md5(document.getElementById('Password').value);
                 if (window.XMLHttpRequest) {
@@ -98,7 +98,7 @@
                         };
                 
                  
-                xmlhttp.open("GET","resources/PHP/register.php?name="+name+"&avatarURL="+avatarURL+"&Username="+Username+"&password="+password,true);
+                xmlhttp.open("GET","resources/PHP/register.php?name="+name+"&Username="+Username+"&password="+password,true);
                 xmlhttp.send();
       }
 

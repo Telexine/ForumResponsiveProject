@@ -234,6 +234,10 @@ color:red;
     -moz-transition: 2s;
     transition: 2s;
 }
+
+.textcom p{
+    font-size:3em;
+}
  
 /*
 

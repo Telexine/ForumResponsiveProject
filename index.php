@@ -125,17 +125,7 @@ $Hotpost = getHotPost(10); // 5 is select top 5
 
 
             </tr>
-
-            <tr>
-                 <td width="102" class="Font">Avatar
-                </td>
-                <td width="144"> 
-                 <input   id="avatarPath"  class="Regisinput" name = "avatar" type="file" value="Upload" accept="image/*"/>   <!--  TAE   -->
-                 <div id="avatar_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-                </td>
-
-                
-            </tr>
+ 
             
             	 <tr>
             	<td class="Font">Username
@@ -378,7 +368,7 @@ $Hotpost = getHotPost(10); // 5 is select top 5
 
     
     <?php if(getUserID()!='false'){
-        echo "<button onClick='logout();'> Logout</button>";
+        echo "Hello! ".getcname(). "  <button onClick='logout();'> Logout</button>";
     }?> 
 
 </div>	
