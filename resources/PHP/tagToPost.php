@@ -34,7 +34,7 @@ array(2) { [0]=> array(7) { ["Post_ID"]=> string(14) "OP1503326319?9" ["Date"]=>
             $postResult[$i++]= $r;
            // print_r($postResult);echo "<br>";
          }
-      echo $postResult;
+      echo implode(" ", $postResult[0][0]);
 
         
        
