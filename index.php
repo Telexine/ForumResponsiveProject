@@ -63,7 +63,17 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 <!-- CreatePostBox -->
 <div id='backdrop' class="modal  hide" onClick="hideAll();"></div>
 <div id="CreatePostBox"class="modal hide">
+    
+<!-- snack bar -->
 
+<div class="mdl-js-snackbar mdl-snackbar" id="demo-toast-example">
+<div class="mdl-snackbar__text">
+</div>
+<button class="mdl-snackbar__action" type="button"></button>
+</div>
+ 
+  
+<!-- snack bar -->
 
 <div style="margin-bottom: 50px; color: aliceblue; text-align: center;" class="col-l-12">
                     <div align="center"  class=" col-l-12 col-m-12" style="border-radius:10px;background-color:#dbe4ea;">
@@ -81,12 +91,12 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 					skin : 'office2013',				
 					
 					
-				filebrowserBrowseUrl : './resources/ckfinder/ckfinder.html',
-				filebrowserImageBrowseUrl : './resources/ckfinder/ckfinder.html?Type=Images',
-				filebrowserFlashBrowseUrl : './resources/ckfinder/ckfinder.html?Type=Flash',
-				filebrowserUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-				filebrowserImageUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-				filebrowserFlashUploadUrl : './resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+				filebrowserBrowseUrl : 'resources/ckfinder/ckfinder.php',
+				filebrowserImageBrowseUrl : 'resources/ckfinder/ckfinder.html?Type=Images',
+				filebrowserFlashBrowseUrl : 'resources/ckfinder/ckfinder.html?Type=Flash',
+				filebrowserUploadUrl : 'resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+				filebrowserImageUploadUrl : 'resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+				filebrowserFlashUploadUrl : 'resources/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
 				
 					} );
 			//]]>
@@ -400,16 +410,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
 </main>
 
-<!-- snack bar -->
 
-<div class="mdl-js-snackbar mdl-snackbar" id="demo-toast-example">
-<div class="mdl-snackbar__text">
-</div>
-<button class="mdl-snackbar__action" type="button"></button>
-</div>
- 
-  
-<!-- snack bar -->
 
 <footer>
 	<div class="footer" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong>.</div>	
@@ -456,6 +457,10 @@ let xPostContent = document.getElementById('PostContent').value;
 let xPostTag = document.getElementById('PostTag').value;
 let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
  
+if(xPostContent==""||xPostTitle==""){
+    notification('Please Fill the Post');
+    return false;
+}
 
 $.post("resources/PHP/createPost.php",
 { 

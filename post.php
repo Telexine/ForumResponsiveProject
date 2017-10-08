@@ -80,6 +80,8 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 <div id='backdrop' class="modal  hide" onClick="hideAll();"></div>
 <div id="CreatePostBox"class="modal hide">
 
+ 
+
 
 <div style="margin-bottom: 50px; color: aliceblue; text-align: center;" class="col-l-12">
             <div align="center"  class=" col-l-12 col-m-12" style="border-radius:10px;background-color:#dbe4ea;">
@@ -595,11 +597,14 @@ function submitPost(){
 
 
 let xPostTitle = document.getElementById('PostTitle').value;
-let xPostSubtitle = document.getElementById('PostSubtitle').value; //!@#$%^ คืออะไร
 let xPostContent = document.getElementById('PostContent').value;
 let xPostTag = document.getElementById('PostTag').value;
 let xUser_ID = <?php echo getUserID(); ?>;//$_SESSION['curUser_ID'];
  
+if(xPostContent==""||xPostTitle==""){
+    notification('Please Fill the Post');
+    return false;
+}
 
 $.post("resources/PHP/createPost.php",
 { 
