@@ -490,7 +490,10 @@ background-position: center center; ">
 				
 				
 				
-				เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong> </div>	
+                เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong> 
+                <?php if(getUserID()!='false'){
+        echo "<button onClick='logout();'> Logout</button>";
+    }?>  </div>	
 		</footer>
 
 		</nav>

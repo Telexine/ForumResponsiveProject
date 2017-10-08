@@ -403,7 +403,16 @@ $Hotpost = getHotPost(5); // 5 is select top 5
 
 
 <footer>
-	<div class="footer" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong>.</div>	
+    <div class="footer" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong>
+
+    
+    <?php if(getUserID()!='false'){
+        echo "<button onClick='logout();'> Logout</button>";
+    }?> 
+
+</div>	
+
+
 </footer>
 
 	</div><!-- wrapper -->

@@ -114,7 +114,10 @@
                                }
                             else{
                                 notification("Loging you out"); //จะขึ้น Modal, Breadcrumb
-                    location.reload(); 
+                                blurAll();
+                                setTimeout(function(){
+                                    location.reload();
+                                },2000); 
                             }
         });
         

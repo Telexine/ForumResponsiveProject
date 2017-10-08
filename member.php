@@ -368,7 +368,10 @@ character, Bob stars in his own show now, called "Better Call Saul".
 		
 		
 		<footer class=" col-m-12 col-s-hidden col-l-12" style=" position:relative; margin-top:60px;">
-				<div class="footer  col-m-12 col-s-hidden col-l-12" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong>(ฝากแก้ไขข้อความด้วย ไม่รู้จะพิมพ์อะไร)</div>	
+                <div class="footer  col-m-12 col-s-hidden col-l-12" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong>
+                <?php if(getUserID()!='false'){
+        echo "<button onClick='logout();'> Logout</button>";
+    }?> </div>	
 		</footer>
 
 		</nav>
