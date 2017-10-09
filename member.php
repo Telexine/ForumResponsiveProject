@@ -270,7 +270,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
  
 		<main id="main" >
 				<div style="margin-bottom: 50px; color: aliceblue; text-align: center;" class="col-l-12">
-                <div align="center"  class=" col-l-12 col-m-12 fa Font2" style="border-radius:10px; font-size:30px; 
+                <div align="center"  class=" col-l-12 col-m-12 fa Font2" style="padding-bottom:40px;border-radius:10px; font-size:30px; 
 								background-color:#dbe4ea;  padding-top:30px;"><b><u><h2>MEMBER</h2></u></b>
                     <div class="member col-l-12 col-m-12 col-s-12" style="box-sizing:content-box; margin-left:50px; padding-bottom:10px;"> <!-- firstmember start -->
                         
@@ -283,7 +283,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
                                     <tr>
                                             <td width="50"></td>
                                             <td>Name:</td> <td>Sasikorn Parngamvichit</td><td rowspan="4" width="50"></td>
-                                            <td rowspan="4"><a href="#"onClick="goToLink('resources/about/pan/bstr.htm');" style="text-decoration:none" >
+                                            <td rowspan="4"><a   class="btnfn" href="#"onClick="goToLink('resources/about/pan/bstr.htm');" style="text-decoration:none" >
                                                 <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td>
                                     </tr>  
                                                         
@@ -310,7 +310,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
                                     <tr>
                                             <td width="50"></td>
                                             <td>Name:</td> <td>Pattara Nongnatoom</td><td rowspan="4" width="50"></td>
-                                            <td rowspan="4"><a href="#"onClick="goToLink('resources/about/eui/index.html');" style="text-decoration:none" >
+                                            <td rowspan="4"><a  class="btnfn" href="#"onClick="goToLink('resources/about/eui/index.html');" style="text-decoration:none" >
                                                 <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td>
                                     </tr>  
                                                         
@@ -336,7 +336,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
                                     <tr>
                                             <td width="50"></td>
                                             <td>Name:</td> <td>Tachid Boonpipat</td><td rowspan="4" width="50"></td>
-                                            <td rowspan="4"><a href="#"onClick="goToLink('https://portfolio-c3e09.firebaseapp.com/');" style="text-decoration:none" >
+                                            <td rowspan="4"><a  class="btnfn" href="#"onClick="goToLink('https://portfolio-c3e09.firebaseapp.com/');" style="text-decoration:none" >
                                                 <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td>
                                     </tr>  
                                                         
@@ -362,7 +362,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
                                     <tr>
                                             <td width="50"></td>
                                             <td>Name:</td> <td>Tanyapa Rattanakanahutanon</td><td rowspan="4" width="50"></td>
-                                            <td rowspan="4"><a href="#"onClick="goToLink('resources/about/jam/home.html');" style="text-decoration:none" >
+                                            <td rowspan="4"><a  class="btnfn" href="#"onClick="goToLink('resources/about/jam/home.html');" style="text-decoration:none" >
                                                 <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td>
                                     </tr>  
                                                         
@@ -388,7 +388,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
                                     <tr>
                                             <td width="50"></td>
                                             <td>Name:</td> <td>Benja Arkachaisri</td><td rowspan="4" width="50"></td>
-                                            <td rowspan="4"><a href="#"onClick="goToLink('resources/about/bean/page1.html');" style="text-decoration:none" >
+                                            <td rowspan="4"><a  class="btnfn"href="#"onClick="goToLink('resources/about/bean/page1.html');" style="text-decoration:none" >
                                                 <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td>
                                     </tr>  
                                                         
@@ -423,7 +423,19 @@ echo "Hello! ".getcname(). "  <button onClick='logout();'> Logout</button>";
 
 </body>
  
- <style></style>
+ <style>
+ @media only screen and (max-width: 940px) {
+    .btnfn{
+        left: 48%;
+        margin-top: 70px;
+        position:absolute;
+    }
+}
+
+ 
+ 
+ 
+ </style>
 
 
 
