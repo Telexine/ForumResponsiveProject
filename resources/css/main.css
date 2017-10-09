@@ -1,4 +1,4 @@
-<style>
+ 
 .content-grid {
       max-width: 100%;
 }
@@ -141,7 +141,7 @@ REGISTER , LOGIN CSS
 
 #main img{ max-width:100% !important ;  /* แก้รูปใหญ่เกิน*/
     height:auto !important;
-    width: 41.66% !important;}
+    width: 32.66% !important;}
 
 .error {
 position: relative;
@@ -257,6 +257,20 @@ top: 0px;
 background-color:white; 
 
 }
+
+
+@media only screen and (max-width: 599px) {
+    .ttext{
+                font-size: .7em;
+         }
+}
+
+@media only screen and (max-width: 523px) {
+    .ttext{
+                font-size: .4em;
+         }
+}
+
 /*
 
 END REGISTER , LOGIN CSS

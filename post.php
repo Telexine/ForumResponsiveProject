@@ -304,7 +304,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 			<div class="col-l-10 col-m-9 col-s-12" style="box-sizing:border-box; padding-left:25px;">
 				
 				<div class="col-m-12"  style="height: 100%;box-sizing:content-box; border-radius:10px; background-color:#263c4b;padding-top:10px;padding-bottom:10px; width:100%; ">
-						<div class="col-m-12 textcom"style="text-align:left">	<?PHP echo $op[0]["content"]; ?>  </div> <!---  Post content -->
+						<div class="col-m-12  "style="text-align:left">	 <div style="padding:20px">  <?PHP echo $op[0]["content"]; ?> </div> </div> <!---  Post content -->
 				</div>
 
 				<div class="col-l-12" style="box-sizing:content-box; border-radius:10px; background-color:#263c4b; height:400px; width:auto; ">
@@ -368,7 +368,7 @@ Data
         <div class="col-l-10 col-m-9 col-s-12" style="height: 100%;box-sizing:border-box; padding-left:25px;">
             
             <div class="col-m-12  " style="box-sizing:content-box; border-radius:10px;height: 100%;text-align:left; background-color:#263c4b; width:95%;">
-                     <div class="col-m-12 textcom " style="padding:20px">   '. $rows['content'].'    </div> <!---  Post content -->
+                     <div class="col-m-12  " style="padding:20px">  <div style="padding:20px">'. $rows['content'].'  </div>  </div> <!---  Post content -->
             </div>
             <div style="width: 540px;
             height: 30px;
