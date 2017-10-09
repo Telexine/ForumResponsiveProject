@@ -134,93 +134,96 @@ document.onreadystatechange = function () {
 </div> <!--END CreatePostBox  -->
 
 
+
 <!-- Login RegisterBox -->
 <div id="RegisterBox"class="modal hide fadepopIN">
-	
-<div style="background-color:#dbe4ea; border-radius:15px; height:300px;width: 80%;margin: auto;" align="center"> 
-	<div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
+
+<div style="background-color:#dbe4ea;float:left;position: inherit;
+    left: 11%; border-radius:15px;padding:10px;height:100%;width: 80%;margin: auto;" align="center"> 
+<div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
 <div class=" " id="regisOption" style="margin:auto;width:80%;padding-top:30px">
 
-<div id="signup" style="float:left;width:50%;height: -webkit-fill-available;">
-	
-        <table style="margin:auto">
-         <form>
-            <tr>
-            	<td width="102" class="Font">NickName
-                </td>
-                <td width="144" > 
-                 <input class="require Regisinput"  ID="Name" name="Nick Name" type="text">  <!--  TAE   -->
-                 <div id="Name_error" class="hideErrorMessage errmsg Font" >Require</div><!--  TAE   -->
-                </td>
+<div class="col-s-12 col-m-12 col-l-5" id="signup" style="float:left;height:40%">
+
+<table style="margin:auto">
+ <form> 
+    <tr>
+        <td width="102" class="Font">NickName
+        </td>
+        <td width="144" > 
+         <input class="require Regisinput"  ID="Name" name="Nick Name" type="text">  <!--  TAE   -->
+         <div id="Name_error" class="hideErrorMessage errmsg Font" >Require</div><!--  TAE   -->
+        </td>
 
 
-            </tr>
+    </tr>
+
  
-            
-            	 <tr>
-            	<td class="Font">Username
-                </td>
-                <td> 
-                 <input class="require Regisinput" ID="username" name="username" type="text"> <!--  TAE   -->
-                 <div id="username_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-                </td>
-            </tr>
-             <tr>
-            	<td class="Font">Password
-                </td>
-                <td> 
-                 <input class="require Regisinput" id ='Password' name="password" type="password"> <!--  TAE   -->
-                
-                </td>
-            </tr>
-             <tr>
-            	<td class="Font">Confirm Password
-                </td>
-                <td> 
-                 <input class="require Regisinput" id ='Password2'name="passwordconfirm" type="password"> <!--  TAE   -->
-                 <div id="Password_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-                </td>
-            </tr>
-            	 <tr>
-                <td>
-                </td>
-                <td> 
-                 <input onclick ="register();" id="Register"type="button" value="Sign up" class="Font"/>  <!--  TAE   -->
-                </td>
-            </tr>
-           
-             </form>
-        </table>
+    
+         <tr>
+        <td class="Font">Username
+        </td>
+        <td> 
+         <input class="require Regisinput" ID="username" name="username" type="text"> <!--  TAE   -->
+         <div id="username_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+        </td>
+    </tr>
+     <tr>
+        <td class="Font">Password
+        </td>
+        <td> 
+         <input class="require Regisinput" id ='Password' name="password" type="password"> <!--  TAE   -->
+        
+        </td>
+    </tr>
+     <tr>
+        <td class="Font">Confirm Password
+        </td>
+        <td> 
+         <input class="require Regisinput" id ='Password2'name="passwordconfirm" type="password"> <!--  TAE   -->
+         <div id="Password_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+        </td>
+    </tr>
+         <tr>
+        <td>
+        </td>
+        <td> 
+         <input onclick ="register();" id="Register"type="button" value="Sign up" class="Font"/>  <!--  TAE   -->
+        </td>
+    </tr>
    
+     </form>
+</table>
+
 </div>
-<div id="login" style="float:left;width:50%;height: -webkit-fill-available;">
- <table style="margin:auto">
-         <form>
-			 <tr>
-            	<td class="Font">Username
-                </td>
-                <td> 
-                 <input id="Login_ID" name="username" class="reqLog Regisinput" type="text">  <!-- TAE  -->
-                 <div id="Login_ID_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-                </td>
-            </tr>
-             <tr>
-            	<td class="Font">Password
-                </td>
-                <td> 
-                 <input id="Login_Pass" name="password" class="reqLog Regisinput" type="password"> <!-- TAE  -->
-                 <div id="Login_Pass_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
-                </td>
-            </tr>
-            <tr>
-            <td> 
-                </td>
-             <td align="right"> 
-                 <input type="button" onclick = 'Loginpage();' value="Log in" class="Font"/>
-                </td>
-            </tr>
-		</form>
- </table>
+<div class="col-s-12  col-m-12 col-l-5"id="login" style="float:left;height: -webkit-fill-available;">
+<table style="margin:auto">
+ <form>
+     <tr>
+        <td class="Font">Username
+        </td>
+        <td> 
+         <input id="Login_ID" name="username" class="reqLog Regisinput" type="text">  <!-- TAE  -->
+         <div id="Login_ID_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+        </td>
+    </tr>
+     <tr>
+        <td class="Font">Password
+        </td>
+        <td> 
+         <input id="Login_Pass" name="password" class="reqLog Regisinput" type="password"> <!-- TAE  -->
+         <div id="Login_Pass_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
+        </td>
+    </tr>
+    <tr>
+    <td> 
+        </td>
+     <td align="right"> 
+         <input type="button" onclick = 'Loginpage();' value="Log in" class="Font"/>
+        </td>
+    </tr>
+</form>
+</table>
 </div>
 </div></div>
 </div>

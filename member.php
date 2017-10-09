@@ -140,14 +140,15 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 <!-- Login RegisterBox -->
 <div id="RegisterBox"class="modal hide fadepopIN">
 
-<div style="background-color:#dbe4ea; border-radius:15px; height:300px;width: 80%;margin: auto;" align="center"> 
+<div style="background-color:#dbe4ea;float:left;position: inherit;
+    left: 11%; border-radius:15px;padding:10px;height:100%;width: 80%;margin: auto;" align="center"> 
 <div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
 <div class=" " id="regisOption" style="margin:auto;width:80%;padding-top:30px">
 
-<div class="col-s-12" id="signup" style="float:left;width:50%;height: -webkit-fill-available;">
+<div class="col-s-12 col-m-12 col-l-5" id="signup" style="float:left;height:40%">
 
 <table style="margin:auto">
- <form>
+ <form> 
     <tr>
         <td width="102" class="Font">NickName
         </td>
@@ -197,7 +198,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 </table>
 
 </div>
-<div class="col-s-12"id="login" style="float:left;width:50%;height: -webkit-fill-available;">
+<div class="col-s-12  col-m-12 col-l-5"id="login" style="float:left;height: -webkit-fill-available;">
 <table style="margin:auto">
  <form>
      <tr>
