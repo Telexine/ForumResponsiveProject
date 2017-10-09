@@ -144,7 +144,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 <div> <button type="button" class="closebtnModal" style="right: 10%;"onClick="hideAll();" data-dismiss="modal"><span style="font-size: 3em;" aria-hidden="true">×</span></button> <!-- Close Btn -->
 <div class=" " id="regisOption" style="margin:auto;width:80%;padding-top:30px">
 
-<div id="signup" style="float:left;width:50%;height: -webkit-fill-available;">
+<div class="col-s-12" id="signup" style="float:left;width:50%;height: -webkit-fill-available;">
 
 <table style="margin:auto">
  <form>
@@ -197,7 +197,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 </table>
 
 </div>
-<div id="login" style="float:left;width:50%;height: -webkit-fill-available;">
+<div class="col-s-12"id="login" style="float:left;width:50%;height: -webkit-fill-available;">
 <table style="margin:auto">
  <form>
      <tr>
