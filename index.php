@@ -208,7 +208,7 @@ document.onreadystatechange = function () {
             	<td class="Font">Password
                 </td>
                 <td> 
-                 <input id="Login_Pass" name="password" class="reqLog Regisinput" type="text"> <!-- TAE  -->
+                 <input id="Login_Pass" name="password" class="reqLog Regisinput" type="password"> <!-- TAE  -->
                  <div id="Login_Pass_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
                 </td>
             </tr>

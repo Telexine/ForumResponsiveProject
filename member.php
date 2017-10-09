@@ -15,10 +15,7 @@ require_once('resources/PHP/func.php');
 if (!isset($_SESSION)) {
     session_start();
 }
-
-$Allpostnum = getAllPostNum();  // count all post in the system
-$Hotpost = getHotPost(5); // 5 is select top 5
-  
+ 
 ?><head>
 <link rel="stylesheet" type="text/css" href="resources/css/Header+FooterCss_index.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -36,6 +33,7 @@ $Hotpost = getHotPost(5); // 5 is select top 5
   <script type="text/javascript" src="resources/JS/MD5.js"></script>
   <script type="text/javascript" src="resources/ckeditor/ckeditor.js"></script> 
 
+ 
  
 </head>
 
@@ -58,11 +56,7 @@ document.onreadystatechange = function () {
       },500);
   }
 }
-
-	
-	</script>
-</head>
-
+</script>
 <body>
 <!-- Load -->
 <div id="loadbg">
@@ -70,6 +64,7 @@ document.onreadystatechange = function () {
 			<div id="pgload"></div>
             </div></div>
    <!-- Load -->         
+
 
 <div   align="center" class="Logo"><a href="#" class="button"><img src="resources/images/logo.png"  width="112" height="112"></a></div> 
 <header>
@@ -112,7 +107,6 @@ document.onreadystatechange = function () {
 <table align="center" class="Font2 fa-2x" style="padding:30px; ">
 <tr><td colspan="1">Title: </td>
 <td><input type="text" name="title" class="fa" id="PostTitle" style="width:100%; border-radius:5px;"></td></tr>
-<tr><td>Subtitle: </td><td><input type="text" id="PostSubtitle"name="subtitle" style="width:100%;border-radius:5px;" class="fa"></td></tr>
 <tr><td>Content: </td><td><textarea name="Postaddress" id="PostContent" ></textarea>
        <script type="text/javascript">
     //<![CDATA[
@@ -218,7 +212,7 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
         <td class="Font">Password
         </td>
         <td> 
-         <input id="Login_Pass" name="password" class="reqLog Regisinput" type="text"> <!-- TAE  -->
+         <input id="Login_Pass" name="password" class="reqLog Regisinput" type="password"> <!-- TAE  -->
          <div id="Login_Pass_error" class="hideErrorMessage errmsg Font">Require</div><!--  TAE   -->
         </td>
     </tr>
@@ -276,82 +270,138 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
  
 		<main id="main" >
 				<div style="margin-bottom: 50px; color: aliceblue; text-align: center;" class="col-l-12">
-                    <div align="center"  class=" col-l-12 col-m-12 fa Font2" style="border-radius:10px; font-size:30px; 
+                <div align="center"  class=" col-l-12 col-m-12 fa Font2" style="border-radius:10px; font-size:30px; 
 								background-color:#dbe4ea;  padding-top:30px;"><b><u><h2>MEMBER</h2></u></b>
-                                
-                                
-                                
-                                
-                                
-                    	<div class="member" style=" margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
-                            <div class="contentmem" align="center" >
-                            	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4"><img src="resources/about/pan/18835597_700968896757966_3229098966599354363_n.jpg" style=" width:200px; height:200px">
-                                                                </td><td width="50"></td><td>Name:</td><td>Sasikorn Parngamvichit</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="#"onClick="goToLink('resources/about/pan/bstr.htm');" style="text-decoration:none" >
-                                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
+                    <div class="member col-l-12 col-m-12 col-s-12" style="box-sizing:content-box; margin-left:50px; padding-bottom:10px;"> <!-- firstmember start -->
+                        
+                        <div class="col-l-4 col-m-4 col-s-12">
+                            <img src="resources/about/pan/18835597_700968896757966_3229098966599354363_n.jpg" style=" width:200px; height:200px">
+                        </div>
+
+                        <div class="col-l-8 col-m-8 col-s-12" style="border-radius:10px; padding-top:50px;">
+                            <table align="left" class="mem">
+                                    <tr>
+                                            <td width="50"></td>
+                                            <td>Name:</td> <td>Sasikorn Parngamvichit</td><td rowspan="4" width="50"></td>
+                                            <td rowspan="4"><a href="#"onClick="goToLink('resources/about/pan/bstr.htm');" style="text-decoration:none" >
+                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td>
+                                    </tr>  
                                                         
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>58122044-9</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>Multimedia</td></tr></table> 
-                                                               	<hr>
-                            </div> 
-                        </div><!-- firstmember end -->
-                      
-                      <div class="member" style=" margin:50px; padding-bottom:10px;"><!-- firstmember start -->
-                            <div class="contentmem" align="center" >
-                            	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4"><img src="resources/about/eui/pattara (1).jpg" style=" width:200px; height:200px">
-                                                                </td><td width="50"></td><td>Name:</td><td>Pattara Nongnatoom</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="#"onClick="goToLink('resources/about/eui/index.html');" style="text-decoration:none" >
-                                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
+                                    <tr>
+                                        <td width="50"></td><td>Student Code:</td><td>58122044-9</td>
+                                    </tr> 
                                                                 
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>58122086-3</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>Multimedia</td></tr></table> 
-                                                               	<hr>
-                            </div> 
-                        </div><!-- firstmember end -->
-                      
-                      <div class="member" style=" margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
-                            <div class="contentmem" align="center" >
-                            	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4"><img src="resources/about/tae/21950108_1514472708646969_3739404714510289042_o.jpg" style=" width:200px; height:200px">
-                                                                </td><td width="50"></td><td>Name:</td><td>Tachid Boonpipat</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="#"onClick="goToLink('https://portfolio-c3e09.firebaseapp.com/');"style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ -->
-                                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
+                                    <tr>
+                                        <td width="50"></td><td>Major:</td><td>Multimedia</td>
+                                    </tr>
+                                </table>
+                                
+                        </div>
+                    </div><!-- firstmember end --> 
+                    
+                    <div class="member col-l-12 col-m-12 col-s-12" style="box-sizing:content-box; margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
+                        
+                        <div class="col-l-4 col-m-4 col-s-12">
+                            <img src="resources/about/eui/pattara (1).jpg" style=" width:200px; height:200px">
+                        </div>
+
+                        <div class="col-l-8 col-m-8 col-s-12" style="border-radius:10px; padding-top:50px;">
+                            <table align="left" class="mem">
+                                    <tr>
+                                            <td width="50"></td>
+                                            <td>Name:</td> <td>Pattara Nongnatoom</td><td rowspan="4" width="50"></td>
+                                            <td rowspan="4"><a href="#"onClick="goToLink('resources/about/eui/index.html');" style="text-decoration:none" >
+                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td>
+                                    </tr>  
+                                                        
+                                    <tr>
+                                        <td width="50"></td><td>Student Code:</td><td>58122086-3</td>
+                                    </tr> 
                                                                 
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>58121090-3</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>Information Technology</td></tr></table> 
-                                                               	<hr>
-                            </div> 
-                        </div><!--- first member end -->
-                      
-                      <div class="member" style=" margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
-                            <div class="contentmem" align="center" >
-                            	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4"><img src="resources/about/jam/jam.jpg" style=" width:200px; height:200px">
-                                                                </td><td width="50"></td><td>Name:</td><td>Tanyapa Rattanakanahutanon </td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="#"onClick="goToLink('resources/about/jam/home.html');" style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ- -->
-                                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
+                                    <tr>
+                                        <td width="50"></td><td>Major:</td><td>Multimedia</td>
+                                    </tr>
+                                </table> 
+                        </div>
+                    </div><!-- firstmember end -->
+                    
+                    <div class="member col-l-12 col-m-12 col-s-12" style="box-sizing:content-box; margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
+                        
+                        <div class="col-l-4 col-m-4 col-s-12">
+                            <img src="resources/about/tae/21950108_1514472708646969_3739404714510289042_o.jpg" style=" width:200px; height:200px">
+                        </div>
+
+                        <div class="col-l-8 col-m-8 col-s-12" style="border-radius:10px; padding-top:50px;">
+                            <table align="left" class="mem">
+                                    <tr>
+                                            <td width="50"></td>
+                                            <td>Name:</td> <td>Tachid Boonpipat</td><td rowspan="4" width="50"></td>
+                                            <td rowspan="4"><a href="#"onClick="goToLink('https://portfolio-c3e09.firebaseapp.com/');" style="text-decoration:none" >
+                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td>
+                                    </tr>  
+                                                        
+                                    <tr>
+                                        <td width="50"></td><td>Student Code:</td><td>58121090-3</td>
+                                    </tr> 
                                                                 
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>58122031-6</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>Multimedia</td></tr></table> 
-                                                               	<hr>
-                            </div> 
-                        </div><!--- first member end -->
-                      
-                      <div class="member" style=" margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
-                            <div class="contentmem" align="center" >
-                            	                         <table align="center" class="mem">
-                                                         		<tr><td rowspan="4"><img src="resources/about/bean/img/1.jpg" style=" width:200px; height:200px">
-                                                                </td><td width="50"></td><td>Name:</td><td>Benja Arkachaisri</td><td rowspan="4" width="50"></td>
-                                                                <td rowspan="4"><a href="#"onClick="goToLink('resources/about/bean/page1.html');"  style="text-decoration:none" ><!---เปลี่ยนลิ้งเว็บด้วยเด้อ- -->
-                                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td></tr>  
+                                    <tr>
+                                        <td width="50"></td><td>Major:</td><td>Information Technology</td>
+                                    </tr>
+                                </table> 
+                        </div>
+                    </div><!-- firstmember end -->
+
+                    <div class="member col-l-12 col-m-12 col-s-12" style="box-sizing:content-box; margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
+                        
+                        <div class="col-l-4 col-m-4 col-s-12">
+                            <img src="resources/about/jam/jam.jpg" style=" width:200px; height:200px">
+                        </div>
+
+                        <div class="col-l-8 col-m-8 col-s-12" style="border-radius:10px; padding-top:50px;">
+                            <table align="left" class="mem">
+                                    <tr>
+                                            <td width="50"></td>
+                                            <td>Name:</td> <td>Tanyapa Rattanakanahutanon</td><td rowspan="4" width="50"></td>
+                                            <td rowspan="4"><a href="#"onClick="goToLink('resources/about/jam/home.html');" style="text-decoration:none" >
+                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td>
+                                    </tr>  
+                                                        
+                                    <tr>
+                                        <td width="50"></td><td>Student Code:</td><td>58122031-6</td>
+                                    </tr> 
                                                                 
-                                                         		<tr><td width="50"></td><td>Student Code:</td><td>58121102-6</td></tr> 
-                                                                <tr><td width="50"></td><td>Major:</td><td>Information Technology</td></tr></table> 
-                                                               	<hr>
-                            </div> 
-                        </div><!--- first member  end -->
+                                    <tr>
+                                        <td width="50"></td><td>Major:</td><td>Multimedia</td>
+                                    </tr>
+                                </table> 
+                        </div>
+                    </div><!-- firstmember end -->
+
+                    <div class="member col-l-12 col-m-12 col-s-12" style="box-sizing:content-box; margin:50px; padding-bottom:10px;"> <!-- firstmember start -->
+                        
+                        <div class="col-l-4 col-m-4 col-s-12">
+                            <img src="resources/about/bean/img/1.jpg" style=" width:200px; height:200px">
+                        </div>
+
+                        <div class="col-l-8 col-m-8 col-s-12" style="border-radius:10px; padding-top:50px;">
+                            <table align="left" class="mem">
+                                    <tr>
+                                            <td width="50"></td>
+                                            <td>Name:</td> <td>Benja Arkachaisri</td><td rowspan="4" width="50"></td>
+                                            <td rowspan="4"><a href="#"onClick="goToLink('resources/about/bean/page1.html');" style="text-decoration:none" >
+                                                <div style="background-color:#263c4b; padding:10px; border-radius:5px; color:#dbe4ea">Click</div> </a></td>
+                                    </tr>  
+                                                        
+                                    <tr>
+                                        <td width="50"></td><td>Student Code:</td><td>58121102-6</td>
+                                    </tr> 
+                                                                
+                                    <tr>
+                                        <td width="50"></td><td>Major:</td><td>Information Technology</td>
+                                    </tr>
+                                </table> 
+                        </div>
+                    </div><!-- firstmember end -->
                         
                     </div>
                 </div>
@@ -359,21 +409,21 @@ background-color:#263c4b; color:aliceblue; padding:10px; padding-top:15px;"></td
 		
 		
 		<footer class=" col-m-12 col-s-hidden col-l-12" style=" position:relative; margin-top:60px;">
-                <div class="footer  col-m-12 col-s-hidden col-l-12" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong>
-               
-    <?php if(getUserID()!='false'){
-        echo "Hello! ".getcname(). "  <button onClick='logout();'> Logout</button>";
-    }?> 
-    
+        <div class="footer  col-m-12 col-s-hidden col-l-12" style="padding-top: 25px;">เว็บไซต์นี้เป็นส่วนหนึ่งของวิชา <strong>MTE-435</strong>
+       
+<?php if(getUserID()!='false'){
+echo "Hello! ".getcname(). "  <button onClick='logout();'> Logout</button>";
+}?> 
+
 </div>	
-		</footer>
+</footer>
 
 		</nav>
 </div> <!-- wrapper -->
 
 </body>
  
- 
+ <style></style>
 
 
 
@@ -504,7 +554,7 @@ console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?>
 	 var tagged = [];
      //showHint takes a string and does tons of stuff and i can't be bothered to write the manual for this
      function showHint(str) {
-         console.log(tagged);
+       
          if (str.length == 0) 
          {
              document.getElementById("tagHint").innerHTML = "";
@@ -520,7 +570,7 @@ console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?>
                  {
                      document.getElementById("tagHint").innerHTML = "";
                      var a = this.responseText.split(" ");
-                     console.log(a);
+                  
                      var i,j;
                      for (i = 0; i < a.length; ++i) 	
                      {
@@ -568,7 +618,7 @@ console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?>
      }
      //showPost takes an array of whatever tags and updates recommendedTagPostView with posts from postgetter.php
      function showPost(arr) {
-         console.log(arr);
+   
          var xmlhttp = new XMLHttpRequest();
              
          xmlhttp.onreadystatechange = function() {
@@ -578,12 +628,12 @@ console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?>
          };	
          xmlhttp.open("POST", "resources/PHP/postgetter.php");
          xmlhttp.setRequestHeader( "Content-Type", "application/json" );
-         console.log(JSON.stringify(arr));
+ 
          xmlhttp.send(JSON.stringify(arr));
      }
      //same, but for search
      function showPostSearch(arr) {
-         console.log(arr);
+  
          var xmlhttp = new XMLHttpRequest();
              
          xmlhttp.onreadystatechange = function() {
@@ -593,7 +643,7 @@ console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?>
          };	
          xmlhttp.open("POST", "resources/PHP/postgetter.php");
          xmlhttp.setRequestHeader( "Content-Type", "application/json" );
-         console.log(JSON.stringify(arr));
+   
          xmlhttp.send(JSON.stringify(arr));
      }
      function fragmentFromString(strHTML) {
@@ -603,14 +653,14 @@ console.log("USER_ID: <?php echo getUserID();?>  NAME:  <?php echo getcname();?>
      }
      function makecloseable() {
          var elements = document.getElementsByClassName('close');
-         console.log(elements.length);
+          
          for (var i = 0; i < elements.length; i++){
-             console.log(elements[i]);
+ 
              elements[i].addEventListener("click", function(){
                  var frag = fragmentFromString(this.parentNode.parentNode.parentNode.innerHTML);
-                 console.log(frag);
+ 
                  var list = frag.getElementById("hinttext").innerHTML;
-                 console.log(list);
+      
                  for (j = 0; j < tagged.length; ++j)
                  {
                      if (list == tagged[j])
