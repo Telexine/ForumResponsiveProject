@@ -113,7 +113,7 @@ function searchPost($searchTerms){
 
     $sql ="SELECT Post_ID
 	FROM TBTag
-	WHERE Tag IN (" . $searchTStore2 . ")
+	WHERE LOWER(Tag) IN (" .  strtolower($searchTStore2) . ")
 	GROUP BY Post_ID 
 	HAVING Count(DISTINCT Tag) = ". count($searchTerms) .";";
 	//echo $searchTStore2;
